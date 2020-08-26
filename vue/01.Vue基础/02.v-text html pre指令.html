@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+
+<body>
+    <!-- v-text 没有闪冲问题 插入纯文本 -->
+    <!-- v-html 解析标签 存在安全隐患 访问跨越网站不推荐 -->
+    <!-- v-pre 显示原来信息 跳过编译过程 -->
+    <div id="app">
+        <div v-text="value"></div>
+        <div v-html="value1"></div>
+        <div v-pre>{{value}}</div>
+    </div>
+</body>
+
+<script>
+
+    const Linn = new Vue({
+        el: '#app',
+        data: {
+            value: 'Hello Vue',
+            value1:'<h1>HTML</h1>'
+        },
+        methods: {
+
+        },
+    });
+</script>
+
+</html>

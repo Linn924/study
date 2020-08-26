@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /*  
+        align-items：设置侧轴上的子元素排列方式（单行）
+    */
+    div{
+        width: 80%;
+        height: 500px;
+        background-color: blue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* 居中拉伸 需要去掉子元素的高度 */
+        /* align-items: stretch; */
+    }
+    span{
+        width: 200px;
+        height: 100px;
+        background-color: red;
+        margin: 0 10px;
+    }
+</style>
+<body>
+    <div>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+</body>
+</html>

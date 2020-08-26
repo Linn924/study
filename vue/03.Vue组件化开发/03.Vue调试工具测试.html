@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<style type="text/css">
+    .root {
+        background-color: orange;
+    }
+
+    .second {
+        background-color: lightgreen;
+    }
+
+    .third {
+        background-color: lightblue;
+    }
+</style>
+
+<body>
+    <div id="app" class="root">
+        <div>{{root}}</div>
+        <second-com></second-com>
+        <second-com></second-com>
+    </div>
+</body>
+
+
+<script>
+    /*
+    Vue调试工具 
+        
+    */
+    // Vue.config.devtools = true;
+    Vue.component('second-com',{
+      data: function(){
+        return {
+          second: '二级组件'
+        }
+      },
+      template: `<div class='second'>
+        <div>{{second}}</div>
+        <third-com></third-com>
+        <third-com></third-com>
+        <third-com></third-com>
+      </div>`
+    });
+    Vue.component('third-com',{
+      data: function(){
+        return {
+          third: '三级组件'
+        }
+      },
+      template: '<div class="third"><div>{{third}}</div></div>'
+    });
+    
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        root: '顶层组件'
+      }
+    });
+</script>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<style>
+    
+</style>
+
+<body>
+    <div id="app">
+        <div :style="{border: borderStyle, width: widthStyle, height: heightStyle}"></div>
+        <div :style="objStyles"></div>
+        <div :style="[objStyles, overrideStyles]"></div>
+        <button @click="handel">切换</button>
+    </div>
+</body>
+
+<script>
+    
+    const Linn = new Vue({
+        el: '#app',
+        data: {
+            borderStyle: '1px solid blue',
+            widthStyle: '100px',
+            heightStyle: '200px',
+            objStyles: {
+                border: '1px solid green',
+                width: '200px',
+                height: '100px'
+            },
+            overrideStyles: {
+                border: '5px solid orange',
+                backgroundColor: 'blue'
+            }
+        },
+        methods: {
+            handel: function(){
+                this.heightStyle = '100px';
+                this.objStyles.width = '100px';
+            }
+        },
+    });
+</script>
+
+</html>

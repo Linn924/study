@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table {
+            width: 400px;
+            border: 1px solid #000;
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+        
+        td,
+        th {
+            border: 1px solid #000;
+            text-align: center;
+        }
+        
+        input {
+            width: 50px;
+        }
+        
+        .search {
+            width: 600px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="search">
+        按照价格查询: <input type="text" class="start"> - <input type="text" class="end"> <button class="search-price">搜索</button> 按照商品名称查询: <input type="text" class="product"> <button class="search-pro">查询</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>产品名称</th>
+                <th>价格</th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+        </tbody>
+    </table>
+    <script>
+        //利用新增数组方法操作数据
+        var data = [{
+            id: 1,
+            pname: '小米',
+            price: 3999
+        }, {
+            id: 2,
+            pname: 'oppo',
+            price: 999
+        }, {
+            id: 3,
+            pname: '荣耀',
+            price: 1299
+        }, {
+            id: 4,
+            pname: '华为',
+            price: 1999
+        }, ];
+
+        //获取元素
+        var tbody = document.querySelector('tbody');
+        // 点击search-price按钮,根据商品价格筛选数组里面的对象
+        var btnPrice = document.querySelector('.search-price')
+        var btnPro = document.querySelector('.search-pro')
+        
+
+        //插入数据
+        setData(data)
+        function setData(mydata){
+            //先清空最开始的数据
+            tbody.innerHTML = ''
+            mydata.forEach(function(item){
+            // console.log(item)
+            var tr = document.createElement('tr')
+            tr.innerHTML = '<td>' + item.id + '</td><td>' + item.pname + '</td><td>' + item.price + '</td>';
+            tbody.appendChild(tr);
+          })
+        }
+        
+        //根据价格查询商品
+        btnPrice.addEventListener("click",function(){
+            var min = document.querySelector(".start").value
+            var max = document.querySelector(".end").value
+            // console.log(min,max)
+            var newData = data.filter(function(item){
+                return item.price >= min && item.price <= max
+            })
+            // console.log(newData)
+            setData(newData)
+        })
+
+        // 根据商品名称查找商品
+        //  如果查询数组中唯一的元素, 用some方法更合适,因为它找到这个元素,就不在进行循环,效率更高]
+        btnPro.addEventListener("click",function(){
+            var str = document.querySelector(".product").value
+            var arr = []
+            data.some(function(item){
+                if(item.pname == str){
+                    arr.push(item)
+                    return true //找到了
+                }
+            })
+            setData(arr)
+        })
+    </script>
+</body>
+
+</html>

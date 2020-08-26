@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <alert-box>有bug发生</alert-box>
+        <alert-box>有一个警告</alert-box>
+        <alert-box></alert-box>
+    </div>
+</body>
+
+<script type="text/javascript">
+    /*
+      组件插槽：父组件向子组件传递内容
+       <slot></slot> 固定写法
+       把父组件中的数据传递给子组件中的slot插槽中
+       如果slot插槽中有数据 父组件传递的数据会覆盖
+       如果slot插槽中有数据 父组件不传递数据 则默认显示slot插槽中的数据
+    */
+    Vue.component('alert-box', {
+      template: `
+        <div>
+          <strong>ERROR:</strong>
+          <slot>默认内容</slot>
+        </div>
+      `
+    });
+
+
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        
+      }
+    });
+  </script>
+
+</html>

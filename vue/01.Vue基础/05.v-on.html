@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <div id="app">
+        <button v-on:click="click">点击</button>
+        <div>{{num}}</div>
+        <button @click="num++">增加</button>
+        <button @click="click1">增加1</button>
+        <button @click="click2">事件</button>
+        <button @click="click3(1,$event)">传入事件对象</button>
+        <!-- 如果事件直接绑定函数名称，那么默认会传递事件对象作为事件函数的第一个参数 -->
+        <!-- 2、如果事件绑定函数调用，那么事件对象必须作为最后一个参数显示传递，并且事件对象的名称必须是$event -->
+    </div>
+</body>
+
+<script>
+    const Linn = new Vue({
+        el: '#app',
+        data: {
+            num:0
+        },
+        methods: {
+            click(){
+                console.log(1)
+            },
+            click1(){
+            //  this就是Linn实例(vue的实例对象)
+                console.log(this === Linn)//结果为:true
+                this.num++
+            },
+            click2(event){
+                console.log(event.target.innerHTML)//结果为:事件
+            },
+            click3(p,e){
+                console.log(p,event)// 事件对象必须是最后传
+                console.log(event.clientX)
+            }
+
+        },
+    });
+</script>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<style>
+   .active {
+        border: 1px solid red;
+        width: 100px;
+        height: 100px;
+   }
+   .error {
+        background-color: orange;
+   }
+   .test {
+        color: blue;
+   }
+   .base {
+        font-size: 28px;
+   }
+</style>
+
+<body>
+    <div id="app">
+
+        <!-- 此种是数组方法 放在[]数组里面 -->
+        <div :class="[activeClass,errorClass,{test:isTest}]">测试结果</div>
+        <div :class="arrClasses">测试结果1</div>
+        <div :class="objClasses">测试结果2</div>
+        <div class="base" :class="objClasses">测试结果3</div>
+        <button @click="handel">切换</button>
+
+        
+
+    </div>
+</body>
+
+<script>
+
+     /*
+        样式绑定相关语法细节：
+        1、对象绑定和数组绑定可以结合使用
+        2、class绑定的值可以简化操作
+        3、默认的class如何处理？默认的class会保留
+     */
+    const Linn = new Vue({
+        el: '#app',
+        data: {
+           isTest:true,
+           activeClass:'active',
+           errorClass:'error',
+           arrClasses:['active','error'],
+           objClasses:{
+               active:true,
+               error:true
+           }
+        },
+        methods: {
+           handel(){
+            //    this.isTest=!this.isTest
+            this.objClasses.error = !this.objClasses.error
+           }
+        },
+    });
+</script>
+
+</html>

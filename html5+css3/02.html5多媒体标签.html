@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多媒体标签</title>
+</head>
+    <style>
+        /* 
+            audio 四种常见属性
+                1. 属性autoplay 值autoplay 音频就绪后马上播放
+                2. 属性controls 值controls 显示控件
+                3. 属性loop 值loop 循环播放
+                4. 属性src 值URL 地址
+
+            video 九种常见属性
+                1. 属性controls 值controls 显示控件
+                2. 属性autoplay 值autoplay 视频就绪后马上播放 谷歌浏览器需要添加muted静音来解决自动播放问题
+                3. 属性loop 值loop 循环播放
+                4. 属性src 值URL 地址
+                5. 属性width
+                6. 属性height
+                7. 属性preload 值auto（预先加载视频）none（不加载视频）
+                8. 属性poster 值imgurl 等待加载的画面图片
+                9. 属性muted 值muted 静音播放
+        */
+        video{
+            width: 500px;
+            height: 200px;
+        }
+    </style>
+<body>
+    <!-- <audio src="./素材/snow.mp3" controls></audio> -->
+    <audio controls>
+        <source src="素材/snow.mp3" type="audio/mpeg" />
+        <!-- <source src="素材/snow.ogg" type="audio/ogg" /> -->
+            您的浏览器太low，不支持audio播放
+    </audio>
+
+    <!-- <video src="素材/mi.mp4" controls></video> -->
+    <video controls autoplay muted poster="素材/zero.jpg">
+        <source src="素材/mi.mp4" type="video/mp4" />
+        <!-- <source src="素材/mi.ogg" type="video/ogg" /> -->
+            您的浏览器太low，不支持video播放
+    </video>
+</body>
+</html>

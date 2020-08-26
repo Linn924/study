@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <title>Document</title>
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<style>
+    /* 模糊查询 */
+    [class^="col"] {
+        border: 1px solid blue;
+    }
+
+    .row>div {
+        height: 50px;
+        background-color: pink;
+    }
+
+    span{
+        color: white;
+        font-size: 30px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <!-- hidden-md只在中等屏幕下隐藏 -->
+            <!-- hidden-xs只在超小等屏幕下隐藏 -->
+            <!-- hidden-sm只在小屏幕下隐藏 -->
+            <!-- hidden-lg只在超大屏幕下隐藏 -->
+            <!-- visible-md只在中等屏幕下显示 -->
+            <!-- visible-xs只在超小等屏幕下显示 -->
+            <!-- visible-sm只在小屏幕下显示 -->
+            <!-- visible-lg只在超大屏幕下显示 -->
+            <div class="col-xs-3">
+                <span class="visible-lg">我会显示</span>
+            </div>
+            <div class="col-xs-3">2</div>
+            <div class="col-xs-3 hidden-md hidden-sm hidden-xs">我会变魔术</div>
+            <div class="col-xs-3">4</div>
+        </div>
+    </div>
+
+</body>
+
+</html>

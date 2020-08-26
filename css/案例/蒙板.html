@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蒙板</title>
+</head>
+<style>
+    .app{
+        width: 228px;
+        height: 150px;
+        margin: 200px auto;
+        position: relative;
+    }
+    .mengban{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color:rgba(0, 0, 0, .5);
+        display: none;
+    }
+    img{
+        width: 100%;
+        height: 100%;
+    }
+    .app a:hover .mengban{
+        display: block;
+    }
+</style>
+<body>
+    <div class="app">
+        <a href="#">
+            <img src="./img/box1.jpg" alt="">
+            <div class="mengban"></div>
+        </a>
+        
+    </div>
+</body>
+</html>

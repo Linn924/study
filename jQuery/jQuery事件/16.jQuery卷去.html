@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./jquery.min.js"></script>
+    <title>Document</title>
+    <style>
+        .slider-bar {
+            position: absolute;
+            left: 50%;
+            top: 300px;
+            margin-left: 600px;
+            width: 45px;
+            height: 130px;
+            background-color: pink;
+            cursor: pointer;
+        }
+
+        .header {
+            width: 1200px;
+            margin: 300px auto;
+            height: 1100px;
+            background-color: purple;
+        }
+
+        span {
+            display: none;
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider-bar">
+        <span class="goBack">返回顶部</span>
+    </div>
+    <div class="header">头部区域</div>
+    <script>
+        $(function(){
+            //刷新后 跳到100像素处
+            $(document).scrollTop(100)
+
+            //被卷去的头部 scrollTop / 被卷去的左侧 scrollLeft()
+            // 获取header盒子距离文档顶部的距离
+            var boxTop = $(".header").offset().top
+            // console.log(boxTop)
+            $(window).scroll(function(){
+                // console.log($(document).scrollTop())
+                if($(document).scrollTop() >= boxTop){
+                    $(".goBack").show()
+                }else{
+                    $(".goBack").hide()
+                }
+            })
+
+            //返回顶部
+            $(".goBack").on("click",function(){
+                // $(document).scrollTop(0) 可以回顶部但没有动画
+                //不能是document文档做动画 而是 body HTML元素做动画
+                $("body,html").stop().animate({
+                    scrollTop:0
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>

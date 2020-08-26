@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>{{pmsg}}</div>
+        <menu-item title="来自父组件的值"></menu-item>
+        <menu-item :title="ptitle" content="hello"></menu-item>
+        <menu-item2 :menu-title="ptitle"></menu-item2>
+    </div>
+</body>
+<script>
+    /*
+      父组件向子组件传值-基本使用
+
+      父组件向子组件传值-props属性名规则
+        props里面如果使用驼峰命名的属性 (menuTitle) 在HTML页面里面 属性名必须使用 （menu-title）
+        在字符串形式的模板中不受限制
+    */
+
+    Vue.component('menu-item', {
+      props: ['title', 'content'],
+      data: function() {
+        return {
+          msg: '子组件本身的数据'
+        }
+      },
+      template: '<div>{{msg + "----" + title + "-----" + content}}</div>'
+    });
+
+    Vue.component('menu-item2', {
+      props: ['menuTitle'],
+      template: `
+        <div>
+            {{menuTitle}}
+            <third-com testTile="hello"></third-com>
+        </div>
+     `
+    });
+
+    Vue.component('third-com', {
+        props: ['testTile'],
+        template: '<div>{{testTile}}</div>'
+    });
+
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        pmsg: '父组件中内容',
+        ptitle: '动态绑定属性'
+      }
+    });
+</script>
+</html>

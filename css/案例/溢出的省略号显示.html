@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>溢出的省略号显示</title>
+</head>
+<style>
+    div{
+        width: 150px;
+        height: 25px;
+        border: 1px solid red;
+        /* 当文字显示不开的时候，自动换行 */
+        white-space:normal;
+        /* 1.强制文本一行显示 */
+        white-space: nowrap;
+        /* 2.溢出隐藏 */
+        overflow: hidden;
+        /* 文字溢出 用省略号替代 */
+        text-overflow: ellipsis;
+    }
+</style>
+<body>
+    <div>hi~来自星星的你-欢迎Linn</div>
+</body>
+</html>

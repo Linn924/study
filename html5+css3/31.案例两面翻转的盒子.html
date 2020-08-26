@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>两面翻转的盒子</title>
+</head>
+
+    <style>
+        body{
+            perspective: 200px;
+        }
+        .box{
+            width:200px;
+            height: 200px;
+            margin: 200px auto;
+            transform-style: preserve-3d;
+            position: relative;
+            transition: all .4s;
+        }
+        .box div{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: pink;
+            border-radius: 50%;
+            z-index: 1;
+            color: #fff;
+            font-size: 30px;
+            line-height: 200px;
+            text-align: center;
+        }
+        .box .back{
+            background-color: blue;
+            z-index: 0;
+            /* 像手机一样 背靠背 旋转 */
+            transform: rotateY(180deg);
+        }
+        .box:hover{
+            transform: rotateY(-180deg);
+        }
+    </style>
+
+<body>
+    <div class="box">
+        <div class="front">程序员Linn</div>
+        <div class="back">程序猿Linn</div>
+    </div>
+</body>
+</html>

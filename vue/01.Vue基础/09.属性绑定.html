@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+       <a href="http://www.baidu.com">百度</a>
+       <a :href="url">百度1</a>
+       <p>{{msg}}&nbsp;{{msg1}}</p>
+       <input type="text" :value="msg" @input="handel">
+       <input type="text" :value="msg1" @input="msg1=$event.target.value">
+    </div>
+</body>
+
+<script>
+    const Linn = new Vue({
+        el: '#app',
+        data: {
+           url:'http://www.baidu.com',
+           msg:'hello',
+           msg1:'Linn'
+        },
+        methods: {
+            handel(event){
+                // 使用输入域中的最新的数据覆盖原来的数据
+                this.msg = event.target.value
+            }
+        },
+    });
+</script>
+
+</html>

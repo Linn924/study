@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<style type="text/css">
+    
+</style>
+
+<body>
+    <div id="app">
+        <!-- input输入的内容是字符串 只需在v-model 后加.number 即可把字符串转成数字 -->
+       <input type="text" v-model.number="age">
+       <!-- 在v-model 后加.trim 即可把输入内容的开始和结尾的空格去除 -->
+       <input type="text" v-model.trim="info">
+       <!-- 默认是input事件 即输入数据 下面同步出现数据 一有变化就触发 在v-model 后加.lazy 变成失焦事件 -->
+       <input type="text" v-model.lazy="msg">
+       <div>{{msg}}</div>
+       <button @click="handel">提交</button>
+    </div>
+</body>
+
+<script type="text/javascript">
+    
+    const Linn = new Vue({
+        el: '#app',
+        data: {
+           age:'',
+           info:'',
+           msg:''
+        },
+        methods: {
+            handel(){
+                // console.log(this.age + 13)//默认做字符串拼接 
+                console.log(this.info)
+            }
+        }
+    });
+</script>
+
+</html>

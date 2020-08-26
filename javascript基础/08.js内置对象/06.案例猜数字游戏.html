@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 随机生成一个1~10 的整数
+        function GetRandom(min,max){
+            return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+        // var Number = GetRandom(1,10),number = prompt('猜数字：');
+        // while(number != Number){
+        //     if(number > Number){
+        //         alert('猜大了')
+        //     }else{
+        //         alert('猜小了')
+        //     }
+        //     number = prompt('继续猜：')
+        // }
+        // alert('恭喜你猜对了')
+
+         var random = getRandom(1, 10);
+         while (true) { // 死循环
+            var num = prompt('你来猜？ 输入1~10之间的一个数字');
+            if (num > random) {
+                alert('你猜大了');
+            } else if (num < random) {
+                alert('你猜小了');
+            } else {
+                alert('你好帅哦，猜对了');
+                break; // 退出整个循环结束程序
+            }
+
+         }
+        
+    </script>
+</body>
+</html>

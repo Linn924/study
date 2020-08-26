@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- v:属性值 k:属性名 i:下标 -->
+        <div v-if="v==13" v-for="(v,k,i) in obj">{{v + '---' + k + '---' + i}}</div>
+    </div>
+</body>
+
+<script>
+
+     // 使用原生js遍历对象
+     var obj = {
+        uname: 'lisi',
+        age: 12,
+        gender: 'male'
+     }
+     for(var key in obj) {
+        console.log(key, obj[key])
+     }
+
+    const Linn = new Vue({
+        el: '#app',
+        data: {
+            obj: {
+                uname: 'zhangsan',
+                age: 13,
+                gender: 'female'
+            }
+
+        },
+        methods: {
+
+        },
+    });
+</script>
+
+</html>

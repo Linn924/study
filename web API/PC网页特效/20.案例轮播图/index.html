@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+    <script src="./js/carousel.js"></script>
+    <!--  引入封装的动画库 -->
+    <script src="./js/animate.js"></script>
+</head>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            text-decoration: none;
+        }
+        ul{
+            display: flex;
+            width: 600%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        li{
+            list-style: none;
+        }
+        .box{
+            width: 721px;
+            height: 455px;
+            margin: 200px auto;
+            background-color: pink;
+            position: relative;
+            overflow: hidden;
+        }
+        .box a{
+            display: block;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            font-size: 20px;
+            color: white;
+            text-align: center;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, .3);
+            z-index: 999;
+        }
+        .box a:first-of-type{
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+        .box a:last-of-type{
+            display: none;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);   
+        }
+        ol{
+            display: flex;
+            justify-content: space-around;
+            padding: 3px;
+            width: 60px;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        ol li{
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: white;
+            cursor: pointer;
+        }
+        .current{
+            background-color: yellow;
+        }
+    </style>
+
+<body>
+    <div class="box">
+        <!-- 左侧切换标志 -->
+        <a href="javascript:;" class="arrow-l">&lt;</a>
+        <!-- 右侧切换标志 -->
+        <a href="javascript:;" class="arrow-r">&gt;</a>
+
+        <!-- 轮播图图片 -->
+        <ul>
+            <li><img src="./img/focus.jpg" alt=""></li>
+            <li><img src="./img/focus1.jpg" alt=""></li>
+            <li><img src="./img/focus2.jpg" alt=""></li>
+            <li><img src="./img/focus3.jpg" alt=""></li>
+        </ul>
+
+        <ol>
+            <!-- 小圆圈 -->
+        </ol>
+    </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+       <div>{{msg}}</div>
+       <button @click="update">更新</button>
+       <button @click="destroy">销毁</button>
+    </div>
+</body>
+
+<script type="text/javascript">
+
+    const Linn = new Vue({
+        el: '#app',
+        data: {
+          msg:'生命周期'
+        },
+        methods: {
+            update: function(){
+                this.msg = 'hello';
+            },
+            destroy: function(){
+                this.$destroy();
+            }
+        },
+        beforeCreate: function(){
+            console.log('beforeCreate');
+        },
+        created: function(){
+            console.log('created');
+        },
+        beforeMount: function(){
+            console.log('beforeMount');
+        },
+        //mounted被触发 说明页面模板已经渲染好了
+        mounted: function(){
+            console.log('mounted');
+        },
+        //上面四个是挂载阶段
+        beforeUpdate: function(){
+            console.log('beforeUpdate');
+        },
+        updated: function(){
+            console.log('updated');
+        },
+        //上面两个是更新阶段
+        beforeDestroy: function(){
+            console.log('beforeDestroy');
+        },
+        destroyed: function(){
+            console.log('destroyed');
+        }
+        //上面两个是销毁阶段 即结束
+    });
+</script>
+
+</html>

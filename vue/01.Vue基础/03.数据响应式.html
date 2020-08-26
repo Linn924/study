@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <div id="app">
+        <div v-cloak>{{value}}</div>
+        <!-- v-once 如果显示的信息后续不需要再修改 可以使用此指令 可以提高性能 -->
+        <div v-once>{{value1}}</div>
+    </div>
+</body>
+
+<script>
+
+    const Linn = new Vue({
+        el: '#app',
+        data: {
+            value: 'Hello Vue',
+            value1:'Linn'
+        },
+        methods: {
+
+        },
+    });
+</script>
+
+</html>

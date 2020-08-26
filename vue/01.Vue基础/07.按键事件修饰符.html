@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <form action="">
+            <div>
+                用户名：
+                <!-- 此时输入用户名 按delete按键 即可触发clearContent函数 -->
+                <input type="text" @keyup.delete="clearContent" v-model="uname">
+            </div>
+            <div>
+                密码：
+                <!-- 此时输入完密码 按回车 即可触发handleSubmit函数 -->
+                <input type="text" @keyup.enter="handleSubmit" v-model="pwd">
+            </div>
+            <div>
+                <input type="button" @click="handleSubmit" value="提交">
+            </div>
+        </form>
+
+
+        <input type="text" @keyup.wunian="handel" v-model="info">
+
+    </div>
+</body> 
+
+<script>
+    /*
+    事件绑定-自定义按键修饰符
+    规则：自定义按键修饰符名字是自定义的，但是对应的值必须是按键对应event.keyCode值
+    自定义按键修饰符 每一个按键都有一个唯一的值 可以从事件对象中获取到
+    */
+    Vue.config.keyCodes.wunian = 32 //wunian可随便取 32是空格
+
+    const Linn = new Vue({
+        el: '#app',
+        data: {
+            uname: '',
+            pwd: '',
+            age: 0,
+            info:''
+
+        },
+        methods: {
+            clearContent:function(){
+                // 按delete键的时候，清空用户名
+                this.uname = '';
+            },
+            handleSubmit: function(){
+                console.log(this.uname,this.pwd)
+            },
+
+            handel(event){
+                console.log(event.keyCode)//在输入框中按空格出现32 32就是按键的唯一数值
+            }
+        },
+    });
+</script>
+
+</html>

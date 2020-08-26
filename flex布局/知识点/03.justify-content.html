@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /*
+        flex-direction:row 此时主轴就是X轴 反之就是Y轴
+        justify-content：设置主轴上的子元素排列方式
+    */
+    div{
+        width: 80%;
+        height: 500px;
+        background-color: blue;
+        display: flex;
+        /* flex-direction: column; */
+        /* 水平方向默认从最左边开始 */
+        /* justify-content: flex-start; */
+        /* 水平方向从最右边开始 */
+        /* justify-content: flex-end; */
+        /* 水平方向居中 */
+        /* justify-content: center; */
+        /* 平分剩余空间 span占不完 */
+        /* justify-content: space-around; */
+        /* 先两边贴边 在平均分配剩余空间 */
+        justify-content: space-between;
+    }
+    span{
+        width: 150px;
+        height: 100px;
+        background-color: red;
+    }
+</style>
+<body>
+    <div>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+    </div>
+</body>
+</html>

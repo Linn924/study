@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+        <hello-world></hello-world>
+    </div>
+</body>
+
+
+<script>
+
+    /*
+    全局组件 
+       第一个参数是名称 第二个参数是对象
+       组件可重用且每个组件都拥有独立的数据
+
+       注意事项：
+        1.组件中data必须是函数 
+        2.模板template 必须是单个根元素 可以只写一个元素 可以写父子 父子子 但不能是兄弟
+        3.组件模板内容可以是模板字符串
+        4.组件命名方式:如果使用驼峰式命名组件(HelloWorld)，那么在使用组件的时候，只能在字符串模板中用驼峰的方式使用组件，但是
+        在普通的标签模板中，必须使用短横线的方式使用组件(hello-world)
+    */
+    
+    // Vue.component('button-counter',{
+    //     data:function(){
+    //         return {
+    //             count:0
+    //         }
+    //     },
+    //     // template:'<button @click="count++">点击了{{count}}次</button>'
+    //     template:'<button @click="handel">点击了{{count}}次</button>',
+    //     // template:'<div><div><button @click="count++">点击了{{count}}次</button></div></div>',
+    //     methods:{
+    //         handel(){
+    //             this.count++
+    //         }
+    //     }
+    // });
+
+     Vue.component('button-counter',{
+        data:function(){
+            return {
+                count:0
+            }
+        },
+        template:`
+            <div>
+                <button @click="handel">点击了{{count}}次</button>
+                <button>测试</button>
+                <HelloWorld></HelloWorld>
+            </div>
+        `,
+        methods:{
+            handel(){
+                this.count++
+            }
+        }
+    });
+
+    Vue.component('HelloWorld', {
+      data: function(){
+        return {
+          msg: 'HelloWorld'
+        }
+      },
+      template: '<div>{{msg}}</div>'
+    });
+
+
+    const Linn = new Vue({
+        el:'#app',
+        data:{
+
+        },
+        methods: {
+            
+        },
+    });
+
+
+
+
+</script>
+
+</html>

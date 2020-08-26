@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>去除图片底部空白缝隙</title>
+</head>
+<style>
+    /* vertical-align块级元素无效 */
+    .app,.app1,.app2{
+        border: 1px solid red;
+    }
+    .img1{
+        /* 垂直方向 bottom对齐即可 */
+        vertical-align: bottom;
+        /* 垂直方向 middle对齐也可 */
+        /* vertical-align: middle; */
+        /* 垂直方向 top对齐也可 */
+        /* vertical-align: top; */
+    }
+    .img2{
+        /* 垂直方向 bottom对齐即可 */
+        /* vertical-align: bottom; */
+        /* 垂直方向 middle对齐也可 */
+        vertical-align: middle;
+        /* 垂直方向 top对齐也可 */
+        /* vertical-align: top; */
+    }
+    .img3{
+        /* 垂直方向 bottom对齐即可 */
+        /* vertical-align: bottom; */
+        /* 垂直方向 middle对齐也可 */
+        /* vertical-align: middle; */
+        /* 垂直方向 top对齐也可 */
+        vertical-align: top;
+    }
+</style>
+<body>
+    <div class="app">
+            <img src="./img/box1.jpg" alt="" class="img1">你好
+    </div>
+    <div class="app1">
+            <img src="./img/box1.jpg" alt="" class="img2">你好
+    </div>
+    <div class="app2">
+            <img src="./img/box1.jpg" alt="" class="img3">你好
+    </div>
+</body>
+</html>

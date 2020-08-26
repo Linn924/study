@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{pmsg}}</div>
+        <menu-item :pstr="pstr" :pnum="pnum" :pboo="pboo" :parr="parr" :pobj="pobj"></menu-item>
+    </div>
+</body>
+
+<script type="text/javascript">
+        /*
+      父组件向子组件传值-props属性值类型
+        数字类型 以及 布尔类型 如果不使用 v-bind绑定 那么在子组件调用中通通变成 string 类型
+    */
+
+        Vue.component('menu-item', {
+            props: ['pstr','pnum','pboo','parr','pobj'],
+            template: `
+                <div>
+                    <div>{{pstr}}</div>
+                    <div>{{pnum}}</div>
+                    <div>{{pboo}}</div>
+                    <div>
+                        <ul>
+                            <li v-for="(item,index) in parr" :key="index">{{item}}</li>
+                        </ul>
+                    </div>
+                    <div>{{pobj.name}}{{pobj.age}}</div>
+                </div>
+            `
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                pmsg: '父组件中内容',
+                pstr: 'hello',
+                pnum:10,
+                pboo:true,
+                parr: ['apple','orange','banana'],
+                pobj: {
+                    name: 'lisi',
+                    age: 12
+                }
+            }
+        });
+    </script>
+
+
+</html>

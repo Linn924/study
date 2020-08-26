@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<style type="text/css">
+
+</style>
+
+<body>
+    <div id="app">
+        <input type="text" v-focus>
+        <input type="text">
+        <input type="text" v-color="msg">
+    </div>
+</body>
+
+<script type="text/javascript">
+    /*
+      自定义指令
+        例如自定义:v-focus 刷新页面自动把焦点放在表单的第一栏 如 登录表单 用户不需要点击鼠标才能输入用户名  
+    */
+    // Vue.directive('focus', {
+    //     inserted: function(el){
+    //     // el表示指令所绑定的元素
+    //         el.focus();
+    //     }
+    // });
+
+    /*
+        带参数的自定义指令
+        例如自定义:v-color
+    */
+    // Vue.directive('color', {
+    //     bind: function(el, binding){
+    //     // 根据指令的参数设置背景色
+    //     // console.log(binding.value.color)
+    //         el.style.backgroundColor = binding.value.color;
+    //     }
+    // });
+
+
+
+    const Linn = new Vue({
+        el: '#app',
+        data: {
+           msg: {
+               color:'blue'
+           }
+        },
+        methods: {
+            
+        },
+
+        //局部指令用法 只能在本组件中使用
+        directives: {
+            color: {
+                bind: function(el, binding){
+                el.style.backgroundColor = binding.value.color;
+              }
+            },
+            focus: {
+                inserted: function(el) {
+                el.focus();
+              }
+            }
+        }
+
+    });
+</script>
+
+</html>

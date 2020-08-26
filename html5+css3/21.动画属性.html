@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+    <style>
+        /* 动画属性 */
+        /* 定义动画 @keyframes */
+        @keyframes move{
+            0%{
+                transform:  translate(0,0);
+            }
+            100%{
+                transform: translate(1000px,0);
+            }
+        }
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            /* 调用动画 animation-name*/
+            /* animation-name: move; */
+            /* 动画持续时间 */
+            /* animation-duration: 2s; */
+            /* 运动曲线 */
+            /* animation-timing-function: ease-in; */
+            /* 开始时间 */
+            /* animation-delay: 0s; */
+            /* 播放次数 infinite 无线次*/
+            /* animation-iteration-count: infinite; */
+            /* 是否反方向播放 默认的是 normal 如果想要反方向 就写 alternate*/
+            /* animation-direction: alternate; */
+            /* 是否回到起始位置 默认回到恰是位置 backwards */
+            /* animation-fill-mode: forwards; */
+
+            /* 动画简写 */
+            animation: move 2s linear 1s infinite alternate;
+        }
+        div:hover {
+            /* 鼠标经过div 让这个div 停止动画，鼠标离开就继续动画 */
+            animation-play-state: paused;
+        }
+    </style>
+
+<body>
+    <div></div>
+</body>
+</html>

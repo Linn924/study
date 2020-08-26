@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<style type="text/css">
+
+</style>
+
+<body>
+    <div id="app">
+        <div>{{msg}}</div>
+        <!-- 将字符串分割成数组 然后数组内容翻转 然后再拼成字符串 此种写法可读性较低 -->
+        <div>{{msg.split('').reverse().join('')}}</div>
+
+        <!-- 使用两次计算属性 计算属性不加括号-->
+        <div>{{reverseString}}</div>
+        <div>{{reverseString}}</div>
+
+        <!-- 方法加括号 -->
+        <div>{{reverseMessage()}}</div>
+        <div>{{reverseMessage()}}</div>
+    </div>
+</body>
+
+<script type="text/javascript">
+   /*
+    计算属性与方法的区别
+        计算属性是基于它们的依赖进行缓存的
+        方法不存在缓存
+   */
+    
+    const Linn = new Vue({
+        el: '#app',
+        data: {
+           msg:'Linn',
+           num:100
+        },
+        methods: {
+            reverseMessage(){
+                console.log('methods')//打印两次
+                return this.msg.split('').reverse().join('');
+                }
+        },
+        //计算属性
+        computed: {
+            //翻转字符串
+            reverseString(){
+                console.log('computed')//使用两次计算属性 却只打印一次 是因为第一次使用时已存在缓存中
+                // return this.msg.split('').reverse().join('');
+                var total = 0;
+                for(var i=0;i<=this.num;i++){ total +=i; } return total;
+            }
+        },
+
+    });
+</script>
+
+</html>

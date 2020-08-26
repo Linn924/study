@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{num}}</div>
+        <div @click="handel">
+            <!-- 直接在@click后面加 .stop 即可阻止冒泡 -->
+            <button @click.stop="handel1">点击1</button>
+        </div>
+
+        <!-- 点击a标签会跳转到百度网址，这是a标签的默认行为。阻止此默认行为直接在@click后面加 .prevent -->
+        <div><a href="http://www.baidu.com" @click.prevent="handel2">百度</a></div>
+
+        
+    </div>
+</body>
+
+<script>
+    const Linn = new Vue({
+        el: '#app',
+        data: {
+            num:0
+
+        },
+        methods: {
+            handel(){
+                this.num++
+            },
+            handel1(event){
+                //此时点击按钮（点击1） num数值增加是因为冒泡 执行handel1 然后冒泡到 handel
+                // 如果不想出现这种状况 阻止冒泡
+                // event.stopPropagation();//此段代码即可阻止冒泡 num数值不增加
+                
+            },
+            handel2(event){
+                //阻止默认行为 此时不会在跳转
+                // event.preventDefault();
+                
+            }
+        },
+    });
+</script>
+
+</html>

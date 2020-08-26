@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <span>名：</span>
+            <span>
+                <input type="text" v-model="firstName">
+            </span>
+        </div>
+        <div>
+            <span>姓：</span>
+            <span>
+                <input type="text" v-model="lastName">
+            </span>
+        </div>
+        <div>{{fullName}}</div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    /*
+      表单基本操作
+    */
+    const Linn = new Vue({
+        el: '#app',
+        data: {
+            firstName: 'Jim',
+            lastName: 'Green',
+            // fullName: 'Jim Green'
+        },
+
+        //使用计算属性也可实现
+        computed: {
+            fullName(){
+                return this.firstName + ' ' + this.lastName;
+            }
+        },
+
+        //此时在HTML页面中修改数据fullName是不变化的 
+        // 侦听器 此时在HTML页面中修改数据fullName是变化的
+        watch: {
+            // firstName(val) {
+            //     this.fullName = val + ' ' + this.lastName;
+            // },
+            // lastName(val) {
+            //     this.fullName = this.firstName + ' ' + val;
+            // }
+        },
+        methods: {
+           
+        }
+    });
+</script>
+
+</html>

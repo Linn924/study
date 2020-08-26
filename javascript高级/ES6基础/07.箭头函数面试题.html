@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>箭头函数面试题</title>
+</head>
+<body>
+	<script type="text/javascript">
+	
+		var age = 100;
+
+		//箭头函数无自己的this关键字 obj对象没有作用域 所以箭头函数中的this指向window
+		// window下面有age属性 所以结果为100
+		var obj = {
+			age: 20,
+			say: () => {
+				alert(this.age)
+			}
+		}
+
+		obj.say();
+	</script>
+</body>
+</html>

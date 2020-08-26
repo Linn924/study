@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>简单计算器</h1>
+        <div>数值A:
+            <input type="text" v-model="numberA">
+        </div>
+        <div>数值B:
+            <input type="text" v-model="numberB">
+        </div>
+        <button @click="plus">计算</button>
+        <p>计算结果:{{count}}</p>
+    </div>
+</body>
+
+<script>
+    const Linn = new Vue({
+        el:'#app',
+        data:{
+            numberA:'',
+            numberB:'',
+            count:null
+        },
+        methods: {
+            plus(){
+                this.count = parseInt(this.numberA) + parseInt(this.numberB)
+            }
+        },
+    });
+</script>
+</html>
