@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+            const xhr = new XMLHttpRequest()//创建ajax对象
+            var data = {name:'Linn',pwd:20}//拼接请求参数
+            xhr.open('post','http://localhost:3000/json')//参数一 请求方式 参数二 请求地址
+            xhr.setRequestHeader('Content-Type','application/json')//设置请求参数格式的类型（post请求必须要设置）
+            xhr.send(JSON.stringify(data))//将JSON格式的数据转换成字符串形式然后发送请求
+            xhr.onload = function (){
+                console.log(xhr.responseText)//将JSON字符串转换为JSON对象
+            }
+
+    </script>
+</body>
+</html>

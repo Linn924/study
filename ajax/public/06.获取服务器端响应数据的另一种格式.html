@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        const xhr = new XMLHttpRequest()//创建ajax对象
+        // 0 已经创建了ajax对象 但是还没有对ajax对象进行配置
+        console.log(xhr.readyState)
+
+        xhr.open('get','http://localhost:3000/readyState')//参数一 请求方式 参数二 请求地址
+        // 1 已经对ajax对象进行配置 但还没有发送请求
+        console.log(xhr.readyState)
+
+        xhr.onreadystatechange = function () {
+            //状态码会变成 2：请求已发送 3 已经接受到服务器端部分数据 4 已经全部接收了
+            console.log(xhr.readyState)
+            if(xhr.readyState == 4){
+                console.log(xhr.responseText)
+            }
+        }
+
+        xhr.send()//将JSON格式的数据转换成字符串形式然后发送请求
+        // 此时状态码不断变化 利用此函数动态监听状态码的变化
+        
+        
+        
+
+</script>
+</body>
+</html>
