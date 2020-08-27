@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const xhr = new XMLHttpRequest()//创建ajax对象
+        xhr.open('get','http://localhost:3000/first')//参数一 请求方式 参数二 请求地址
+        xhr.send()//发送请求
+        xhr.onload = function (){
+            console.log(xhr.responseText)//得到数据
+        }
+    </script>
+</body>
+</html>
