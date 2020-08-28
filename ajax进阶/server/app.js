@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-
+const formidable = require('formidable')
 const app = express()
 // 静态资源访问服务功能
 app.use(express.static(path.join(__dirname, 'public')))
@@ -158,6 +158,15 @@ app.get('/areas', (req, res) => {
 	};
 	// 响应
 	res.send(areas[id] || []);
+})
+
+app.post('/formData',(req,res) => {
+	//创建formidable表单解析对象
+	const form = new formidable.IncomingForm()
+	//解析客户端传递过来的formData对象
+	form.parse(req,(err,fields,files) => {
+		res.send(fields)
+	})
 })
 
 // 监听端口

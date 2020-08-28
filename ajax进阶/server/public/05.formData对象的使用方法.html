@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <input type="text" name="username">
+        <input type="password" name="password">
+        <input type="button" id="btn" value="提交">
+    </form>
+</body>
+<script>
+    var form = document.querySelector('form')
+    var btn = document.getElementById('btn')
+    btn.onclick = () => {
+        //将普通的HTML表单转成表单对象
+        var formData = new FormData(form)
+        var xhr = new XMLHttpRequest()
+        xhr.open('post','http://localhost:3000/formData')
+        xhr.send(formData)
+        xhr.onload = () => {
+            if(xhr.status == 200){
+                console.log(xhr.responseText)
+            }
+        }
+    }
+</script>
+</html>
