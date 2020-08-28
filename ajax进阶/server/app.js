@@ -179,7 +179,11 @@ app.post('/upload',(req,res) => {
 	form.keepExtensions = true
 	//解析客户端传递过来的formData对象
 	form.parse(req,(err,fields,files) => {
-		res.send('ok')
+		//将客户端传递过来的文件响应到客户端
+		//attrName这个是自己设置的属性名
+		res.send({
+			path:files.attrName.path.split('public')[1]
+		})
 	})
 })
 

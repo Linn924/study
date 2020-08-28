@@ -32,6 +32,8 @@
     var file = document.getElementById('file')
     //获取进度条元素
     var bar = document.getElementById('bar')
+    //获取图片容器
+    var box = document.getElementById('box')
     //为文件选择事件添加onchage事件 在用户选择时触发
     file.onchange = () => {
         //创建空的formData表单对象
@@ -55,7 +57,15 @@
         xhr.send(formData)
         xhr.onload = () => {
             if(xhr.status == 200){
-                console.log(xhr.responseText)
+                var result = JSON.parse(xhr.responseText)
+                //动态创建img标签
+                var img = document.createElement('img')
+                //给图片标签的src属性赋值
+                img.src = result.path
+                //当图片加载完成时显示到页面中
+                img.onload = () => {
+                    box.appendChild(img)
+                }
             }
         }
     }
