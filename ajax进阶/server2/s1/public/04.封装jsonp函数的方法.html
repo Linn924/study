@@ -8,26 +8,37 @@
 <body>
 
     <button id="btn">点击发送请求</button>
-    <script>
-        var fn = (data) => {
-            console.log(data)
-        }
-    </script>
 
     <script>
         var btn = document.getElementById('btn')
         btn.onclick = () => {
             jsonp({
                 //请求地址
-                url:'http://localhost:3001/better?callback=fn'
+                url:'http://localhost:3001/better',
+                data:{
+                    name:'Linn',
+                    age:20
+                },
+                success:(data) => {
+                    console.log(data)
+                }
             })
         }
 
         const jsonp = (options) => {
             //动态创建script标签
             var script = document.createElement('script')
+            //拼接字符串的变量
+            var params = ''
+            for(var attr in options.data){
+                params += '&' + attr + '=' + options.data[attr]
+            }
+            //回调函数的命名
+            var fnName ='Jsonp' + Math.random().toString().replace('.','')
+            //在全局新创建一个属性 success函数赋值给此属性
+            window[fnName] = options.success
             //为script标签的属性src赋值
-            script.src = options.url
+            script.src = options.url + '?callback=' + fnName + params
             //将srcript标签追加到页面中
             document.body.appendChild(script)
             //为script标签添加onload事件
