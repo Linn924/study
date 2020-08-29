@@ -25,9 +25,36 @@
 			<input type="button" class="btn btn-default" value="检测用户登录状态" id="checkLogin">
 		</form>
 	</div>
-	<script type="text/javascript">
-		
-		
-	</script>
 </body>
+
+<script type="text/javascript">
+	//获取按钮
+	var loginBtn = document.getElementById('loginBtn')
+	var checkLogin = document.getElementById('checkLogin')
+	var loginForm = document.getElementById('loginForm')
+	loginBtn.onclick = () => {
+		var formData = new FormData(loginForm)
+		var xhr = new XMLHttpRequest()
+		xhr.open('post','http://localhost:3001/login')
+		// 当发送跨域请求时，携带cookie信息
+		xhr.withCredentials = true
+		xhr.send(formData)
+		xhr.onload = () => {
+			console.log(xhr.responseText)
+		}
+	}
+
+	checkLogin.onclick = () => {
+		var xhr = new XMLHttpRequest()
+		xhr.open('get','http://localhost:3001/checkLogin')
+		// 当发送跨域请求时，携带cookie信息
+		xhr.withCredentials = true
+		xhr.send()
+		xhr.onload = () => {
+			console.log(xhr.responseText)
+		}
+	}
+		
+</script>
+
 </html>
