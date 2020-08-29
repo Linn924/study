@@ -13,15 +13,16 @@ app.get('/test', (req, res) => {
 
 app.get('/better', (req, res) => {
 	// 接收客户端传递过来的函数的名称
-	const fnName = req.query.callback
+	// const fnName = req.query.callback
 	// 将函数名称对应的函数调用代码返回给客户端
-	const data = JSON.stringify({name: "张三"})
+	// const data = JSON.stringify({name: "张三"})
 	//拼接成fn({name:"张三"})
-	const result = fnName + '('+ data +')'
-	setTimeout(() => {
-		res.send(result)
-	}, 1000)
-	// res.jsonp({name: 'lisi', age: 20})
+	// const result = fnName + '('+ data +')'
+	// setTimeout(() => {
+	// 	res.send(result)
+	// }, 1000)
+	//代替上述代码
+	res.jsonp({name: 'Linn', age: 20})
 })
 
 // 监听端口
