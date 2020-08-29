@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button id="btn">点击发送请求</button>
+    <script>
+        var fn = (data) => {
+            console.log(data)
+        }
+    </script>
+
+    <script>
+        var btn = document.getElementById('btn')
+        btn.onclick = () => {
+            jsonp({
+                //请求地址
+                url:'http://localhost:3001/better?callback=fn'
+            })
+        }
+
+        const jsonp = (options) => {
+            //动态创建script标签
+            var script = document.createElement('script')
+            //为script标签的属性src赋值
+            script.src = options.url
+            //将srcript标签追加到页面中
+            document.body.appendChild(script)
+            //为script标签添加onload事件
+            script.onload = () => {
+                //将body中的script标签删除
+                document.body.removeChild(script)
+            }
+        }
+
+        
+    </script>
+</body>
+</html>
