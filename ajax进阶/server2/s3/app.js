@@ -30,9 +30,20 @@ app.post('/base', (req, res) => {
 app.get('/user', (req, res) => {
 	res.send(req.query)
 })
+
 app.post('/user', (req, res) => {
 	res.send(req.body)
 })
+
+app.get('/jsonp', (req, res) => {
+	const cb = req.query.cb
+	const data = cb+"({name: 'zhaoliu'})"
+	res.send(data)
+	// res.jsonp({
+	// 	name: 'lisi',
+	// 	age:50
+	// })
+});
 
 // 监听端口
 app.listen(3000)
