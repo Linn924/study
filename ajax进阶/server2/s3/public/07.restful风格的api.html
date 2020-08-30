@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		// 获取用户列表信息
+		$.ajax({
+			type: 'get',
+			url: '/users',
+			success: (response)=> {
+				console.log(response)
+			}
+		})
+
+		// 获取id为1的用户信息
+		$.ajax({
+			type: 'get',
+			url: '/users/1',
+			success: (response)=> {
+				console.log(response)
+			}
+		})
+
+		$.ajax({
+			type: 'delete',
+			url: '/users/10',
+			success: (response)=> {
+				console.log(response)
+			}
+		})
+
+		$.ajax({
+			type: 'put',
+			url: '/users/10',
+			success: (response)=> {
+				console.log(response)
+			}
+		})
+	</script>
+</body>
+</html>
