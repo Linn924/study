@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    div[class^='box']{height: 350px;width: 50vw;}
+    div[class^='box'] div {width:100px;height:100px;}
+
+    .clearfix {clear: both;}
+
+    .small {width:100px;height:100px;}
+</style>
+
+<body>
+    <p>1.css中的块级元素在页面中是独占一行的，自上而下排列，也就是我们所说的流，通常我们称之为文档流或标准流。</p>
+    <div class="box1">
+        <div style="background-color:red">div1</div>
+        <div style="background-color:green">div2</div>
+        <div style="background-color:blue">div3</div>
+    </div>
+
+    <br>
+
+    <p>2.使元素脱离文档流，按照指定的方向（左或右发生移动），直到它的外边缘碰到包含框或另一个浮动框的边框为止。</p>
+    <div class="box2">
+        <div style="background-color:red;float:left">div1</div>
+        <div style="background-color:green;float:right">div2</div>
+        <div style="background-color:blue;float:left">div3</div>
+    </div>
+
+    <br>
+
+    <p>3.如果这时有不浮动的元素，会被浮动的元素盖住，浮动的元素已经脱离了标准流，浮动的元素已经和标准流不在同一层次上。图中绿色div就被红色div盖住了。</p>
+    <div class="box3">
+        <div style="background-color:red;float:left;">div1</div>
+        <div style="background-color:green;">div2</div>
+        <div style="background-color:blue;">div3</div>
+    </div>
+
+    <br>
+
+    <p>4.浮动能够脱离标准流，但又不能摆脱标准流，这时css中最绕的一个知识点。第一个div如果不浮动，那么就会占据标准流中的位置，即使下边的元素什么状态，都不能覆盖上来，只能在之下的空间玩耍。也就是说，垂直的元素，上边元素浮动下边元素为标准流，则上边元素可覆盖下边元素，反之，不可。</p>
+    <div class="box4">
+        <div style="background-color:red;">div1</div>
+        <div style="background-color:green;float:left;">div2</div>
+        <div style="background-color:blue;float:left;">div3</div>
+    </div>
+
+    <br>
+</body>
+</html>
