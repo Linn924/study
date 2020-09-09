@@ -126,3 +126,46 @@ clear{
 * [css预处理,后处理](http://caibaojian.com/css-processor.html)
 
 ## 10.css3新特性
+
+<img src="./image/transtion属性.png">
+
+<img src="./image/animation属性.png">
+
+## 11.display哪些取值
+
+1. none 此元素不会被显示，并且不占据页面空间，这也是与visibility:hidden不同的地方，设置visibility:hidden的元素，不会被显示，但是还是会占据原来的页面空间。
+2. inline 行内元素 元素会在一行内显示，超出屏幕宽度自动换行，不能设置宽度和高度，元素的宽度和高度只能是靠元素内的内容撑开。示例元素：span,b,i,a,u,sub,sup,strong,em
+3. block 块级元素 会独占一行，如果不设置宽度，其宽度会自动填满父元素的宽度，可以设置宽高，即使设置了宽度，小于父元素的宽度，块级元素也会独占一行。示例元素：div,h1-h6,ul,ol,dl,p
+4. inline-block 行内块元素 与行内元素一样可以再一行内显示，而且可以设置宽高，可以设置margin和padding。示例元素：input,button,img
+5. list-item 列表元素。示例元素：li
+6. table 会作为块级表格来显示(类似于<table>)，表格前后带有换行符。
+7. inline-table 会作为内联表格来显示(类似于<table>)，表格前后没有换行符。
+8. flex 多栏多列布局，火狐可以直接使用，谷歌和欧朋需要在属性值前面加-webkit-前缀，比较适合移动端开发使用。
+9. grid 网格布局 不多比比
+10. inherit 继承，如果元素的某些属性没有进行设置，有些是会有默认值的，有些是会继承的。
+### 行内元素与块级元素的区别
+1. 行内元素：行内元素只能嵌套行内元素，不能嵌套块级元素。  
+块级元素：块级元素可以嵌套行内元素，但是行内元素不可以嵌套块级元素。块级元素之间也可以进行嵌套，但是，并不是块级元素之间可以随意的嵌套。p元素是不能嵌套任何块级元素的，div可以嵌套任意的元素，但是div并不是能够被所有的块级元素嵌套的。
+2. 行内元素：有margin和padding，但是只能够设置左右的值，设置上下的值是无效的。  
+块级元素：可以设置margin和padding上下左右的四个值，margin可以有负值，padding不允许有负值。
+3. 行内元素：不允许设置宽高，行内元素的宽高只能是由行内元素内的内容撑起来。  
+块级元素：允许设置宽高，如果不设置，默认宽度是父元素的100%，高度是由内容撑起来的。
+
+## 12.相邻的两个inline-block节点为什么会出现间隔，该如何解决？
+* 原因：元素被当成行内元素排版的时候，原来HTML代码中的回车换行被转成一个空白符，在字体不为0的情况下，空白符占据一定宽度，所以inline-block的元素之间就出现了空隙。这些元素之间的间距会随着字体的大小而变化，当行内元素font-size:16px时，间距为8px。
+* 解决方法：1: font-size。2：改变书写方式。3：使用margin负值。4：使用word-spacing或letter-spacing
+
+## 13.meta viewport 移动端适配
+
+```
+//浏览器引进了 viewport 这个 meta tag，让网页开发者来控制 viewport 的大小和缩放。  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+<img src="./image/meta%20viewport的属性.png">
+
+<img src="./image/3个viewport.png">
+
+## 14.CSS实现宽度自适应100%，宽高16:9的比例的矩形
+
+
+

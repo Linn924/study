@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+        /*
+            原因：元素被当成行内元素排版的时候，原来HTML代码中的回车换行被转成一个空白符，在字体不为0的情况下，
+            空白符占据一定宽度，所以inline-block的元素之间就出现了空隙。这些元素之间的间距会随着字体的大小而变化，
+            当行内元素font-size:16px时，间距为8px。
+
+            解决方法:1: font-size。
+                    2：改变书写方式。
+                    3：使用margin负值。
+                    4：使用word-spacing或letter-spacing
+        */
+
+
+        /* 此种情况有间隙出现 */
+        /* .baba {
+            display: inline-block;
+            width: 200px;
+            height: 100px;
+            background: green;
+            display: table-cell;
+            vertical-align: middle; 
+            text-align: center;
+            
+        }
+        .son {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: #dcdcdc;
+            
+        } */
+
+        /* 解决方法一：给父级元素设置font-size： 0；子元素设置相应的font-size*/
+        /* .baba {
+            display: inline-block;
+            width: 200px;
+            height: 100px;
+            background: green;
+            display: table-cell;
+            vertical-align: middle; 
+            text-align: center;
+            font-size: 0px;
+        }
+        .son {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: #dcdcdc;
+            font-size: 14px;
+        } */
+
+        /* 解决方法三：使用margin负值 */
+
+        /* 解决方法四：设置父元素，display:table和word-spacing */
+        .baba {
+            display: inline-block;
+            width: 200px;
+            height: 100px;
+            background: green;
+            /* 作为块级表格来显示(类似于<table>)，表格前后带有换行符。 */
+            display: table;
+            /* word-spacing 属性增加或减少单词间的空白（即字间隔）。 */
+            word-spacing: 0;
+        }
+        .son {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: #dcdcdc;
+        }
+    </style>
+
+<body>
+    <span class="baba">
+        <span class="son"></span>
+        <span class="son"></span>
+        <span class="son"></span>
+    </span>
+
+    <!-- 解决方法二：改变书写方式 把回车换行去掉 -->
+    <!-- <span class="baba">
+        <span class="son"></span><span class="son"></span><span class="son"></span>
+    </span> -->
+</body>
+</html>
