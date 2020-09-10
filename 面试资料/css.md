@@ -66,7 +66,7 @@ clear{
 .clearfix:after{
     clear: both;
 }
-clear{
+.clearfix{
     *zoom:1;
 }
 ```  
@@ -100,9 +100,10 @@ clear{
    - 元素的 z-index 值只在同一个层叠上下文中有意义。如果父级层叠上下文的层叠等级低于另一个层叠上下文的，那么它 z-index 设的再高也没用。如果遇到 z-index 值设了很大，但是不起作用，就去看看它的父级层叠上下文是否被其他层叠上下文盖住。
 
 4. 层叠顺序
- <img src="./image/层叠顺序详解.png"> 
 
-   <img src="./image/层叠顺序.png"> 
+* <img src="./image/层叠顺序详解.png"> 
+
+* <img src="./image/层叠顺序.png"> 
 
 - [层叠顺序详解](https://www.cnblogs.com/leftJS/p/11063683.html)
 
@@ -138,8 +139,8 @@ clear{
 3. block 块级元素 会独占一行，如果不设置宽度，其宽度会自动填满父元素的宽度，可以设置宽高，即使设置了宽度，小于父元素的宽度，块级元素也会独占一行。示例元素：div,h1-h6,ul,ol,dl,p
 4. inline-block 行内块元素 与行内元素一样可以再一行内显示，而且可以设置宽高，可以设置margin和padding。示例元素：input,button,img
 5. list-item 列表元素。示例元素：li
-6. table 会作为块级表格来显示(类似于<table>)，表格前后带有换行符。
-7. inline-table 会作为内联表格来显示(类似于<table>)，表格前后没有换行符。
+6. table 会作为块级表格来显示，表格前后带有换行符。
+7. inline-table 会作为内联表格来显示，表格前后没有换行符。
 8. flex 多栏多列布局，火狐可以直接使用，谷歌和欧朋需要在属性值前面加-webkit-前缀，比较适合移动端开发使用。
 9. grid 网格布局 不多比比
 10. inherit 继承，如果元素的某些属性没有进行设置，有些是会有默认值的，有些是会继承的。
@@ -222,7 +223,6 @@ clear{
 .box{
    width: 0;
    height: 0;
-   /* border-width: 0 100px 100px 100px; */
    border-width: 100px;
    border-style: solid;
    /* transparent 透明 */
