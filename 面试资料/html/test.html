@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+<body>
+    
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 0;
+            height: 0;
+            /* border-width: 0 100px 100px 100px; */
+            border-width: 100px;
+            border-style: solid;
+            /* transparent 透明 */
+            border-color: blue gray #1e90ff green;
+        }
+        .default{
+            width: 0;
+            height: 0;
+            border-width: 100px;
+            border-style: solid;
+            /* transparent 透明 */
+            border-color: transparent transparent transparent red;
+        }
+        .up{
+            width: 0;
+            height: 0;
+            border-width: 100px 100px 0 100px;
+            border-style: solid;
+            /* transparent 透明 */
+            border-color: blue transparent transparent transparent;
+        }
+        .down{
+            width: 0;
+            height: 0;
+            /* border-width: 0 100px 100px 100px; */
+            border-width: 0 100px 100px;
+            border-style: solid;
+            /* transparent 透明 */
+            border-color: transparent transparent #1e90ff transparent;
+        }
+        .left{
+            width: 0;
+            height: 0;
+            border-width: 100px 0 100px 100px;
+            border-style: solid;
+            /* transparent 透明 */
+            border-color: transparent transparent transparent green;
+        }
+        .right{
+            width: 0;
+            height: 0;
+            border-width: 100px 100px 100px 0;
+            border-style: solid;
+            /* transparent 透明 */
+            border-color: transparent gray transparent transparent;
+        }
+    </style>
+
+</body>
+    <div class="box"></div>
+    <!-- 如果不设置border的某一边为0 则会占用空间 -->
+    <div class="default"></div>
+    <div class="up"></div>
+    <div class="down"></div>
+    <div class="left"></div>
+    <div class="right"></div>
+</html>

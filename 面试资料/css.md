@@ -167,5 +167,71 @@ clear{
 
 ## 14.CSS实现宽度自适应100%，宽高16:9的比例的矩形
 
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+<body>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 50vw;
+            margin: 0 auto;
+        }
+        .sq{
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            position: relative;
+            background-color: pink;
+        }
+        .sq>p{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: pink;
+        }
+    </style>
 
+</body>
+<div class="box">
+    <div class="sq">
+        <p>16:9</p>
+    </div>
+</div>
+</html>
+```
 
+## 15.rem布局的优缺点
+
+* 优点：在手机各个机型的适配方面；大大减少我们代码的重复性，是我们的代码更兼容。  
+* 缺点：目前ie不支持 对pc页面来讲使用次数不多；数据量大：所有的图片，盒子都需要我们去给一个准确的值；才能保证不同机型的适配；
+
+## 16.画三角形
+
+* [三角形绘制 border法](https://www.jianshu.com/p/9a463d50e441)
+
+```
+.box{
+   width: 0;
+   height: 0;
+   /* border-width: 0 100px 100px 100px; */
+   border-width: 100px;
+   border-style: solid;
+   /* transparent 透明 */
+   border-color: blue gray #1e90ff green;
+}
+<div class="box"></div>
+
+```
+
+## 17.1像素边框问题
+
+* 原因：
