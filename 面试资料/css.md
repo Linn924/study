@@ -232,6 +232,7 @@ clear{
 
 ```
 
-## 17.1像素边框问题
+## 17.1px边框问题
 
-* 原因：
+* 原因：viewport的设置和屏幕物理分辨率是按比例而不是相同的. 移动端window对象有个devicePixelRatio属性, 它表示设备物理像素和css像素的比例, 在retina屏的iphone手机上, 这个值为2或3, css里写的1px长度映射到物理像素上就有2px或3px那么长。
+* 解决方法 [如何解决1px问题](https://blog.csdn.net/SilenceJude/article/details/81906716)
