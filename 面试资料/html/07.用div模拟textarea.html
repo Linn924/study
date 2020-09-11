@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /*
+        textarea不能像普通div标签一样高度可以跟随内容自适应。
+        要解决这个问题很简单，一个普通的block元素上加个contenteditable="true"就ok了。
+        
+        contenteditable 属性指定元素内容是否可编辑。
+
+        给div设置了一个最小高度，当超过最小高度但不超过最大高度时，div的高度根据文本自适应，当超过最大高度时，出现滚动条。
+    */
+    .textarea{
+        min-height: 100px;
+        border: 1px solid #a0b3d6; 
+        width: 300px;
+        font-size: 14px;
+        max-height: 300px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+</style>
+<body>
+    <!--用div模拟textarea-->
+		<div class="textarea" contenteditable="true">
+			
+		</div>
+</body>
+</html>
