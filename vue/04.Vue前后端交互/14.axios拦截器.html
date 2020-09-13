@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script type="text/javascript" src="js/axios.js"></script>
+  <script type="text/javascript">
+    /*
+      axios拦截器
+    */
+    axios.interceptors.request.use(function(config) {
+      console.log(config.url)
+      config.headers.mytoken = 'nihao';
+      return config;
+    }, function(err){
+      console.log(err)
+    })
+
+    /*********重点 后台传递的数据经过响应拦截器处理后直接是原数据 不用再写res.data之类的**********/
+    axios.interceptors.response.use(function(res) {
+      // console.log(res)
+      //数据已经在响应拦截器内做了处理
+      var data = res.data;
+      return data;
+    }, function(err){
+      console.log(err)
+    })
+
+
+
+    axios.get('http://localhost:3000/adata').then(function(data){
+      console.log(data)
+    })
+  </script>
+</body>
+</html>

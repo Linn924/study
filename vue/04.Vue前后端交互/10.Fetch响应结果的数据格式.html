@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script type="text/javascript">
+    /*
+      Fetch响应结果的数据格式
+        1.text():将返回体转换成字符串类型
+        2.json():返回结果和JSON.parse(responseText)一样
+    */
+    fetch('http://localhost:3000/json').then(function(data){
+      // return data.json();
+      return data.text();
+    }).then(function(data){
+      // console.log(data.uname)
+      // console.log(data)//结果不是对象是字符串
+      // console.log(typeof data)//string
+      var obj = JSON.parse(data);//把string类型数据转换成json数据类型
+      console.log(obj.uname,obj.age,obj.gender)
+    })
+  </script>
+</body>
+</html>

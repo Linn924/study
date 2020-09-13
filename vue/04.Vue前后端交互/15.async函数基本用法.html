@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script type="text/javascript" src="js/axios.js"></script>
+  <script type="text/javascript">
+    /*
+      async/await 处理异步操作：
+      async 关键字用在函数上（函数返回一个Promise实例对象）
+      await 关键字用于async函数当中（await可以得到异步的结果）
+
+    */
+    axios.defaults.baseURL = 'http:localhost:3000';
+    // axios.get('adata').then(function(ret){
+    //   console.log(ret.data)
+    // })
+
+    // async function queryData() {
+
+    //   var ret = await axios.get('adata');
+    //   // console.log(ret.data)
+    //   return ret.data;
+    // }
+
+
+    async function queryData() {
+      var ret = await new Promise(function(resolve, reject){
+        setTimeout(function(){
+          resolve('nihao')
+        },1000);
+      })
+      // console.log(ret.data)
+      return ret;
+    }
+    //因为async 函数返回一个Promise实例对象 所以想要得到数据 必须加then()
+    queryData().then( data => {
+      console.log(data)
+    })
+  </script>
+</body>
+</html>
