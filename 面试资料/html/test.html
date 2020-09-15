@@ -7,24 +7,19 @@
     <title>Document</title>
 </head>
 
+<style>
+    .demo{
+       width: 16vw;
+       height: 9vw;
+       background-color: pink;
+    }
+    
+</style>
 <body>
-    <div class="demo"></div>
-    <script>
-        var x = document.getElementById("demo");
-
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
-            }
-        }
-
-        function showPosition(position) {
-            x.innerHTML = "Latitude: " + position.coords.latitude +
-                "<br />Longitude: " + position.coords.longitude;
-        }
-    </script>
+    <div class="demo">
+        
+    </div>
+    
 </body>
 
 </html>
