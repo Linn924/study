@@ -1,5 +1,5 @@
 // 1问  
-console.log(num);
+console.log(num);//报错
 
 
 // 2问
