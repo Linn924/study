@@ -19,14 +19,14 @@
         // 闭包应用-点击li输出当前li的索引号
         //   可以利用动态添加属性的方式
         var lis = document.querySelector('.nav').querySelectorAll('li');
-        for (var i = 0; i < lis.length; i++) {
-            lis[i].index = i;
-            lis[i].onclick = function() {
-                // console.log(i);
-                console.log(this.index);
+        // for (var i = 0; i < lis.length; i++) {
+        //     lis[i].index = i;
+        //     lis[i].onclick = function() {
+        //         // console.log(i);
+        //         console.log(this.index);
 
-            }
-        }
+        //     }
+        // }
 
         
         //   利用闭包的方式得到当前小li 的索引号

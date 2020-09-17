@@ -21,19 +21,19 @@ Animal.prototype.eat = () =>{
 */
 
 
-// function Cat(){
+function Cat(){
 
-// }
+}
 
-// Cat.prototype = new Animal()
-// Cat.prototype.name = 'cat'
+Cat.prototype = new Animal()
+Cat.prototype.name = 'Tom'
 
-// let cat = new Cat()
-// console.log(cat.name) //cat
-// console.log(cat.eat()) //undefined吃鱼
-// console.log(cat.sleep()) //cat在睡觉
-// console.log(cat instanceof Animal) //true
-// console.log(cat instanceof Cat); // true
+let cat = new Cat()
+console.log(cat.name) //Tom
+console.log(cat.eat()) //undefined吃鱼
+console.log(cat.sleep()) //Tom在睡觉
+console.log(cat instanceof Animal) //true
+console.log(cat instanceof Cat); // true
 
 /*
     2.构造继承
@@ -44,8 +44,8 @@ Animal.prototype.eat = () =>{
 
 // function Cat(name){
 //     //this 指向 Cat { name: 'Animal', sleep: [Function] }
-//     Animal.call(this)
-//     this.name= name
+//     Animal.call(this,name)
+//     // this.name= name
 // }
 
 // let cat = new Cat('Tom')

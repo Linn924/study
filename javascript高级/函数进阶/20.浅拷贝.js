@@ -8,17 +8,19 @@ var obj = {
     }
 };
 var o = {};
-// for (var k in obj) {
-//     // k 是属性名   obj[k] 属性值
-//     o[k] = obj[k];
-// }
-// console.log(o);
-// o.msg.age = 20;
-// console.log(obj);
+for (var k in obj) {
+    // k 是属性名   obj[k] 属性值
+    o[k] = obj[k];
+}
+console.log(o);
+o.msg.age = 20;
+console.log(o);
+console.log(obj);
 
 console.log('--------------');
 
 Object.assign(o, obj);
 console.log(o);
 o.msg.age = 20;
+console.log(o);
 console.log(obj);
