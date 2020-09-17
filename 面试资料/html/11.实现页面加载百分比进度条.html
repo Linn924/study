@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    .loading {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #fff;
+    }
+    .loading .progress{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        line-height: 100px;
+        font-size: 22px;
+    }
+    
+    .loading .progress span {
+        display: block;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        box-shadow: 0 3px 0 #666;
+        animation: myicon 1s infinite linear;
+    }
+    @keyframes myicon {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    .fadeOut{
+        animation: fadeOut .5s forwards;
+    }
+    @keyframes fadeOut {
+        0%{opacity: 1;}
+        100%{opacity: 0;}
+    }
+    @keyframes fadeIn {
+        0%{opacity: 0}
+        100%{opacity: 1}
+    }
+</style>
+<body>
+    <div class="loading">
+        <div class="progress">
+            <span></span>
+            <b>0%</b>
+        </div>
+    </div>
+    <img src="https://s1.ax1x.com/2020/09/17/wRKxr6.png" alt="1" data-src="https://s1.ax1x.com/2020/09/12/wa8ze1.png">
+    <img src="https://s1.ax1x.com/2020/09/17/wRKxr6.png" alt="2" data-src="https://s1.ax1x.com/2020/09/12/wa8ze1.png">
+    <img src="https://s1.ax1x.com/2020/09/17/wRKxr6.png" alt="3" data-src="https://s1.ax1x.com/2020/09/12/wa8ze1.png">
+    <img src="https://s1.ax1x.com/2020/09/17/wRKxr6.png" alt="4" data-src="https://s1.ax1x.com/2020/09/12/wa8ze1.png">
+    <img src="https://s1.ax1x.com/2020/09/17/wRKxr6.png" alt="5" data-src="https://s1.ax1x.com/2020/09/12/wa8ze1.png">
+    <img src="https://s1.ax1x.com/2020/09/17/wRKxr6.png" alt="6" data-src="https://s1.ax1x.com/2020/09/12/wa8ze1.png">
+    <img src="https://s1.ax1x.com/2020/09/17/wRKxr6.png" alt="7" data-src="https://s1.ax1x.com/2020/09/12/wa8ze1.png">
+    <img src="https://s1.ax1x.com/2020/09/17/wRKxr6.png" alt="8" data-src="https://s1.ax1x.com/2020/09/12/wa8ze1.png">
+    <img src="https://s1.ax1x.com/2020/09/17/wRKxr6.png" alt="9" data-src="https://s1.ax1x.com/2020/09/12/wa8ze1.png">
+</body>
+
+<script>
+    var sum = 0
+    var imgs = document.querySelectorAll('img')
+    imgs.forEach( (item,index) => {
+        var proImg = new Image()
+        proImg.onload = () => {
+            proImg.onload = null
+            sum++
+            var progress = parseInt(sum / imgs.length * 100)
+            document.querySelector('.loading b').innerHTML = progress + '%'
+            if(sum >= index){
+                document.querySelector('.loading').classList.add('fadeOut')
+            }
+        }
+        proImg.src = imgs[index].src
+    })
+
+    start()
+    window.addEventListener('scroll',() => {
+        start()
+    })
+
+    function start(){
+        //已加载的图片过滤
+        var imgs = document.querySelectorAll('img:not([data-isloaded])')
+        imgs.forEach( item => {
+            if(isShow(item)){
+                lazy(item)
+            }
+        })
+    }
+
+    //图片懒加载
+    function lazy(img){
+        img.setAttribute('src',img.getAttribute('data-src'))//把data-src的值 赋值给src
+        img.setAttribute('data-isLoaded', true) //已加载过的图片做标记
+        img.style.animation = 'fadeIn 1s linear forwards'//给图片添加动画
+    }
+    
+    //是否出现在视野中
+    //元素距离顶部的高度 <= 窗口高度 + 窗口滚动高度
+    function isShow(img){
+        return img.offsetTop <= document.body.clientWidth + document.documentElement.scrollTop
+    }
+</script>
+</html>
