@@ -140,6 +140,17 @@ let a=[1,2,3,4],
     b=deepClone(a);
 a[0]=2;
 console.log(a,b);
+
+3.如果对象的value是基本类型的话，也可以用Object.assign来实现深拷贝，但是要把它赋值给一个空对象
+var obj = {
+    a: 1,
+    b: 2
+}
+var obj1 = Object.assign({}, obj); // obj赋值给一个空{}
+obj1.a = 3;
+console.log(obj.a)；// 1
 ```
 
 ## 9.图片懒加载、预加载
+
+## 10.实现页面加载进度条

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="" alt=""  id="pic"/>
+</body>
+<script>
+    var arr = [
+          '../image/层叠顺序.png',
+          '../image/css盒模型.png',
+          '../image/css选择器.png',
+      ];
+
+      var imgs =[]
+      preLoadImg(arr)
+
+      //图片预加载方法
+      function preLoadImg(pars){
+          for(let i=0;i<arr.length;i++){
+              imgs[i] = new Image()
+              imgs[i].src = arr[i]
+          }
+      }
+       // 1s之后显示出该图片
+       // 1s之后并没有重复请求这个图片，因为之前已经请求下来了，这就是预加载
+      setTimeout(function(){
+          var pic = document.querySelector('#pic');
+          pic.src = '../image/层叠顺序.png'
+      },1000);
+</script>
+</html>
