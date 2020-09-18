@@ -166,3 +166,5 @@ console.log(obj.a)；// 1
 
 ## 13.为什么会有同源策略
 * [同源策略](https://blog.csdn.net/weixin_44195250/article/details/102808214)
+
+## 14.怎么判断两个对象是否相等
