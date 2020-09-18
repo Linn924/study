@@ -154,3 +154,15 @@ console.log(obj.a)；// 1
 ## 9.图片懒加载、预加载
 
 ## 10.实现页面加载进度条
+
+## 11.this关键字
+* [this的指向问题](https://www.cnblogs.com/dongcanliang/p/7054176.html)
+
+* 普通函数：根据调用我的人（谁调用我，我的this就指向谁）
+
+* 箭头函数：根据所在的环境（我再哪个环境中，this就指向谁）
+
+## 12.手动实现parseInt
+
+## 13.为什么会有同源策略
+* [同源策略](https://blog.csdn.net/weixin_44195250/article/details/102808214)
