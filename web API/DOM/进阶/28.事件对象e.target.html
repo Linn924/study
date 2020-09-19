@@ -31,6 +31,10 @@
             console.log(e.target);
             console.log(this);
         })
+        // div.addEventListener('click', e => {
+        //     console.log(e.target);
+        //     console.log(this); //指向window
+        // })
         var ul = document.querySelector('ul');
         ul.addEventListener('click', function(e) {
             // 我们给ul 绑定了事件  那么this 就指向ul  

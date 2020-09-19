@@ -168,3 +168,17 @@ console.log(obj.a)；// 1
 * [同源策略](https://blog.csdn.net/weixin_44195250/article/details/102808214)
 
 ## 14.怎么判断两个对象是否相等
+
+## 15.事件模型、事件委托、代理、如何让事件先冒泡后捕获
+* [简述JS中的事件委托和事件代理](https://www.jianshu.com/p/a77d8928c5c9)
+
+## 16.window的onload事件和domcontentloaded
+* 当 onload 事件触发时，页面上所有的DOM，样式表，脚本，图片，flash都已经加载完成了。
+
+* 当 DOMContentLoaded 事件触发时，仅当DOM加载完成，不包括样式表，图片，flash。
+
+## 17.for...in迭代和for...of有什么区别
+* [区别](https://www.cnblogs.com/leftJS/p/11068492.html)
+
+## 18.详解JS函数柯里化
+* [详解JS函数柯里化](https://blog.csdn.net/Fuohua/article/details/70919843)

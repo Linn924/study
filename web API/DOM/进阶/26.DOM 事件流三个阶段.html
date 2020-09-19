@@ -49,6 +49,11 @@
         son.addEventListener('click', function() {
             alert('son');
         }, false);
+        son.addEventListener('click', function() {
+            setTimeout( () => {
+                alert('son');
+            },1000)
+        }, true);
         var father = document.querySelector('.father');
         father.addEventListener('click', function() {
             alert('father');
@@ -56,6 +61,8 @@
         document.addEventListener('click', function() {
             alert('document');
         })
+
+    // 先让son冒泡 执行到son捕获时暂缓 等冒泡执行完再捕获
     </script>
 </body>
 
