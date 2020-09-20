@@ -182,3 +182,8 @@ console.log(obj.a)；// 1
 
 ## 18.详解JS函数柯里化
 * [详解JS函数柯里化](https://blog.csdn.net/Fuohua/article/details/70919843)
+
+## 19.call apply区别，原生实现bind
+
+* [call apply区别，原生实现bind](https://www.jianshu.com/p/473a86d509b9)
+* [手写bind](https://www.cnblogs.com/goloving/p/9380076.html)
