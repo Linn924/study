@@ -187,3 +187,14 @@ console.log(obj.a)；// 1
 
 * [call apply区别，原生实现bind](https://www.jianshu.com/p/473a86d509b9)
 * [手写bind](https://www.cnblogs.com/goloving/p/9380076.html)
+
+## 20.async/await
+
+* [async/await](https://segmentfault.com/a/1190000007535316)
+* async 用于申明一个 function 是异步的，而 await 用于等待一个异步方法执行完成。
+
+## 21.立即执行函数
+* [立即执行函数](https://www.cnblogs.com/vickylinj/p/12191958.html)
+
+## 22.设计模式(要求说出如何实现,应用,优缺点)/单例模式实现
+* [设计模式](https://blog.csdn.net/fj1247565817/article/details/99740263)

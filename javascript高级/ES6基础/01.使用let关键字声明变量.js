@@ -33,8 +33,10 @@
 
 
 /* -------防止循环变量变成全局变量--------- */
-// for (let i = 0; i < 2; i++) {}
-// console.log(i);
+// for (let i = 0; i < 2; i++) {
+// 	console.log(i)
+// }
+// console.log(i)
 
 
 /*-----使用let关键字声明的变量没有变量提升------*/
@@ -43,8 +45,8 @@
 
 
 /* -------使用let关键字声明的变量具有暂时性死区特性------- */
-var num = 10
-if (true) {
-	console.log(num);
-	let num = 20;
-}
+// var num = 10
+// if (true) {
+// 	console.log(num);
+// 	let num = 20;
+// }

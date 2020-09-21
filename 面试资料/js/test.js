@@ -1,23 +1,43 @@
-Array.prototype._map = function(fn, context) {
-    var temp = [];
-    if(typeof fn == 'function') {
-        var k = 0;
-        var len = this.length;
-        // 封装for循环过程
-        for(; k < len; k++) {
-            // 将每一项的运算操作丢进fn里，利用call方法指定fn的this指向与具体参数\
-            temp.push(fn.call(context, this[k]))
-        }
-    } else {
-        console.error('TypeError: '+ fn +' is not a function.');
+for(var i = 0 ;i<li.length;i++){
+    li[i].onclick=function(){
+      alert(i);  // 结果总是3.而不是0，1，2
     }
- 
-    // 返回每一项运算结果组成的新数组
-    return temp;
+  }
+
+  {
+      var i =0
+    li[i].onclick=function(){
+      alert(i);  // 结果总是3.而不是0，1，2
+    }
+  }
+  {
+    var i =1
+    li[i].onclick=function(){
+      alert(i);  // 结果总是3.而不是0，1，2
+    }
+  }
+  {
+    var i =2
+    li[i].onclick=function(){
+      alert(i);  // 结果总是3.而不是0，1，2
+    }
+  }
+
+  {
+    let i =0
+  li[i].onclick=function(){
+    alert(i);  // 结果总是3.而不是0，1，2
+  }
 }
- 
-var newArr = [1, 2, 3, 4]._map(function(item) {
-    return item + 1;
-})
-// [2, 3, 4, 5]
-console.log(newArr)
+{
+  let i =1
+  li[i].onclick=function(){
+    alert(i);  // 结果总是3.而不是0，1，2
+  }
+}
+{
+  let i =2
+  li[i].onclick=function(){
+    alert(i);  // 结果总是3.而不是0，1，2
+  }
+}
