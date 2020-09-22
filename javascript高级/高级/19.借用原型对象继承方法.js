@@ -27,5 +27,9 @@ Son.prototype.exam = function() {
 }
 var son = new Son('刘德华', 18, 100);
 console.log(son);
+son.money()
 console.log(Father.prototype);
-console.log(Son.prototype.constructor);
+console.log(Son.prototype);
+console.log(son.__proto__ === Son.prototype); // true
+console.log(Son.prototype.__proto__ === Father.prototype); // true
+console.log(Son.prototype.constructor === Son); // true
