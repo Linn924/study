@@ -1,11 +1,11 @@
-// const sum = (...args) => {
-// 	let total = 0;
-// 	args.forEach(item => total += item);
-// 	return total;
-// };
+const sum = (...args) => {
+	let total = 0;
+	args.forEach(item => total += item);
+	return total;
+};
 
-// console.log(sum(10, 20));
-// console.log(sum(10, 20, 30));
+console.log(sum(10, 20));
+console.log(sum(10, 20, 30));
 
 
 let ary1 = ['张三' , '李四', '王五'];

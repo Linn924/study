@@ -1,18 +1,18 @@
 const s1 = new Set();
-console.log(s1.size)
+console.log(s1.size) // 0
 
 const s2 = new Set(["a", "b"]);
-console.log(s2.size)
+console.log(s2.size) // 2
 
 const s3 = new Set(["a","a","b","b"]);
-console.log(s3.size)
+console.log(s3.size) // 2
 const ary = [...s3]; //数组去重
-console.log(ary)
+console.log(ary) // [ 'a', 'b' ]
 
 const s4 = new Set();
 // 向set结构中添加值 使用add方法
 s4.add('a').add('b');
-console.log(s4.size)
+console.log(s4.size) // 2
 
 // 从set结构中删除值 用到的方法是delete
 const r1 = s4.delete('c');
