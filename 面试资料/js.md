@@ -1,6 +1,7 @@
 # html
 
-[2020前端面试复习资料](https://www.jianshu.com/p/137b525e09ff)
+[2020前端面试复习资料](https://www.jianshu.com/p/137b525e09ff)  
+[20-28解答](https://blog.csdn.net/fj1247565817/article/details/99740263)
 
 ## 1.原型/原型链/构造函数/实例/继承
 
@@ -211,4 +212,15 @@ iframe 元素会创建包含另外一个文档的内联框架（即行内框架�
 
 ## 24.数组问题 数组去重 数组常用方法 查找数组重复项 扁平化数组 按数组中各项和特定值差值排序
 
-## 25. BOM属性对象方法
+## 25.BOM属性对象方法
+
+## 26.服务端渲染
+* [服务端渲染](https://www.cnblogs.com/chenyablog/p/9321350.html)
+
+## 27.垃圾回收机制
+
+* [垃圾回收机制](https://segmentfault.com/a/1190000018605776?utm_source=tag-newest)
+  
+## 28.事件循环和任务队列
+
+* [事件循环与任务队列](https://www.jianshu.com/p/4516ad4b3048)
