@@ -10,7 +10,7 @@
 <body>
     <div id="app">
         <div>{{pmsg}}</div>
-        <menu-item :pstr="pstr" :pnum="pnum" :pboo="pboo" :parr="parr" :pobj="pobj"></menu-item>
+        <menu-item :p1="pstr" :p2="pnum" :p3="pboo" :p4="parr" :p5="pobj"></menu-item>
     </div>
 </body>
 
@@ -21,18 +21,18 @@
     */
 
         Vue.component('menu-item', {
-            props: ['pstr','pnum','pboo','parr','pobj'],
+            props: ['p1','p2','p3','p4','p5'],
             template: `
                 <div>
-                    <div>{{pstr}}</div>
-                    <div>{{pnum}}</div>
-                    <div>{{pboo}}</div>
+                    <div>{{p1}}</div>
+                    <div>{{p2}}</div>
+                    <div>{{p3}}</div>
                     <div>
                         <ul>
-                            <li v-for="(item,index) in parr" :key="index">{{item}}</li>
+                            <li v-for="(item,index) in p4" :key="index">{{item}}</li>
                         </ul>
                     </div>
-                    <div>{{pobj.name}}{{pobj.age}}</div>
+                    <div>{{p5.name}}{{p5.age}}</div>
                 </div>
             `
         });

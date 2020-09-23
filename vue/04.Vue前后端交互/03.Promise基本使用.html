@@ -30,11 +30,12 @@
             }, 100);
         });
 
-        p.then(function (data) {
+
+        p.then( data => {
             console.log(data)
-        }, function (info) {
-            console.log(info)
-        });
+        }).catch( error => {
+            console.log(error)
+        })
     </script>
 </body>
 

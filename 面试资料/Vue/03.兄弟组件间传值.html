@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="father">
+        <button @click="handel">销毁事件</button>
+        <son-one></son-one>
+        <son-two></son-two>
+    </div>
+
+
+    <script>
+
+        var center = new Vue()
+
+        Vue.component('son-one',{
+            data() {
+                return {
+                    age:20
+                }
+            },
+            template:`
+                <div>
+                    {{age}}
+                    <button @click="handel">点击son-one</button>
+                </div>
+            `,
+            mounted() {
+                center.$on('sonOne',num => this.age += num)
+            },
+            methods: {
+                handel(){
+                    center.$emit('sonTwo',1)
+                }
+            },
+        })
+
+        Vue.component('son-two',{
+            data() {
+                return {
+                    age:10
+                }
+            },
+            template:`
+                <div>
+                    {{age}}
+                    <button @click="handel">点击son-two</button>
+                </div>
+            `,
+            mounted() {
+                center.$on('sonTwo',num => this.age += num)
+            },
+            methods:{
+                handel(){
+                    center.$emit('sonOne',1)
+                }
+            }
+        })
+
+        const Simon = new Vue({
+            el:'.father',
+            methods:{
+                handel(){
+                    center.$off('sonOne')
+                    center.$off('sonTwo')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

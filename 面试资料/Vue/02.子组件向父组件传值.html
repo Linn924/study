@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="father">
+        <son :name="name" @to-father="getAge($event)"></son>
+        {{age}}
+    </div>
+    <script>
+
+        //自定义组件 子组件向父组件传值
+        Vue.component('son',{
+            props:['name'],
+            data(){
+                return {
+                    age:20
+                }
+            },
+            template:`
+                <div>
+                    <span>{{name}}</span>
+                    <button @click="$emit('to-father',age)">向父组件传值</button>
+                </div>
+            `
+        })
+
+        const Simon = new Vue({
+            el:'.father',
+            data() {
+                return {
+                    name:'Simon',
+                    age:0
+                }
+            },
+            methods: {
+                getAge(age){
+                    console.log(age)
+                    this.age = age
+                }
+            },
+        })
+    </script>
+</body>
+</html>
