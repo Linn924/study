@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    div[class ^="box"]{
+        width: 500px;
+        height: 500px;
+        margin: 0 auto;
+    }
+    .box1{
+        background-color: teal;
+    }
+    .box2{
+        background-color:pink;
+    }
+    .box3{
+        background-color: #1e90ff;
+    }
+</style>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <script>
+
+        //防抖
+        function debounce(fn,delay){
+            let timer = null
+            return function(){
+                if(timer){
+                    clearTimeout(timer) // 此分支 当前正在执行一个计时，清空此次计时，新开一次计时
+                    timer = setTimeout(fn,delay)
+                }else{
+                    timer = setTimeout(fn,delay) // 当前没有计时 初始化执行一个计时
+                }
+            }
+        }
+
+        //简化代码
+        // function debounce(fn,delay){
+        //     let timer = null
+        //     return function(){
+        //         if(timer){
+        //             clearTimeout(timer)
+        //         }
+        //         timer = setTimeout(fn,delay)
+                
+        //     }
+        // }
+
+        //获取滚动高度
+        function showScrollTop(){
+            var scrollTop = document.body.scrollTop || document.documentElement.scrollTop
+            console.log(scrollTop)
+        }
+
+        window.onscroll = debounce(showScrollTop,200)
+    </script>
+</body>
+</html>

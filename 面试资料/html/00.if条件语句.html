@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = true //执行了
+        var b = 0 //未执行
+        var c = -1 //执行了
+        var d = null //未执行
+        var e = '' //未执行
+        var f = NaN //未执行
+        var g = undefined //未执行
+        var str = '123' //执行了
+
+        // if(a){
+        //     alert('执行了')
+        // }
+        // if(b){
+        //     alert('执行了')
+        // }
+        // if(c){
+        //     alert('执行了')
+        // }
+        // if(d){
+        //     alert('执行了')
+        // }
+        // if(e){
+        //     alert('执行了')
+        // }
+        // if(f){
+        //     alert('执行了')
+        // }
+        // if(g){
+        //     alert('执行了')
+        // }
+        if(str){
+            alert('执行了')
+        }
+    </script>
+</body>
+</html>
