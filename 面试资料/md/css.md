@@ -15,12 +15,12 @@ CSS盒模型本质上是一个盒子，封装周围的HTML元素，它包括：�
 
 CSS3 弹性盒子（ Flexible Box 或 flexbox），是一种当页面需要适应不同的屏幕大小以及设备类型时确保元素拥有恰当的行为的布局方式，是对一个容器中的子元素进行排列、对齐和分配空白空间。  
 
-<img src="./image/css3弹性盒子属性.png"> 
+<img src="../image/css3弹性盒子属性.png"> 
 
 ***
 ## 3.css单位
 
-<img src="./image/css单位1.png"> 
+<img src="../image/css单位1.png"> 
 
 rem与em的区别在于使用rem为元素设定字体大小时，仍然是相对大小，但相对的只是HTML根元素  
 <img src="./image/css单位2.png"> 
@@ -28,7 +28,7 @@ rem与em的区别在于使用rem为元素设定字体大小时，仍然是相对
 ***
 ## 4.css选择器
 
-<img src="./image/css选择器.png"> 
+<img src="../image/css选择器.png"> 
 
 ***
 ## 5.BFC 清除浮动
@@ -101,9 +101,9 @@ clear{
 
 4. 层叠顺序
 
-* <img src="./image/层叠顺序详解.png"> 
+* <img src="../image/层叠顺序详解.png"> 
 
-* <img src="./image/层叠顺序.png"> 
+* <img src="../image/层叠顺序.png"> 
 
 - [层叠顺序详解](https://www.cnblogs.com/leftJS/p/11063683.html)
 
@@ -128,9 +128,9 @@ clear{
 
 ## 10.css3新特性
 
-<img src="./image/transtion属性.png">
+<img src="../image/transtion属性.png">
 
-<img src="./image/animation属性.png">
+<img src="../image/animation属性.png">
 
 ## 11.display哪些取值
 
@@ -162,9 +162,9 @@ clear{
 //浏览器引进了 viewport 这个 meta tag，让网页开发者来控制 viewport 的大小和缩放。  
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ```
-<img src="./image/meta%20viewport的属性.png">
+<img src="../image/meta%20viewport的属性.png">
 
-<img src="./image/3个viewport.png">
+<img src="../image/3个viewport.png">
 
 ## 14.CSS实现宽度自适应100%，宽高16:9的比例的矩形
 
