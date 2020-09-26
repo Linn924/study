@@ -1,6 +1,5 @@
 (async function run (){
     const koa = require('koa2')
-    const mongoose = require('mongoose')
     const Router = require("koa-router")
     const Body = require("koa-body")
     require('./model/mongodb.js')

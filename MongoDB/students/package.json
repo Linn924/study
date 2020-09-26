@@ -8,5 +8,14 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "art-template": "^4.13.2",
+    "dateformat": "^3.0.3",
+    "koa-body": "^4.2.0",
+    "koa-router": "^9.4.0",
+    "koa-static-cache": "^5.1.4",
+    "koa2": "^2.0.0-alpha.7",
+    "mongoose": "^5.10.7"
+  }
 }
