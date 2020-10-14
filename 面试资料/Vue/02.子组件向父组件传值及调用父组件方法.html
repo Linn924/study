@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="father">
+        <child @to-father="getAge($event)" @father="fatherMethod" :father="fatherMethod"></child>
+        <p id="show"></p>
+    </div>
+    <script>
+
+        //自定义组件 子组件向父组件传值
+        Vue.component('child',{
+            props: {
+                father: {
+                    type: Function,
+                    default: null
+                }
+            },
+            data(){
+                return {
+                    age:20
+                }
+            },
+            template:`
+                <div>
+                    <p>我是子组件</p>
+                    <button @click="$emit('to-father',age)">向父组件传值</button>
+                    <button @click="handleClick">调用父组件的方法</button>
+                </div>
+            `,
+            methods:{
+                handleClick(){
+                    //1. 通过this.$parent.event来调用父组件的方法
+                    // this.$parent.fatherMethod()
+                    //2. 用$emit向父组件触发一个事件，父组件监听这个事件
+                    // this.$emit('father')
+                    //3. 父组件把方法传入子组件中，在子组件里直接调用这个方法
+                    // this.father()
+                }
+            }
+        })
+
+        const Simon = new Vue({
+            el:'.father',
+            data() {
+                return {
+                    
+                }
+            },
+            methods: {
+                getAge(age){
+                    document.getElementById('show').innerText = age
+                },
+                fatherMethod(){
+                    console.log('我是父组件的方法')
+                }
+            },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="father">
+
+        <!-- 父组件向子组件传递数据 -->
+        <child :name="name" ref="child"></child>
+        <br>
+        <button @click="handleClick">调用子组件方法</button>
+        <br>
+        <div>{{message}}</div>
+    </div>
+</body>
+<script>
+
+    //创建全局组件
+    Vue.component('child',{
+        props:['name'],
+        template:`
+            <div>
+                <span>{{name}}</span>
+            </div>
+        `,
+        methods:{
+            test(){
+                let str = '我是子组件的方法'
+                return str
+            },
+            getName(){
+                console.log(this.name)
+            }
+        },
+        created() {
+            this.getName()
+        }
+    })
+
+    const simon = new Vue({
+        el:'.father',
+        data() {
+            return {
+                name:'simon',
+                message:''
+            }
+        },
+        methods: {
+            handleClick(){
+                //通过ref直接调用子组件的方法
+                this.message = this.$refs.child.test()
+            }
+        },
+    })
+</script>
+</html>

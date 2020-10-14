@@ -10,8 +10,8 @@
 
     <div class="father">
         <button @click="handel">销毁事件</button>
-        <son-one></son-one>
-        <son-two></son-two>
+        <child-one></child-one>
+        <child-two></child-two>
     </div>
 
 
@@ -19,7 +19,7 @@
 
         var center = new Vue()
 
-        Vue.component('son-one',{
+        Vue.component('childOne',{
             data() {
                 return {
                     age:20
@@ -28,20 +28,20 @@
             template:`
                 <div>
                     {{age}}
-                    <button @click="handel">点击son-one</button>
+                    <button @click="handel">点击child-one</button>
                 </div>
             `,
             mounted() {
-                center.$on('sonOne',num => this.age += num)
+                center.$on('childOne',num => this.age += num)
             },
             methods: {
                 handel(){
-                    center.$emit('sonTwo',1)
+                    center.$emit('childTwo',1)
                 }
             },
         })
 
-        Vue.component('son-two',{
+        Vue.component('childTwo',{
             data() {
                 return {
                     age:10
@@ -50,15 +50,15 @@
             template:`
                 <div>
                     {{age}}
-                    <button @click="handel">点击son-two</button>
+                    <button @click="handel">点击child-two</button>
                 </div>
             `,
             mounted() {
-                center.$on('sonTwo',num => this.age += num)
+                center.$on('childTwo',num => this.age += num)
             },
             methods:{
                 handel(){
-                    center.$emit('sonOne',1)
+                    center.$emit('childOne',1)
                 }
             }
         })
@@ -67,8 +67,8 @@
             el:'.father',
             methods:{
                 handel(){
-                    center.$off('sonOne')
-                    center.$off('sonTwo')
+                    center.$off('childOne')
+                    center.$off('childTwo')
                 }
             }
         })
