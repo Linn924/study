@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .drag {
+        width: 100vw;
+        height: 100vh;
+        background-color: #fff;
+    }
+    .drag_box {
+        width: 200px;
+        height: 200px;
+        background-color: #1e90ff;
+        /* 使用定位，脱离文档流 */
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        /* 鼠标移入变成拖拽手势 */
+        cursor: move;
+        z-index: 3000;
+    }
+</style>
+<body>
+    <div class="drag">
+        <a href="https://blog.csdn.net/qq_40323256/article/details/104222366">拖拽</a>
+        <div class="drag_box" v-drag></div>
+    </div>
+</body>
+<script>
+
+    //自定义拖拽指令(全局指令)
+    Vue.directive('drag',{
+        bind(dom){
+            //鼠标按下时触发
+            dom.onmousedown = e => {
+                //算出鼠标相对于元素的位置
+                let disX = e.clientX - dom.offsetLeft
+                let disY = e.clientY - dom.offsetTop
+                //鼠标拖拽时触发
+                document.onmousemove = e => {
+                    //用鼠标的位置减去鼠标相对于元素的位置，得到元素的位置 
+                    let left = e.clientX - disX
+                    let top = e.clientY - disY
+                    
+                    /* 
+                        获取浏览器窗口文档显示区域的宽度，不包括滚动条。document.documentElement.clientWidth
+                        获取浏览器窗口文档显示区域的高度，不包括滚动条。document.documentElement.clientHeight
+                        获取元素的宽度 dom.clientWidth
+                        获取元素的高度 dom.clientHeight
+                    */
+                    // 防止越界
+                    if (left < 0) {
+                        left = 0
+                    }
+                    if(left > document.documentElement.clientWidth - dom.clientWidth){
+                        left = document.documentElement.clientWidth - dom.clientWidth
+                    }
+                    if(top < 0){
+                        top = 0
+                    }
+                    if(top > document.documentElement.clientHeight - dom.clientHeight){
+                        top = document.documentElement.clientHeight - dom.clientHeight
+                    }
+                    //移动当前元素
+                    dom.style.left = left + "px"
+                    dom.style.top = top + "px"
+                }
+                document.onmouseup = e => {
+                    //鼠标弹起来的时候不再移动
+                    document.onmousemove = null
+                    //预防鼠标弹起来后还会循环（即预防鼠标放上去的时候还会移动）
+                    document.onmouseup = null
+                }
+            }
+        }
+    })
+
+    const simon = new Vue({
+        el:'.drag',
+        data() {
+            return {
+                
+            }
+        },
+        //局部注册指令
+        // directives: {
+        //     drag: {
+        //         bind(dom){
+        //             //鼠标按下时触发
+        //             dom.onmousedown = e => {
+        //                 //算出鼠标相对元素的位置
+        //                 let disX = e.clientX - dom.offsetLeft
+        //                 let disY = e.clientY - dom.offsetTop
+        //                 //鼠标拖拽时触发
+        //                 document.onmousemove = e => {
+        //                     //用鼠标的位置减去鼠标相对元素的位置，得到元素的位置 移动当前元素
+        //                     dom.style.left = e.clientX - disX + "px"
+        //                     dom.style.top = e.clientY - disY + "px"
+        //                 }
+        //                 document.onmouseup = e => {
+        //                     //鼠标弹起来的时候不再移动
+        //                     document.onmousemove = null
+        //                     //预防鼠标弹起来后还会循环（即预防鼠标放上去的时候还会移动）
+        //                     document.onmouseup = null
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+    })
+</script>
+</html>

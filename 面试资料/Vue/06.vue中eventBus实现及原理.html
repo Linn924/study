@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <child-comp-1></child-comp-1>
+        <child-comp-2></child-comp-2>
+        <a href="https://blog.csdn.net/liubangbo/article/details/101267774">vue中eventBus原理</a>
+    </div>
+</body>
+<script>
+    var eventBus = new Vue();
+ 
+    Vue.component('child-comp-1', {
+        template: "<div></div>",
+        mounted() {
+            eventBus.$on("event", function(value){
+                console.log("child-comp-1 receive event: " + value);
+            });       
+        }
+    });
+
+    Vue.component('child-comp-2', {
+        template: "<div></div>",
+        mounted() {
+                eventBus.$emit("event", "here is comp2 msg");
+        }
+    });
+
+    const app = new Vue({
+        el: '#app'
+    });
+</script>
+</html>
