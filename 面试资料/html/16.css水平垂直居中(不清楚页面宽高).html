@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    /* 1.定位和transform实现 */
+    .box{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 200px;
+        height: 200px;
+        background-color: #1e90ff;
+    }
+    /* 2.使用定位和外边距 auto */
+    .box{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        width: 200px;
+        height: 200px;
+        background-color: #1e90ff;
+    }
+</style>
+<body>
+    <div class="box"></div>
+</body>
+</html>

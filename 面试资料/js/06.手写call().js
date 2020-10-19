@@ -1,13 +1,13 @@
-var obj = {value: 1}
+var obj = {
+    value: 1
+}
 function test(name, age) {
     console.log(arguments)
     console.log(name, age)
     console.log(this.value)
 }
 
-
-// 手写模拟call方法的思想
-/**
+/*
  * call方法思想：改变this指向，让新的对象可以执行这个方法
  * 实现思路：
  * 1、给新的对象添加一个函数（方法），并让this（也就是当前绑定的函数）指向这个函数
