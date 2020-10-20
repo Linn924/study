@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>布局</title>
+</head>
+<style>
+    /* 方法三:table */
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    html,
+    body{
+        height: 100vh;
+    }
+    .container{
+        display: table;
+        width: 100vw;
+        height: 100vh;
+    }
+    .container>div{
+        display: table-cell;
+    }
+    .left{
+        width: 50%;
+        background-color: #1e90ff;
+    }
+    .right{
+        background-color: aquamarine;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="left">Left</div>
+        <div class="right">Right</div>
+    </div>
+</body>
+</html>
