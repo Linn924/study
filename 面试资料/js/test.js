@@ -1,3 +1,2 @@
-var a = 888; 
-++a;
-console.log(a++)
+
+console.log(Math.floor(Math.random()*8) + 1)
