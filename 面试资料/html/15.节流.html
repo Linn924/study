@@ -10,47 +10,45 @@
         margin: 0;
         padding: 0;
     }
-    div[class ^="box"]{
-        width: 500px;
-        height: 500px;
-        margin: 0 auto;
+    #box {
+        height: 300px;
+        background-color: orange;
+        overflow: auto;
     }
-    .box1{
-        background-color: teal;
-    }
-    .box2{
-        background-color:pink;
-    }
-    .box3{
-        background-color: #1e90ff;
-    }
+
 </style>
 <body>
-    <div class="box1"></div>
-    <div class="box2"></div>
-    <div class="box3"></div>
+    <div id="box"></div>
+
     <script>
 
+        //节流(连续触发事件但是在 n 秒中只执行一次函数。)
+        let box = document.querySelector('#box')
+
+        function move(e){
+            this.innerText = `${e.offsetX},${e.offsetY}`
+        }
+
         //节流
-        function throttle(fn,delay){
-            let flag = true
+        function throttle(fn, wait){
+            let time = 0, timer = null
             return function(){
-                if(!flag) return false
-                flag = false
-                setTimeout(() => {
-                    fn()
-                    flag = true
-                },delay)
+                let now = Date.now()
+                let args = arguments
+                if(now - time > wait){
+                    fn.apply(this, args)
+                    time = now
+                }else{
+                    timer && clearTimeout(timer)
+                    timer = setTimeout(() => {
+                        fn.apply(this, args)
+                        time = now
+                    }, wait)
+                }
             }
         }
 
-        //获取滚动高度
-        function showScrollTop(){
-            var scrollTop = document.body.scrollTop || document.documentElement.scrollTop
-            console.log(scrollTop)
-        }
-
-        window.onscroll = throttle(showScrollTop,1000)
+        box.addEventListener('mousemove',throttle(move, 500))
     </script>
 </body>
 </html>
