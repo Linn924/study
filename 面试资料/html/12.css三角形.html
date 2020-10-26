@@ -6,6 +6,11 @@
     <title>三角形的实现</title>
 </head>
 <style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
     /* 利用border*/
     .box1{
         width: 0;
@@ -23,9 +28,19 @@
         transform: rotate(45deg);
     }
     
+    /* 扇形实现 */
+    .box3{
+        width: 0;
+        height: 0;
+        border-width:40px 40px 0;
+        border-style: solid;
+        border-color: red transparent transparent transparent;
+        border-radius: 50%;
+    }
 </style>
 <body>
     <div class="box1"></div>
     <div class="box2"></div>
+    <div class="box3"></div>
 </body>
 </html>

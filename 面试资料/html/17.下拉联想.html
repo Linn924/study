@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>下拉联想</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    html,body{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        background-color: #ccc;
+    }
+    #app{
+        display: flex;
+        flex-direction: column;
+    }
+    .dropBox{
+        position: relative;
+        margin-top:50px
+    }
+    input{
+        width: 220px;
+        height: 40px;
+        cursor: pointer;
+        outline: none;
+        border: 1px solid #DCDFE6;
+        border-radius: 5px;
+        padding-left: 20px;
+    }
+    .triangle{
+        position: absolute;
+        top: 18px;
+        right: 10px;
+        cursor: pointer;
+        border-style: solid;
+        border-width: 0 8px 8px 8px;
+        border-color: transparent transparent #DCDFE6 transparent;
+        transition: all .25s;
+    }
+    .triangle::after{
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: -8px;
+        border-style: solid;
+        border-width: 0 8px 8px 8px;
+        border-color: transparent transparent #fff transparent;
+        transition: all .25s;
+    }
+    .up{
+        transform: rotate(180deg);
+    }
+    nav{
+        width: 220px;
+        margin-top: 5px;
+        border-radius: 5px;
+        background-color: #fff;
+        list-style: none;
+        font-size: 14px;
+    }
+    nav li{
+        transition: all .25s;
+        padding: 5px 0 5px 20px;
+        cursor: pointer;
+    }
+    nav li:first-child{
+        border-radius:  5px 5px 0 0;
+    }
+    nav li:last-child{
+        border-radius:  0 0 5px 5px;
+    }
+    nav li:hover{
+        background-color: #DCDFE6;
+    }
+</style>
+<body>
+    <div id="app">
+        <div class="dropBox">
+            <input type="text" placeholder="请选择" readonly @click="drop" v-model="value">
+            <div :class="flag?'triangle up':'triangle'" @click="drop"></div>
+        </div>
+        <nav v-show="flag">
+            <li v-for="item in list" :key="item.id" @click="select(item.title)">{{item.title}}</li>
+        </nav>
+    </div>
+</body>
+<script>
+    const simon = new Vue({
+        el:'#app',
+        data() {
+            return {
+                flag:false,
+                value:'',
+                list:[
+                    {id:0,title:'指南'},
+                    {id:1,title:'组件'},
+                    {id:2,title:'资源'}
+                ]
+            }
+        },
+        methods: {
+            drop(){
+                this.flag = !this.flag
+            },
+            select(title){
+                this.value = title
+                this.flag = false
+            }
+        },
+    })
+</script>
+</html>
