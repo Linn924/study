@@ -6,7 +6,6 @@
     <title>布局</title>
 </head>
 <style>
-    /* 方法三:table */
     *{
         margin: 0;
         padding: 0;
@@ -15,27 +14,17 @@
     html,
     body{
         height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    .container{
-        display: table;
-        width: 100vw;
-        height: 100vh;
-    }
-    .container>div{
-        display: table-cell;
-    }
-    .left{
-        width: 50%;
+    #box{
+        width: 200px;
+        height: 200px;
         background-color: #1e90ff;
-    }
-    .right{
-        background-color: aquamarine;
     }
 </style>
 <body>
-    <div class="container">
-        <div class="left">Left</div>
-        <div class="right">Right</div>
-    </div>
+    <div id="box"></div>
 </body>
 </html>
