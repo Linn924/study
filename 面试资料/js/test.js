@@ -1,5 +1,3 @@
-//清空前后的空格
-let str = ' sim on '
-let newStr = str.trim().split(' ').join('')
+let result = 4+3+2+'1'
 
-console.log(newStr)
+console.log(result)
