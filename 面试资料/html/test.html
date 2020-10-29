@@ -6,18 +6,13 @@
     <title>Document</title>
 </head>
 <style>
-    *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    .box{
-        width: 64vw;
-        height: 36vw;
-        background-color: #1e90ff;
-    }
+    
 </style>
 <body>
-    <div class="box"></div>
+    <script>
+        let fn = val => {return () => alert(val)}
+        let f = fn('带参数')
+        setTimeout(f,1000)
+    </script>
 </body>
 </html>

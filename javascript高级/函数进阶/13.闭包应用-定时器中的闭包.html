@@ -20,10 +20,8 @@
         var lis = document.querySelector('.nav').querySelectorAll('li');
         for (var i = 0; i < lis.length; i++) {
             (function(i) {
-                setTimeout(function() {
-                    console.log(lis[i].innerHTML);
-                }, 3000)
-            })(i);
+                setTimeout(() => console.log(lis[i].innerHTML), 3000)
+            })(i)
         }
     </script>
 </body>

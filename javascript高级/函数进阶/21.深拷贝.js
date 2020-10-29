@@ -35,7 +35,7 @@ function deepCopy(newobj, oldobj) {
 deepCopy(o, obj);
 console.log(o);
 
-var arr = [];
-console.log(arr instanceof Object);
-o.msg.age = 20;
-console.log(obj);
+// var arr = [];
+// console.log(arr instanceof Object);
+// o.msg.age = 20;
+// console.log(obj);
