@@ -1,4 +1,5 @@
 # JavaScript面试资料总结
+>[别人的总结资料](https://zhuanlan.zhihu.com/p/125848433)
 
 ## 1、原型/原型链/构造函数/实例/继承
 
@@ -6,7 +7,7 @@
 
 >JavaScript高级程序设计第四版(p225)
 
-+ 无论何时，只要创建一个函数，就会按照特定的规则为这个函数创建一个 prototype 属性（指向原型对象）。默认情况下，所有原型对象自动获得一个名为 constructor 的属性，指回与之关联的构造函数。  
++ 创建函数时，就会按照特定的规则为这个函数创建一个 prototype 属性（指向原型对象）。默认情况下，所有原型对象自动获得一个名为 constructor 的属性，指回与之关联的构造函数。  
 + 在自定义构造函数时，原型对象默认只会获得 constructor 属性，其他的所有方法都继承自Object。每次调用构造函数创建一个新实例，这个实例的内部[[Prototype]]指针就会被赋值为构造函数的原型对象。脚本中没有访问这个[[Prototype]]特性的标准方式，但Firefox、Safari 和 Chrome会在每个对象上暴露__proto__属性，通过这个属性可以访问对象的原型。在其他实现中，这个特性完全被隐藏了。关键在于理解这一点：实例与构造函数原型之间有直接的联系，但实例与构造函数之间没有。
 
 ```
@@ -700,8 +701,176 @@ var b = getInstance("bb")
     + 很多的移动设备（PDA 手机）无法完全显示框架，设备兼容性差
     + iframe框架页面会增加服务器的http请求，增大服务器的压力
 
-## 26、数组问题 数组去重 数组常用方法 查找数组重复项 扁平化数组 按数组中各项和特定值差值排序
+## 26、数组问题 
 
+### 1. 数组去重
+
+```
+let arr = [1,2,3,4,1,5,8,1,42,2,4]
+
+// 1. 利用 for of和object
+function filter(arr){
+    if(!arr instanceof Array){
+        return arr
+    }
+    let obj = {},newArr = []
+    for(let i of arr){
+        if(!obj[i]){
+            newArr.push(i)
+            obj[i] = i
+        }
+    }
+    return newArr
+}
+console.log(filter(arr))
+
+// 2. 利用Set中的元素是唯一的特性
+function filter(arr){
+    if(!arr instanceof Array){
+        return arr
+    }
+    return Array.from(new Set(arr))
+}
+console.log(filter(arr))
+
+
+// 3. 利用for of和includes方法
+function filter(arr){
+    if(!arr instanceof Array){
+        return arr
+    }
+    let newArr = []
+    for(let i of arr){
+        !newArr.includes(i)&& newArr.push(i)
+    }
+    return newArr
+}
+console.log(filter(arr))
+```
+### 2. 查找数组重复项
+```
+let arr = [1,2,3,4,1,5,8,1,42,2,4]
+
+// 获取数组元素各项出现了几次
+function filter(arr){
+    if(!arr instanceof Array){
+        return arr
+    }
+    let obj = {}
+    for(let i of arr){
+        if(!obj[i]){
+            obj[i] = 1
+        }else{
+            obj[i] += 1
+        }
+    }
+    return obj
+}
+
+let obj = filter(arr)
+
+for(let i in obj){
+    if(obj[i] > 1){
+        console.log(i)
+    }
+}
+```
+
+### 3. 扁平化数组
+
++ 概念:数组扁平化是指将一个多维数组变为一维数组
++ 例:[1, [2, 3, [4, 5]]]  ------>    [1, 2, 3, 4, 5]
+
+```
+let arr = [1, [2, 3, [4, 5]]]
+
+// 1. 递归
+function flatten(arr){
+    if(!arr instanceof Array){
+        return arr
+    }
+    let newArr = []
+    for(let i of arr){
+        if(i instanceof Array){
+            newArr = newArr.concat(flatten(i))
+        }else{
+            newArr = newArr.concat([i])
+        }
+    }
+    return newArr
+}
+console.log(flatten(arr))
+
+// 2. toString()和split()
+function flatten(arr){
+    return arr.toString().split(",").map(item => Number(item))
+}
+console.log(flatten(arr))
+
+// 3. join()和split()
+function flatten(arr){
+    return arr.join(",").split(",").map(item => Number(item))
+}
+console.log(flatten(arr))
+
+// 4. concat()和扩展运算符
+function flatten(arr){
+    while(arr.some(item => item instanceof Array)){
+        arr = [].concat(...arr)
+    }
+    return arr
+}
+console.log(flatten(arr))
+
+```
+
+### 5. 快速排序
+
+```
+let arr = [5,1,8,4,9,12,78,100]
+
+function quickSort(arr){
+    //递归时的停止条件
+    if(!arr instanceof Array || arr.length <=1 ){
+        return arr
+    }
+    let leftArr = [],rightArr = []
+    let chooseIndex = Math.floor(arr.length / 2)
+    let chooseItem = arr.splice(chooseIndex,1)[0]
+    
+    for(let i of arr){
+        if(i < chooseItem){
+            leftArr.push(i)
+        }else{
+            rightArr.push(i)
+        }
+    }
+
+    return quickSort(leftArr).concat([chooseItem],quickSort(rightArr))
+}
+
+console.log(quickSort(arr))
+```
+
+### 6. 冒泡排序
+```
+let arr = [5,1,8,4,9,12,78,100]
+
+function bubble(arr){
+    let flag
+    for(let i=0; i<arr.length; i++){
+        for(let j=arr.length-1; j>i; j--){
+            if(arr[i]>arr[j]){
+                flag = arr[i]
+                arr[i] = arr[j]
+                arr[j] = flag
+            }
+        }
+    }
+    return arr
+}
+console.log(bubble(arr))
+```
 
 ## 27、常见js问题
 
