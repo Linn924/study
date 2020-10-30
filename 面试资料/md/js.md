@@ -245,8 +245,8 @@ console.log(fn.__proto__.constructor === Function) //true
   + 全局变量只有浏览器关闭的时候才会销毁，比较占内存资源 
   + 局部变量在程序执行完毕就会销毁，比较节约内存资源 
 + es6之前无块级作用域
-+ 函数作用域：变量在定义的环境中以及嵌套的子函数中处处可见；
-+ 块级作用域：变量在离开定义的块级代码后立即被回收。
++ 函数作用域：变量在定义的环境中以及嵌套的子函数中处处可见
++ 块级作用域：变量在离开定义的块级代码后立即被回收
 
 ### 2. 作用域链
 + 概念:内部函数访问外部函数的变量，采取的是链式查找的方式来决定取哪个值,这种结构我们称为作用域链
@@ -316,8 +316,8 @@ xhr.send(data)
 xhr.onload = () => console.log(xhr.responseText)
 
 //post方式(传递json对象数据格式)
+let data = {name:"simon",age:20}
 const xhr = new XMLHttpRequest()
-var data = {name:"Linn",pwd:20}
 xhr.open("post","http://localhost:3000/json")
 xhr.setRequestHeader("Content-Type","application/json") //必须设置请求参数格式的类型
 xhr.send(JSON.stringify(data)) //将JSON格式的数据转换成字符串形式然后发送请求
@@ -362,11 +362,72 @@ function deepCopy(obj) {
 
 ## 7、this关键字
 
->[this的指向问题](https://www.cnblogs.com/dongcanliang/p/7054176.html)  
->[this练习题]()
+>[this的指向问题](https://www.cnblogs.com/dongcanliang/p/7054176.html)   
+>[资料和练习题](http://blog.linncode.cn/article?this.md) 
 
-+ 普通函数:根据调用我的人(谁调用我，我的this就指向谁)
-+ 箭头函数:根据所在的环境(我在哪个环境中，this就指向谁)
++ 普通函数:根据调用我的人(谁调用，this就指向调用者)
++ 箭头函数:根据所在的环境(在哪个环境中，this就指向最近的上下文this)
+
+```
+// 1
+var name = "Linn"
+let obj = {
+    name: "Simon",
+    getName: function() {
+        return function() {
+            console.log(this.name)
+        }.call()
+    }
+}
+obj.getName() //Linn
+
+//2
+var name = "Linn"
+let obj = {
+    name: "Simon",
+    getName: function() {
+        return function() {
+            console.log(this.name)
+        }.call(this)
+    }
+}
+obj.getName() //Simon
+
+//3
+var name = "Linn"
+let obj = {
+    name: "Simon",
+    getName: () => {
+        return function() {
+            console.log(this.name)
+        }.call()
+    }
+}
+obj.getName() //Linn
+
+//4
+var name = "Linn"
+let obj = {
+    name: "Simon",
+    getName: () => {
+        return function() {
+            console.log(this.name)
+        }.call(this)
+    }
+}
+obj.getName() //Linn
+
+//5
+var name = "Linn"
+let obj = {
+    name: "Simon",
+    getName: function(){
+        // return (() => console.log(this.name)).call() //Simon
+        return (() => console.log(this.name)).call(this) //Simon
+    }
+}
+obj.getName()
+```
 
 ## 8、var与let、const的区别
 + var关键字声明的全局变量会挂载在window上，let和const关键字声明的全局变量不会挂载到window上
@@ -508,8 +569,9 @@ test.myCall(obj,"simon",20)
 ## 17、同源策略
 >[同源策略](https://www.jianshu.com/p/beb059c43a8b)
 
-### 1. 为什么会有同源策略
++ 概念:同源是指协议、域名、端口都相同，有一个不同就是不同源
 + 同源策略是为了保护网站的安全，防止用户信息泄露，防止身份伪造等(读取Cookie)
++ 同源策略是为了保护本地数据不被JavaScript代码获取回来的数据污染，因此拦截的是客户端发出的请求回来的数据接收，即请求发送了，服务器响应了，但是无法被浏览器接收。
 
 ## 18、判断两个对象是否相等
 
@@ -548,12 +610,14 @@ function isObjectValueEqual(a, b) {
 
 ## 19、window的onload事件和domcontentloaded
 
+>[window的onload事件和domcontentloaded的区别](https://www.jianshu.com/p/1a8a7e698447)
+
 + 当 onload 事件触发时，页面上所有的DOM，样式表，脚本，图片，flash都已经加载完成了。
 + 当 DOMContentLoaded 事件触发时，仅当DOM加载完成，不包括样式表，图片，flash。
 
 ## 20、for...in迭代和for...of有什么区别
 
->[区别](https://www.cnblogs.com/leftJS/p/11068492.html)
+>[for...in迭代和for...of的区别](https://www.cnblogs.com/leftJS/p/11068492.html)
 
 ## 21、详解JS函数柯里化
 
@@ -563,14 +627,91 @@ function isObjectValueEqual(a, b) {
 
 >[async/await](https://segmentfault.com/a/1190000007535316)
 
-+ async 用于申明一个 function 是异步的，而 await 用于等待一个异步方法执行完成。
++ async用于申明一个 function 是异步的，await用于等待一个异步方法执行完成
++ async函数返回的是一个Promise对象,如果在函数中return一个直接量，async会把这个直接量通过Promise.resolve()封装成Promise对象
++ await表达式的运算结果取决于它等的东西。如果它等到的不是一个Promise对象，那 await表达式的运算结果就是它等到的东西。如果它等到的是一个Promise对象，await就会阻塞后面的代码，等着Promise对象resolve，然后得到resolve的值，作为await表达式的运算结果。
++ async/await的优势在于处理then链
 
-## 23、立即执行函数
+## 23、立即执行函数及使用场景
 
->[立即执行函数](https://www.cnblogs.com/vickylinj/p/12191958.html)
+>[立即执行函数](https://www.jianshu.com/p/b10b6e93ddec)
+
++ 概念:声明一个函数并且立即执行该函数
++ 使用场景
+    + 函数只需要工作一次
+    + 立即执行函数的变量只在初始化中使用
+
+```
+(function(){
+    console.log("立即执行函数")
+})()
+
+<ul>
+    <li>第一个li</li>
+    <li>第二个li</li>
+    <li>第三个li</li>
+</ul>
+<script>
+    var lis = document.querySelectorAll("li")
+    for(var i = 0 ;i<lis.length;i++){
+        (function(j){
+            li[j].onclick = () => console.log(j)
+        })(i) //把实参i赋值给形参j
+    }
+</script>  
+```
 
 ## 24、设计模式(要求说出如何实现,应用,优缺点)/单例模式实现
 
->[设计模式](https://blog.csdn.net/fj1247565817/article/details/99740263)
+>[设计模式](https://www.cnblogs.com/tugenhua0707/p/5198407.html)
+
+```
+// 单体模式
+var Singleton = function(name){
+    this.name = name
+    this.instance = null
+}
+Singleton.prototype.getName = function(){
+    return this.name
+}
+// 获取实例对象
+function getInstance(name) {
+    if(!this.instance) {
+        this.instance = new Singleton(name);
+    }
+    return this.instance
+}
+// 测试单体模式的实例
+var a = getInstance("aa")
+var b = getInstance("bb")
+```
+
+## 25、iframe的优缺点
+
++ 优点
+    + iframe能够原封不动的把嵌入的网页展现出来
+    + 如果有多个网页引用iframe，那么你只需要修改iframe的内容，就可以实现调用的每一个页面内容的更改，方便快捷
+    + 网页如果为了统一风格，头部和版本都是一样的，就可以写成一个页面，用iframe来嵌套，可以增加代码的可重用
+    + 如果遇到加载缓慢的第三方内容如图标和广告，这些问题可以由iframe来解决
++ 缺点
+    + 会产生很多页面，不容易管理
+    + iframe框架结构有时会让人感到迷惑，如果框架个数多的话，可能会出现上下、左右滚动条，会分散访问者的注意力，用户体验度差
+    + 代码复杂，无法被一些搜索引擎索引到，这一点很关键，现在的搜索引擎爬虫还不能很好的处理iframe中的内容，所以使用iframe会不利于搜索引擎优化
+    + 很多的移动设备（PDA 手机）无法完全显示框架，设备兼容性差
+    + iframe框架页面会增加服务器的http请求，增大服务器的压力
 
 ## 26、数组问题 数组去重 数组常用方法 查找数组重复项 扁平化数组 按数组中各项和特定值差值排序
+
+
+## 27、常见js问题
+
+### 1. 用一行代码清楚一串字符串最前面和最后面的空格（中间也有空格）
+```
+//清空前后的空格
+let str = " sim on "
+console.log(str.trim()) //sim on
+
+//清除两边以及中间的空格
+let str = " sim on "
+console.log(str.trim().split(" ").join("")) //simon
+```
