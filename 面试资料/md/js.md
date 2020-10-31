@@ -871,7 +871,6 @@ function bubble(arr){
 }
 console.log(bubble(arr))
 ```
-
 ## 27、常见js问题
 
 ### 1. 用一行代码清楚一串字符串最前面和最后面的空格（中间也有空格）
