@@ -6,30 +6,27 @@
     <title>Document</title>
 </head>
 <body>
-    <img src="" alt=""  id="pic"/>
+    <img src=""/>
 </body>
 <script>
-    var arr = [
-          '../image/层叠顺序.png',
-          '../image/css盒模型.png',
-          '../image/css选择器.png',
-      ];
-
-      var imgs =[]
-      preLoadImg(arr)
-
-      //图片预加载方法
-      function preLoadImg(pars){
-          for(let i=0;i<arr.length;i++){
-              imgs[i] = new Image()
-              imgs[i].src = arr[i]
-          }
-      }
-       // 1s之后显示出该图片
-       // 1s之后并没有重复请求这个图片，因为之前已经请求下来了，这就是预加载
-      setTimeout(function(){
-          var pic = document.querySelector('#pic');
-          pic.src = '../image/层叠顺序.png'
-      },1000);
+    let arr = [
+        'https://s1.ax1x.com/2020/10/22/Bi7FBt.jpg',
+        'https://s1.ax1x.com/2020/10/22/Bi7inI.jpg',
+        'https://s1.ax1x.com/2020/10/16/0HQg1S.jpg',
+    ]
+    preLoadImg(arr)
+    //图片预加载方法
+    function preLoadImg(arr){
+        let imgList = []
+        arr.forEach((item,index) => {
+            imgList[index] = new Image()
+            imgList[index].src = arr[index]
+        })
+    }
+    // 1s之后显示出该图片(1s之后并没有重复请求这个图片，因为之前已经请求下来了，这就是预加载)
+    setTimeout(() => {
+        let img = document.querySelector('img')
+        img.src = 'https://s1.ax1x.com/2020/10/22/Bi7FBt.jpg'
+    },1000)
 </script>
 </html>

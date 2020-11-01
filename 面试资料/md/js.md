@@ -70,6 +70,17 @@ function Person(name, age){
 }
 
 let simon = new Person("simon",20)
+
+//实现new运算符
+function(fn){
+    let obj = Object.create(fn.prototype)
+    let k = fn.call(obj)
+    if(k instanceof Object){
+        return k
+    }else{
+        return o
+    }
+}
 ```
 
 ### 4. 继承
@@ -641,7 +652,7 @@ function isObjectValueEqual(a, b) {
 + 使用场景
     + 函数只需要工作一次
     + 立即执行函数的变量只在初始化中使用
-
++ 通过定一个匿名函数，创建了一个新的函数作用域，该命名空间的变量和方法，不会污染全局的命名空间（反过来也一样）。如果在这个函数作用域中要访问全局对象，将全局对象以参数形式传入进去，虽然函数体内可以直接访问全局对象，但为了不污染全局的命名空间，所以以参数形式传入，那么对这个参数的修改不会污染全局变量。
 ```
 (function(){
     console.log("立即执行函数")
@@ -871,7 +882,228 @@ function bubble(arr){
 }
 console.log(bubble(arr))
 ```
-## 27、常见js问题
+
+## 27、图片懒加载和预加载
+
+### 1. 图片懒加载
+```
+//为降低一次性的http请求次数
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+ *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.box{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+img{
+    width: 680px;
+    height: auto;
+}
+.fadeIn{
+    animation: fadeIn 1s ease forwards;
+}
+@keyframes fadeIn {
+    0%{opacity: 0}
+    100%{opacity: 1}
+}
+</style>
+<body>
+    <div class="box">
+        <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" data-src="https://s1.ax1x.com/2020/10/22/Bi7FBt.jpg">
+        <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" data-src="https://s1.ax1x.com/2020/10/22/Bi7inI.jpg">
+        <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" data-src="https://s1.ax1x.com/2020/10/16/0HQg1S.jpg">
+        <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" data-src="https://s1.ax1x.com/2020/10/14/0Imzg1.jpg">
+        <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" data-src="https://s1.ax1x.com/2020/10/13/0fzOyt.jpg">
+        <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" data-src="https://s1.ax1x.com/2020/10/13/0fzTFe.jpg">
+        <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" data-src="https://s1.ax1x.com/2020/10/13/0fzIoD.jpg">
+        <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" data-src="https://s1.ax1x.com/2020/10/13/0fz5dO.jpg">
+        <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" data-src="https://s1.ax1x.com/2020/10/13/0fz4eK.jpg">
+        <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" data-src="https://s1.ax1x.com/2020/10/13/0fjBZD.jpg">
+    </div>
+</body>
+<script>
+    class LazyLoad {
+        constructor(dom){
+            this.timer = null
+            this.init() //初始化页面
+        }
+        init(){
+            this.isLoad()
+            this.isScroll()
+        }
+        //加载图片
+        isLoad(){
+            //已加载的图片过滤
+            let imgs = Array.from(document.querySelectorAll("img:not([data-isloaded])"))
+            imgs.forEach( item => {
+                if(this.isShow(item)){
+                    this.isLazy(item)
+                }
+            })
+        }
+        //页面滚动事件
+        isScroll(){
+            window.addEventListener("scroll",() => {
+                if(this.timer) return 
+                setTimeout(() => {
+                    this.isLoad()
+                    this.timer = null
+                },200)
+            })
+        }
+        //懒加载图片核心原理
+        isLazy(img){
+            img.src = img.dataset.src
+            img.setAttribute("data-isLoaded", true) //已加载过的图片做标记(下次不获取加载过的元素)
+            img.classList.add("fadeIn") //图片出现加载过度动画
+        }
+        //是否展示(元素距离顶部的高度 <= 窗口高度 + 窗口滚动高度)
+        isShow(img){
+            let clientHeight = document.documentElement.clientHeight || document.body.clientHeight
+            let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+            return img.offsetTop <= clientHeight + scrollTop
+        }
+    }
+    let lazy = new LazyLoad()
+</script>
+</html>
+```
+
+### 2.图片预加载
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src=""/>
+</body>
+<script>
+    let arr = [
+        "https://s1.ax1x.com/2020/10/22/Bi7FBt.jpg",
+        "https://s1.ax1x.com/2020/10/22/Bi7inI.jpg",
+        "https://s1.ax1x.com/2020/10/16/0HQg1S.jpg",
+    ]
+    preLoadImg(arr)
+    //图片预加载方法
+    function preLoadImg(arr){
+        let imgList = []
+        arr.forEach((item,index) => {
+            imgList[index] = new Image()
+            imgList[index].src = arr[index]
+        })
+    }
+    // 1s之后显示出该图片(1s之后并没有重复请求这个图片，因为之前已经请求下来了，这就是预加载)
+    setTimeout(() => {
+        let img = document.querySelector("img")
+        img.src = "https://s1.ax1x.com/2020/10/22/Bi7FBt.jpg"
+    },1000)
+</script>
+</html>
+```
+
+## 28、页面百分比进度条
+>[nprogress使用](https://github.com/rstacruz/nprogress)
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css">
+    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="app">
+        <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" alt="">
+    </div>
+</body>
+<script>
+    console.log("JavaScript")
+   
+    document.addEventListener("readystatechange",function(){
+        if(document.readyState === "interactive"){
+            NProgress.start()
+        }
+        console.log(document.readyState)
+    })
+
+    document.addEventListener("DOMContentLoaded",function(){
+        console.log("DOMContentLoaded")
+    })
+
+    window.addEventListener("load",function(){
+        NProgress.done()
+        console.log("load")
+    })
+</script>
+</html>
+```
+
+## 29、ES6
+
+### 1. 解构赋值
+
++ 概念:解构赋值是对赋值运算符的扩展,是一种针对数组或者对象进行模式匹配，然后对其中的变量进行赋值
+```
+let [a, [[b], c]] = [1, [[2], 3]]
+// a = 1
+// b = 2
+// c = 3
+
+let [a, b, c, d, e] = "hello"
+// a = "h"
+// b = "e"
+// c = "l"
+// d = "l"
+// e = "o"
+
+let obj = {p: ["hello", {y: "world"}] }
+let {p: [x, { y }] } = obj;
+// x = "hello"
+// y = "world"
+let obj = {p: ["hello", {y: "world"}] }
+let {p: [x, {  }] } = obj
+// x = "hello"
+
+```
+### 2. 拓展运算符
+
++ 拓展运算符:...复制后面对象的参数给当前变量
+```
+var arr1 = [1,2]
+var arr2 = [...arr1]
+console.log(arr2) //[1,2]
+```
+
+### 3. ES6怎么编译成ES5,css-loader原理,过程
+
++ Babel
+    + Babel 是一个 JavaScript 编译器
+    + Babel 是一个工具链，主要用于将 ECMAScript 2015+ 版本的代码转换为向后兼容的 JavaScript 语法，以便能够运行在当前和旧版本的浏览器或其他环境中
++ css-loader
+    + loader 用于对模块的源代码进行转换。loader 可以使你在 import 或"加载"模块时预处理文件。因此，loader 类似于其他构建工具中“任务(task)”，并提供了处理前端构建步骤的强大方法
+    + css-loader是分析各个css文件的关系并合并成一个css
+
+## 30、常见js问题
 
 ### 1. 用一行代码清楚一串字符串最前面和最后面的空格（中间也有空格）
 ```
