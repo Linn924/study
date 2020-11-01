@@ -334,6 +334,24 @@ xhr.open("post","http://localhost:3000/json")
 xhr.setRequestHeader("Content-Type","application/json") //必须设置请求参数格式的类型
 xhr.send(JSON.stringify(data)) //将JSON格式的数据转换成字符串形式然后发送请求
 xhr.onload = () => console.log(xhr.responseText)
+
+function ajax(URL) {
+    return new Promise(function (resolve, reject) {
+        var req = new XMLHttpRequest()
+        req.open("GET", URL, true)
+        req.onload = function () {
+        if (req.status === 200) { 
+                resolve(req.responseText)
+            } else {
+                reject(new Error(req.statusText))
+            } 
+        }
+        req.onerror = function () {
+            reject(new Error(req.statusText))
+        }
+        req.send()
+    })
+}
 ```
 
 ## 6、深拷贝、浅拷贝
@@ -1103,7 +1121,120 @@ console.log(arr2) //[1,2]
     + loader 用于对模块的源代码进行转换。loader 可以使你在 import 或"加载"模块时预处理文件。因此，loader 类似于其他构建工具中“任务(task)”，并提供了处理前端构建步骤的强大方法
     + css-loader是分析各个css文件的关系并合并成一个css
 
-## 30、常见js问题
+## 30、BOM属性对象方法
+
+### 1. 窗口位置
+
++ moveTo()接收要移动到的新位置的绝对坐标 x 和 y
++ moveBy()接收相对当前位置在两个方向上移动的像素数
+```
+// 把窗口移动到左上角
+window.moveTo(0,0)
+// 把窗口向下移动 100 像素
+window.moveBy(0, 100)
+// 把窗口移动到坐标位置(200, 300) 
+window.moveTo(200, 300) 
+// 把窗口向左移动 50 像素
+window.moveBy(-50, 0)
+```
+### 2. 窗口大小
+
++ 页面视口高度: document.documentElement.clientHeight || document.body.clientHeight
++ 页面视口宽度: document.documentElement.clientWidth || document.body.clientWidth
++ resizeTo()接收新的宽度和高度值
++ resizeBy()接收宽度和高度各要缩放多少
+
+```
+// 缩放到 100×100 
+window.resizeTo(100, 100) 
+// 缩放到 200×150 
+window.resizeBy(100, 50) 
+// 缩放到 300×300 
+window.resizeTo(300, 300)
+```
+
+### 3. 视口位置
+
++ scroll()接收表示相对视口距离的 x 和 y 坐标(表示要滚动到的坐标)
++ scrollTo()接收表示相对视口距离的 x 和 y 坐标(表示要滚动到的坐标)
++ scrollBy()接收表示相对视口距离的 x 和 y 坐标(表示滚动的距离)
+
+```
+// 相对于当前视口向下滚动 100 像素
+window.scrollBy(0, 100) 
+// 相对于当前视口向右滚动 40 像素
+window.scrollBy(40, 0)
+// 滚动到页面左上角
+window.scrollTo(0, 0)
+// 滚动到距离屏幕左边及顶边各 100 像素的位置
+window.scrollTo(100, 100)
+
+// 正常滚动 
+window.scrollTo({ 
+ left: 100, 
+ top: 100, 
+ behavior: "auto"
+}); 
+// 平滑滚动
+window.scrollTo({ 
+ left: 100, 
+ top: 100, 
+ behavior: "smooth" 
+});
+```
+
+### 4. 导航与打开新窗口
+
++ window.open()
+
+### 5. 定时器
+
++  setTimeout()
++  setInterval()
+
+### 6. 系统对话框
+
++ alert()
++ confirm()
++ prompt()
+
+### 7. localion对象
+
++ window.location和document.location 指向同一个对象
+
+假设浏览器当前加载的 URL 是 http://foouser:barpassword@www.wrox.com:80/WileyCDA/?q= javascript#contents
+[![B0Gcy6.png](https://s1.ax1x.com/2020/11/01/B0Gcy6.png)](https://imgchr.com/i/B0Gcy6)
+
+### 8. screen对象
+
+[![B0Jeh9.png](https://s1.ax1x.com/2020/11/01/B0Jeh9.png)](https://imgchr.com/i/B0Jeh9)
+
+### 9. history 对象
+
+```
+// 后退一页
+history.go(-1)
+// 前进一页
+history.go(1)
+// 前进两页
+history.go(2)
+// 后退一页
+history.back() 
+// 前进一页
+history.forward()
+```
+
+### 10. 历史状态管理
+
++ hashchange 事件
++ hashchange 会在页面 URL 的散列变化时被触发，开发者可以在此时执行某些操作。而状态管理API 则可以让开发者改变浏览器 URL 而不会加载新页面。为此，可以使用 history.pushState()方法。这个方法接收 3 个参数：一个 state 对象、一个新状态的标题和一个（可选的）相对 URL
+
+```
+let stateObject = {foo:"bar"} 
+history.pushState(stateObject, "My title", "baz.html")
+```
+
+## 31、常见js问题
 
 ### 1. 用一行代码清楚一串字符串最前面和最后面的空格（中间也有空格）
 ```
