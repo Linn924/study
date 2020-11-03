@@ -3,94 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css">
-    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
     <title>Document</title>
 </head>
-<style>
- *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-.box{
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-img{
-    width: 680px;
-    height: auto;
-}
-.fadeIn{
-    animation: fadeIn 1s ease forwards;
-}
-@keyframes fadeIn {
-    0%{opacity: 0}
-    100%{opacity: 1}
-}
-</style>
 <body>
-    <div class="box">
-        <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" data-src="https://s1.ax1x.com/2020/10/22/Bi7FBt.jpg" alt="">
-        <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" data-src="https://s1.ax1x.com/2020/10/22/Bi7inI.jpg" alt="">
-        <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" data-src="https://s1.ax1x.com/2020/10/16/0HQg1S.jpg" alt="">
-        <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" data-src="https://s1.ax1x.com/2020/10/14/0Imzg1.jpg" alt="">
-        <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" data-src="https://s1.ax1x.com/2020/10/13/0fzOyt.jpg" alt="">
-        <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" data-src="https://s1.ax1x.com/2020/10/13/0fzTFe.jpg" alt="">
-        <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" data-src="https://s1.ax1x.com/2020/10/13/0fzIoD.jpg" alt="">
-        <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" data-src="https://s1.ax1x.com/2020/10/13/0fz5dO.jpg" alt="">
-        <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" data-src="https://s1.ax1x.com/2020/10/13/0fz4eK.jpg" alt="">
-        <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" data-src="https://s1.ax1x.com/2020/10/13/0fjBZD.jpg" alt="">
-    </div>
+    
 </body>
 <script>
+        function LinkList(){
 
-    class LazyLoad {
-        constructor(dom){
-            this.timer = null
-            this.init() //初始化页面
+        //封装节点类，保存每个节点的信息
+        function Node(number){
+            this.element = number
+            this.next = null
         }
-        init(){
-            this.isLoad()
-            this.isScroll()
-        }
-        //加载图片
-        isLoad(){
-            //已加载的图片过滤
-            let imgs = Array.from(document.querySelectorAll('img:not([data-isloaded])'))
-            imgs.forEach( item => {
-                if(this.isShow(item)){
-                    this.isLazy(item)
+
+        //初始化链表属性
+        this.length = 0
+        this.head = null
+
+        LinkList.prototype.append = function(element){
+            let newNode = new Node(element)
+            //如果链表为空
+            if(!this.head){
+                this.head = newNode
+            }else{//如果链表不为空
+                //将head复制给current变量
+                let current = this.head
+                // 操作current变量查找节点next属性为空的节点(循环)
+                while(current.next){
+                    current = current.next
                 }
-            })
+                //找到节点后，把新的节点插入到找到的节点的next属性上
+                current.next = newNode
+            }
+            this.length++
         }
-        //页面滚动事件
-        isScroll(){
-            window.addEventListener('scroll',() => {
-                if(this.timer) return 
-                setTimeout(() => {
-                    this.isLoad()
-                    this.timer = null
-                },200)
-            })
         }
-        //懒加载图片核心原理
-        isLazy(img){
-            img.src = img.dataset.src
-            img.setAttribute('data-isLoaded', true) //已加载过的图片做标记(下次不获取加载过的元素)
-            img.classList.add('fadeIn') //图片出现加载过度动画
-        }
-        //是否展示(元素距离顶部的高度 <= 窗口高度 + 窗口滚动高度)
-        isShow(img){
-            let clientHeight = document.documentElement.clientHeight || document.body.clientHeight
-            let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-            return img.offsetTop <= clientHeight + scrollTop
-        }
-    }
 
-    let lazy = new LazyLoad()
+
+        let list = new LinkList()
+
+        list.append(1)
+        list.append(2)
+        list.append(3)
+        list.append(4)
+
+        //反转单链表
+        function myReverse (list) {
+            let head = list.head
+            if(head == null || head.next == null) return list
+
+            let current = head
+            let pre = null,next = null
+            //循环遍历到链表的最后一个节点 ，最后一个节点的next指向null
+            while(current != null){
+                //将当前节点的next属性值赋值给next变量
+                next = current.next
+                //将pre变量赋值给当前节点的next属性(第一次循环第一个节点的next属性值为null,达到改变next的指向，从而反转链表)
+                current.next = pre
+                //将当前节点赋值给pre变量，使得pre变量作为下次循环时下一节点next指向的节点
+                pre = current
+                //将next变量的值赋值给当前节点，从而达到循环的效果(next变量保存的是下一节点的值)
+                current = next
+            }
+            list.head = pre
+            return list
+        }
+        console.log(myReverse(list))
 </script>
 </html>
