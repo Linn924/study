@@ -1,4 +1,4 @@
-# JavaScript面试资料总结
+# JavaScript资料总结
 >[别人的总结资料](https://zhuanlan.zhihu.com/p/125848433)
 
 ## 1、原型/原型链/构造函数/实例/继承

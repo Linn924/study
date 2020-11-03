@@ -1,4 +1,8 @@
-[vue面试题](https://blog.csdn.net/fj1247565817/article/details/100138495)
+# 有关算法资料总结
+
+>[vue相关资料](https://blog.csdn.net/fj1247565817/article/details/100138495)  
+>[vue相关资料](https://zhuanlan.zhihu.com/p/122263837)
+
 + vue数据双向绑定
 + vue父子间通信
 + vue生命周期全过程
