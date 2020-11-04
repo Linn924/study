@@ -27,3 +27,22 @@
 + 如果要用history模式需要做什么事？
 + 了解Hash模式的执行原理吗？比如他怎么知道url改变然后渲染页面文件
 + 在vue中实现一个div的拖拽效果
+1、vue解决了什么问题
+2、MVVM的理解
+3、如何实现一个自定义组件，不同组件之间如何通信的？
+4、nextTick
+5、生命周期
+6、虚拟dom的原理
+7、双向绑定的原理？数据劫持？
+8、组件通信
+父->子
+子->父
+非父子组件
+9、Proxy 相比于 defineProperty 的优势
+10、watch computed区别
+11、virtual dom 原理实现
+12、vue-router(hash， HTML5 新增的 pushState
+单页应用，如何实现其路由功能---路由原理
+vue-router如何做用户登录权限等
+你在项目中怎么实现路由的嵌套
+13、vuex的理解

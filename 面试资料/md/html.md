@@ -34,6 +34,11 @@
 
 >[移动设备忽略将页面中的数字识别为电话号码的方法](https://blog.csdn.net/shuidinaozhongyan/article/details/73194556)
 
+```
+//telephone=no就禁止了把数字转化为拨号链接
+<meta name="format-detection" content="telephone=no">
+```
+
 ## 5、iframe的缺点有哪些
 
 + iframe 元素会创建包含另外一个文档的内联框架（即行内框架）

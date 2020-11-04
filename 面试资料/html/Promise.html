@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let p3 = new Promise((resolve,reject) => {
+            setTimeout(() => {
+                resolve('simon')
+            },1000)
+        })
+
+        let p2 = new Promise((resolve,reject) => {
+           resolve('p2')
+        })
+
+        let p1 = new Promise((resolve,reject) => {
+            resolve('p1')
+        })
+
+        // p1
+        // .then(rs1 => {
+        //     console.log(rs1)
+        //     return p2
+        // }).then((rs2) => {
+        //     console.log(rs2)
+        //     return p3
+        // }).then(rs3 => console.log(rs3))
+        // .catch(err => console.log(err))
+
+        // async function test(){
+        //     let promise1 = await p1
+        //     let promise2 = await p2
+        //     let promise3 = await p3
+        //     console.log(promise1,promise2,promise3)
+        // }
+        // test()
+
+        Promise.all([p1,p2,p3]).then(data => console.log(data))
+        .catch(err => console.log(err))
+    </script>
+</body>
+</html>

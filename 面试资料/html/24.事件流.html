@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #btn3{
+        width: 500px;
+        height: 500px;
+        background-color: #1e90ff;
+    }
+    #btn2{
+        width: 400px;
+        height: 400px;
+        background-color: pink;
+    }
+    #btn1{
+        width: 300px;
+        height: 300px;
+        background-color: black;
+    }
+</style>
+<body>
+    <div id="btn3">
+        btn3
+        <div id="btn2">
+            btn2
+            <div id="btn1">
+                btn1
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+        // btn1.addEventListener('click',function(){
+        //     console.log('btn1捕获')
+        // }, true)
+        // btn1.addEventListener('click',function(){
+        //     console.log('btn1冒泡')
+        // }, false)
+        // btn2.addEventListener('click',function(){
+        //     console.log('btn2捕获')
+        // }, true)
+        // btn2.addEventListener('click',function(){
+        //     console.log('btn2冒泡')
+        // }, false)
+        // btn3.addEventListener('click',function(){
+        //     console.log('btn3捕获')
+        // }, true)
+        // btn3.addEventListener('click',function(){
+        //     console.log('btn3冒泡')
+        // }, false)
+
+        /*
+            点击btn1 结果如下
+
+            btn3捕获
+            btn2捕获
+            btn1捕获
+            btn1冒泡
+            btn2冒泡
+            btn3冒泡
+        */
+        
+        // btn1.addEventListener('click',function(){
+        //     console.log('btn1冒泡')
+        // }, false)
+        // btn1.addEventListener('click',function(){
+        //     console.log('btn1捕获')
+        // }, true)
+        // btn2.addEventListener('click',function(){
+        //     console.log('btn2冒泡')
+        // }, false)
+        // btn2.addEventListener('click',function(){
+        //     console.log('btn2捕获')
+        // }, true)
+        // btn3.addEventListener('click',function(){
+        //     console.log('btn3捕获')
+        // }, true)
+        // btn3.addEventListener('click',function(){
+        //     console.log('btn3冒泡')
+        // }, false)
+
+
+         /*
+            点击btn1 结果如下
+            
+            btn3捕获
+            btn2捕获
+            btn1冒泡
+            btn1捕获
+            btn2冒泡
+            btn3冒泡
+        */
+
+        btn1.addEventListener('click',function(){
+            console.log('btn1冒泡')
+        }, false)
+        btn1.addEventListener('click',function(){
+            console.log('btn1捕获')
+        }, true)
+        btn2.addEventListener('click',function(e){
+            e.stopPropagation()
+            console.log('btn2冒泡')
+        }, false)
+        btn2.addEventListener('click',function(){
+            console.log('btn2捕获')
+        }, true)
+        btn3.addEventListener('click',function(){
+            console.log('btn3捕获')
+        }, true)
+        btn3.addEventListener('click',function(){
+            console.log('btn3冒泡')
+        }, false)
+
+
+         /*
+            点击btn1 结果如下
+            btn3捕获
+            btn2捕获
+            btn1冒泡
+            btn1捕获
+            btn2冒泡
+        */
+</script>
+</html>

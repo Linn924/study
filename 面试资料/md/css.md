@@ -639,3 +639,23 @@ p {
 >[如何解决1px问题](https://blog.csdn.net/SilenceJude/article/details/81906716)  
 
 + 原因:viewport的设置和屏幕物理分辨率是按比例而不是相同的. 移动端window对象有个devicePixelRatio属性, 它表示设备物理像素和css像素的比例, 在retina屏的iphone手机上, 这个值为2或3, css里写的1px长度映射到物理像素上就有2px或3px那么长。
+
+## 27、溢出省略号显示
+
+```
+<div>hi~来自星星的你-欢迎Linn</div>
+
+div{
+    width: 150px;
+    height: 25px;
+    border: 1px solid red;
+    /* 当文字显示不开的时候，自动换行 */
+    /* white-space:normal; */
+    /* 1.强制文本一行显示 */
+    white-space: nowrap;
+    /* 2.溢出隐藏 */
+    overflow: hidden;
+    /* 文字溢出 用省略号替代 */
+    text-overflow: ellipsis;
+}
+```
