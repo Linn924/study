@@ -522,7 +522,7 @@ obj.getName()
 + apply():调用函数；改变函数内this的指向；接受数组形式的参数；求数组最大值
 + bind():不会调用原来的函数；改变函数内this的指向；返回的是原函数改变this之后产生的新函数；分别接受参数
 
-## 13、手写call()
+## 13、手写call()、apply()、bind()
 
 + [call apply区别，原生实现bind](https://www.jianshu.com/p/473a86d509b9)  
 + [手写bind](https://www.cnblogs.com/goloving/p/9380076.html)
@@ -547,7 +547,7 @@ function test(name, age) {
 
 Function.prototype.myCall = function(obj) {
     //判断调用此方法的是否是函数 不是则抛出错误
-    if(typeof this != "function") throw new TypeError("Erorr")
+    if(!this instanceof Function) throw new TypeError("Erorr")
     //通过扩展运算arguments获取传递的参数 去掉第一个参数
     let args = [...arguments].slice(1)
     //把调用此方法的函数赋值给新对象新创建的fn方法
@@ -561,6 +561,28 @@ Function.prototype.myCall = function(obj) {
 }
 
 test.myCall(obj,"simon",20)
+
+Function.prototype.myApply = function(obj){
+    if(!this instanceof Function) throw new TypeError("Erorr")
+
+    let args = Array.from(arguments)[1]
+    obj.fn = this
+    let result = obj.fn(...args)
+    delete obj.fn
+    return result
+}
+test.myApply(obj,["simon",20])
+
+Function.prototype.myBind = function(obj){
+    let that = this
+    let args = Array.from(arguments).slice(1)
+    return function(){
+        return that.apply(obj,args)
+    }
+}
+
+let linn = test.myBind(obj,"simon",20)
+linn()
 ```
 
 ## 14、防抖和节流
@@ -616,27 +638,24 @@ console.log(JSON.stringify(obj1) === JSON.stringify(obj2)) //true
 ```
 
 ```
-function isObjectValueEqual(a, b) {
-    let aProps = Object.getOwnPropertyNames(a)
-    let bProps = Object.getOwnPropertyNames(b)
-
-    if (aProps.length != bProps.length) {
-        return false
-    }
-
-    for (let i = 0; i < aProps.length; i++) {
-        let propName = aProps[i]
-        let propA = a[propName]
-        let propB = b[propName]
-        if(propA instanceof Object){
-            return isObjectValueEqual(propA, propB)
-        }else if(propA !== propB){
+function isObjectValueEqual(obj1, obj2){
+    if(!obj1 instanceof Object || !obj2 instanceof Object) return false
+    let key1 = Object.keys(obj1)
+    let key2 = Object.keys(obj2)
+    if(key1.length !== key2.length) return false
+    for(let i=0;i<key1.length;i++){
+        let key = key1[i]
+        let value1 = obj1[key]
+        let value2 = obj2[key]
+        if(value1 instanceof Object){
+            return isObjectValueEqual(value1,value2)
+        }else if(value1 !== value2){
             return false
         }
     }
-
-   return true
+    return true
 }
+console.log(isObjectValueEqual(obj1, obj2))
 ```
 
 ## 19、window的onload事件和domcontentloaded
@@ -1242,6 +1261,7 @@ history.pushState(stateObject, "My title", "baz.html")
 //清空前后的空格
 let str = " sim on "
 console.log(str.trim()) //sim on
+console.log(str.replace(" ","")) //sim on
 
 //清除两边以及中间的空格
 let str = " sim on "

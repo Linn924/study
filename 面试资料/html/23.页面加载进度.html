@@ -21,11 +21,12 @@
         }
         console.log(document.readyState)
     })
-
+    //仅DOM加载完成，不包括样式表，图片，flash
     document.addEventListener('DOMContentLoaded',function(){
         console.log('DOMContentLoaded')
     })
 
+    //页面上所有的DOM，样式表，脚本，图片，flash都已经加载完成了
     window.addEventListener('load',function(){
         NProgress.done()
         console.log('load')

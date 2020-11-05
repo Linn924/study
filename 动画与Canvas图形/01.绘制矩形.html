@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    
+</style>
+<body>
+    <canvas id="drawing" width="200" height="200">A drawing of something.</canvas>
+    <script>
+        /** @type {HTMLCanvasElement} */
+        //上面一句代码自动补全有关canvas的代码
+        /*
+            2D 上下文有两个基本绘制操作：填充和描边。填充以指定样式（颜色、渐变或图像）自动填充形状，而描边只为图形边界着色。
+            fillStyle:填充颜色
+            strokeStyle:描边
+            fillRect()、strokeRect()和 clearRect()。这些方法都接收 4 个参数：矩形 x 坐标、矩形 y 坐标、矩形宽度和矩形高度。这几个参数的单位都是像素。
+        */
+        let drawing = document.getElementById('drawing')
+        if(drawing.getContext){
+            let context = drawing.getContext("2d")
+
+            //1. 绘制红色矩形(在坐标点(10, 10)绘制了一个宽高均为 50 像素的红色矩形)
+            // context.fillStyle = 'red'
+            // context.fillRect(10,10,50,50)
+
+            //2.绘制半透明蓝色矩形((在坐标点(30, 30)绘制了一个宽高均为 50 像素的半透明蓝色矩形))
+            // context.fillStyle = 'rgba(0,0,255,0.5)'
+            // context.fillRect(30,30,50,50)
+
+            //3. 绘制红色轮廓的矩形(在坐标点(10, 10)绘制了一个宽高均为 50 像素的红色轮廓的矩形)
+            // context.strokeStyle = 'red'
+            // context.strokeRect(10,10,50,50)
+
+            //4.绘制半透明蓝色轮廓的矩形(在坐标点(30, 30)绘制了一个宽高均为 50 像素的半透明蓝色轮廓的矩形)
+            // context.strokeStyle = 'rgba(0,0,255,0.5)'
+            // context.strokeRect(30,30,50,50)
+
+            //5. clearRect()方法可以擦除画布中某个区域(在坐标点(40, 40)擦除了一块宽高均为10像素的矩形)
+            // context.fillStyle = 'red'
+            // context.fillRect(10,10,50,50)
+            // context.fillStyle = 'rgba(0,0,255,0.5)'
+            // context.fillRect(30,30,50,50)
+            // context.clearRect(40,40,10,10)
+        }   
+    </script>
+</body>
+</html>

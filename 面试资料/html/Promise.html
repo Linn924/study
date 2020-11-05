@@ -7,11 +7,16 @@
 </head>
 <body>
     <script>
+        // let p4 = new Promise((resolve,reject) => {
+        //     reject(new Error('fail'))
+        // }).catch(err => console.log(err))
+
+        let p4 = new Promise((resolve,reject) => {
+            reject(new Error('fail'))
+        })
 
         let p3 = new Promise((resolve,reject) => {
-            setTimeout(() => {
-                resolve('simon')
-            },1000)
+            resolve('simon')
         })
 
         let p2 = new Promise((resolve,reject) => {
@@ -40,8 +45,23 @@
         // }
         // test()
 
-        Promise.all([p1,p2,p3]).then(data => console.log(data))
-        .catch(err => console.log(err))
+        // Promise.all([p1,p2,p3]).then(data => console.log(data))
+        // .catch(err => console.log(err))
+
+        //所有的promise都是已兑现状态 然后返回一个数组 数组元素一一对应每个promise的输出结果
+        // Promise.all([p1,p2,p3,p4])
+        // .then(data => console.log(data))
+        // .catch(err => console.log(err))
+
+        // Promise.all([p1,p2,p3,p4])
+        // .then(data => console.log(data))
+        // .catch(err => console.log(err))
+
+        //按顺序依次执行promise对象 只要有一个promise的状态是已兑现即停止
+        // Promise.any([p1,p2,p3,p4])
+        // .then(data => console.log(data))
+        // .catch(err => console.log(err))
+        
     </script>
 </body>
 </html>
