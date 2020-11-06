@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    img{
+        width: 100px;
+        height: auto;
+    }
+    canvas{
+        border: 1px solid red;
+    }
+</style>
+<body>
+    <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" alt="">
+    <canvas id="drawing" width="500" height="500"></canvas>
+
+    <script>
+        /** @type {HTMLCanvasElement} */
+
+        let image = document.images[0]
+        let drawing = document.getElementById('drawing')
+
+        if(drawing.getContext){
+            let context = drawing.getContext('2d')
+
+            context.drawImage(image, 10, 10)
+
+            context.drawImage(image, 10, 10,20,20)
+
+            context.drawImage(image, 0, 10, 40, 40, 0, 100, 40, 60)
+        }
+    </script>
+</body>
+</html>

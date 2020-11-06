@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    img{
+        width: 50px;
+        height: auto;
+    }
+</style>
+<body>
+    <img src="https://s1.ax1x.com/2020/10/12/0WPkND.jpg" alt="">
+    <canvas id="drawing" width="200" height="200"></canvas>
+    <script>
+        /** @type {HTMLCanvasElement} */
+
+        /*
+            
+        */
+        let drawing = document.getElementById('drawing')
+        let image = document.images[0] 
+
+        if(drawing.getContext){
+            let context = drawing.getContext("2d")
+
+            let pattern = context.createPattern(image, "repeat")
+            // 绘制矩形
+            context.fillStyle = pattern 
+            context.fillRect(10, 10, 150, 150)
+            
+            
+        }   
+    </script>
+</body>
+</html>

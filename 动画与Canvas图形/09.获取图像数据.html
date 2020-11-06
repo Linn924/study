@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    img{
+        width: 50px;
+        height: 50px;
+    }
+</style>
+<body>
+    <img src="../image/talor.jpg" alt="">
+    <canvas id="drawing" width="100" height="100"></canvas>
+
+    <script>
+        /** @type {HTMLCanvasElement} */
+
+        /*
+            使用 getImageData()方法获取原始图像数据
+
+            要取得数据中第一个像素的左上角坐标和要取得的像素宽度及高度。例如，要从(10, 5)
+            开始取得 50 像素宽、50 像素高的区域对应的数据，可以这样写：
+            let imageData = context.getImageData(10, 5, 50, 50);
+            返回的对象是一个 ImageData 的实例。
+
+            每个 ImageData 对象都包含 3 个属性：width、height和 data，其中，data 属性是包含图像的原始像素信息的数组。
+            let data = imageData.data,red = data[0], green = data[1], blue = data[2], alpha = data[3];
+        */
+
+        let drawing = document.getElementById('drawing')
+
+        if(drawing.getContext){
+            let context = drawing.getContext('2d'),
+            image = document.images[0],
+            imageData,data,r,g,b,a,average;
+
+            //绘制图像
+            context.drawImage(image,0,0)
+
+            imageData = context.getImageData(0,0,image.width,image.height)
+            data = imageData.data
+
+
+            for (let i=0; i < data.length; i+=4) { 
+                r = data[i] 
+                g = data[i+1] 
+                b = data[i+2] 
+                a = data[i+3] 
+                // 取得 RGB 平均值
+                average = Math.floor((r + g + b) / 3) 
+                // 设置颜色，不管透明度
+                data[i] = average 
+                data[i+1] = average
+                data[i+2] = average 
+            } 
+            // 将修改后的数据写回 ImageData 并应用到画布上显示出来
+            imageData.data = data
+            context.putImageData(imageData, 0, 0)
+
+        }
+    </script>
+</body>
+</html>
