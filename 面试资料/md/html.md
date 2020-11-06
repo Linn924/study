@@ -38,12 +38,3 @@
 //telephone=no就禁止了把数字转化为拨号链接
 <meta name="format-detection" content="telephone=no">
 ```
-
-## 5、iframe的缺点有哪些
-
-+ iframe 元素会创建包含另外一个文档的内联框架（即行内框架）
-+ 不容易管理。
-+ iframe用户体验度差。
-+ 不利于搜索引擎优化。
-+ 设备兼容性差。
-+ 会增加服务器的http请求，增加负担。
