@@ -1,15 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
-        let str = " sim on "
+        console.log('start');
 
-        console.log(str.replace(' ',''))
+        setTimeout(() => {
+            console.log('timeout1');
+        }, 0);
+
+        Promise.resolve().then(() => {
+            console.log('promise1');
+        });
+    </script>
+    <script>
+        setTimeout(() => {
+            console.log('timeout2');
+        }, 0);
+
+        Promise.resolve().then(() => {
+            console.log('promise2');
+        });
+
+        console.log('end');
     </script>
 </body>
+
 </html>
