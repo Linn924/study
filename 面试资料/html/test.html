@@ -6,30 +6,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .app{
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    header{
+        height: 60px;
+        background-color: red;
+    }
+    footer{
+        height: 60px;
+        background-color: black;
+        color: #fff;
+    }
+    main{
+        flex: 1;
+        display: flex;
+    }
+    .left,.right{
+        width: 60px;
+        background-color: #1e90ff;
+        color: #fff;
+    }
+    .center{
+        flex: 1;
+        background-color: blueviolet;
+    }
+    .test{
+        height: 900px;
+        width: 100%;
+    }
+</style>
 <body>
-    <script>
-        console.log('start');
+    <div class="app">
+        <header>header</header>
+        <main>
+            <div class="left">left</div>
+            <div class="center">center
+                <div class="test">
 
-        setTimeout(() => {
-            console.log('timeout1');
-        }, 0);
-
-        Promise.resolve().then(() => {
-            console.log('promise1');
-        });
-    </script>
-    <script>
-        setTimeout(() => {
-            console.log('timeout2');
-        }, 0);
-
-        Promise.resolve().then(() => {
-            console.log('promise2');
-        });
-
-        console.log('end');
-    </script>
+                </div>
+            </div>
+            <div class="right">right</div>
+        </main>
+        <footer>footer</footer>
+    </div>
 </body>
 
 </html>
