@@ -34,10 +34,6 @@
 + 生命周期
 + 虚拟dom的原理
 + 双向绑定的原理？数据劫持？
-+ 组件通信
-+ 父->子
-+ 子->父
-+ 非父子组件
 + Proxy 相比于 defineProperty 的优势
 + watch computed区别
 + virtual dom 原理实现

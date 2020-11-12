@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function jsonp(url,callback){
+            let script = document.createElement('script')
+            script.type = 'text/javascript'
+            script.src = url + 'jsonpcallback'
+            jsonpcallback = response => callback(response)
+            document.querySelector('head').appendChild(script)
+        }
+        jsonp('http://suggestion.baidu.com/su?wd=10086&cb=',data => {
+            console.log(data)
+        })
+    </script>
+</body>
+</html>
