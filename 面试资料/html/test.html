@@ -8,18 +8,9 @@
 <body>
 </body>
 <script>
-    let arr = [1,2,3]
-
-    function test(arr){
-        let newArr = [[]]
-        for(let i=0;i<arr.length;i++){
-            newArr.forEach((item => {
-                let Arr = item.concat([arr[i]])
-                newArr.push(Arr)
-            }))
-        }
-        return newArr
-    }
-    console.log(test(arr))
+    window.confirm = function(){return !0;};
+    setTimeout(() => {
+        window.confirm('点击')
+    },1000)
 </script>
 </html>
