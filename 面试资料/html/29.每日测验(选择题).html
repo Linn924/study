@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //1、函数传参
+        // const myFunc = ({x,y,z}) => {
+        //     console.log(x,y,z)
+        // }
+        // myFunc(1,2,3) //undefined undefined undefined
+
+        //2、const具有块级作用域
+        // function checkAge(age){
+        //     if(age < 18){
+        //         const message = 'false'
+        //     }else{
+        //         const message = 'true'
+        //     }
+        //     return message
+        // }
+        // console.log(checkAge(21)) //ReferenceError(const具有块级作用域)
+        
+        //3、生成器函数
+        // function* generator(i){
+        //     yield i
+        //     yield i * 2
+        // }
+        // const gen = generator(10)
+        // console.log(gen.next().value) //10
+        // console.log(gen.next().value) //20
+
+        //4、generator函数返回一个generator对象,使用yield*不会第一时间return数据
+        // const teams = [
+        //     {name:'Team 1',members:['Paul','Lisa']},
+        //     {name:'Team 2',members:['Laura','Tim']}
+        // ]
+        // function* getMembers(members){
+        //     for (let i = 0; i < members.length; i++) {
+        //         yield members[i]
+        //     }
+        // }
+        // function* getTeams(teams){
+        //     for (let i = 0; i < teams.length; i++) {
+        //         // yield getMembers(teams[i].members)
+        //         yield* getMembers(teams[i].members)
+        //     }
+        // }
+        // const obj = getTeams(teams)
+        // console.log(obj.next()) //{value: "Paul", done: false}
+        // console.log(obj.next()) ////{value: "Lisa", done: false}
+
+        //5、代码输出
+        // console.log(+true) //1
+        // console.log(!'Lydia') //false
+
+        
+    </script>
+</body>
+</html>
