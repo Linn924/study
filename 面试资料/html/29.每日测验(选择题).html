@@ -14,6 +14,7 @@
         // }
         // myFunc(1,2,3) //undefined undefined undefined
 
+
         //2、const具有块级作用域
         // function checkAge(age){
         //     if(age < 18){
@@ -25,6 +26,7 @@
         // }
         // console.log(checkAge(21)) //ReferenceError(const具有块级作用域)
         
+
         //3、生成器函数
         // function* generator(i){
         //     yield i
@@ -33,6 +35,7 @@
         // const gen = generator(10)
         // console.log(gen.next().value) //10
         // console.log(gen.next().value) //20
+
 
         //4、generator函数返回一个generator对象,使用yield*不会第一时间return数据
         // const teams = [
@@ -54,11 +57,142 @@
         // console.log(obj.next()) //{value: "Paul", done: false}
         // console.log(obj.next()) ////{value: "Lisa", done: false}
 
+
         //5、代码输出
         // console.log(+true) //1
         // console.log(!'Lydia') //false
 
-        
+            
+        //6、异步问题
+        // const myPromise = () => Promise.resolve('I have resolved')
+        // function firstFunction(){
+        //     myPromise().then(res => console.log(res))
+        //     console.log('second')
+        // }
+        // async function secondFunction(){
+        //     console.log(await myPromise())
+        //     console.log('second')
+        // }
+        // firstFunction() //second,I have resolved
+        // secondFunction() //I have resolved,second
+
+
+        //7、异步问题
+        // const myPromise = Promise.resolve('Woah some cool data')
+        // async function test() {
+        //     try{
+        //         console.log(await myPromise)
+        //     } catch{
+        //         throw new Error(`Oops didn't work`)
+        //     } finally{
+        //         console.log('oh finally!')
+        //     }
+        // }
+        // test() //Woah some cool data,oh finally!
+
+
+        //8、定时器中的回调函数任然会被调用
+        /*  将对象赋值null，此对象会被进行垃圾回收，因为没有这些对象的引用了，
+            但是setInterval的参数是一个箭头函数(上下文绑定到对象config)，回调函数
+            任然保留对config的引用,因此没有被垃圾回收，setInterval的回调每1s被调用一次
+        */
+        // let config = {
+        //     alert:setInterval(() => {
+        //         console.log('Alert!')
+        //     },1000),
+        //     // alert:setInterval(function() {
+        //     //     console.log('Alert!')
+        //     // },1000)
+        // }
+        // config = null
+
+
+        //9、变量声明
+        // let greeting
+        // greetign = {}
+        // console.log(greetign) // {}
+
+
+        //10、JSON.parse()
+        //使用JSON.parse()方法,可以将JSON字符串解析为JavaScript值
+
+
+        //11、或(||)运算符，返回第一个真值，如果所有值都为假值，则返回最后一个值
+        // const one = (false || {} || null) //假 || 真 || 假
+        // const two = (null || false || '') //假 || 假 || 假
+        // const three = ([] || 0 || true) //真 || 假 || 真
+        // console.log(one,two,three) //{},'',[]
+
+
+        //12、类继承
+        // class Bird {
+        //     constructor(){
+        //         console.log(`bird`)
+        //     }
+        // }
+        // class Flamingo extends Bird{
+        //     constructor(){
+        //         console.log(`pink`)
+        //         super()
+        //     }
+        // }
+        // const pet = new Flamingo() //bird,pink
+
+
+        //13、Symbol类型不可枚举,Object.keys()方法返回对象上所有可枚举的键属性
+        // const info = {
+        //     [Symbol('a')]:'b'
+        // }
+        // console.log(info) //{Symbol('a'):'b'}
+        // console.log(Object.keys(info)) //[]
+
+
+        //14、比较对象相等
+        // function compareMembers(person1,person2 = person){
+        //     if(person1 !== person2){ //此处直接比较两个对象的引用,引用是相同的
+        //         console.log('Not the same')
+        //     }else{
+        //         console.log('They are the same')
+        //     }
+        // }
+        // const person = {name:'Simon'}
+        // compareMembers(person) //They are the same
+
+
+        //15、
+        // function Person(firstName,lastName){
+        //     this.firstName = firstName
+        //     this.lastName = lastName
+        // }
+        // const member = new Person('Simon','Linn')
+        // Person.prototype.getFullName = function() {
+        //     return `${this.firstName} ${this.lastName}`
+        // }
+        // console.log(member.getFullName()) //Simon Linn
+
+
+        //16、解构赋值
+        // const getList = ([x,...y]) => [x,y]
+        // const getUser = user => ({name:user.name,age:user.age})
+        // const list = [1,2,3,4]
+        // const user = {name:'Simon',age:20}
+        // console.log(getList(list)) //[1,[2,3,4]]
+        // console.log(getUser(user)) //{name: "Simon", age: 20}
+
+
+        //17、可以将类设置为其他类/函数构造函数
+        // class Person{
+        //     constructor(){
+        //         this.name = 'Simon'
+        //     }
+        // }
+        // Person = class test{
+        //     constructor(){
+        //         this.name = 'Linn'
+        //     }
+        // }
+        // const member = new Person()
+        // console.log(member.name) //Linn
     </script>
 </body>
 </html>
