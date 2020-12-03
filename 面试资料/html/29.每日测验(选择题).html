@@ -193,6 +193,99 @@
         // }
         // const member = new Person()
         // console.log(member.name) //Linn
+
+
+        //18、生成器函数(调用 next()方法时，如果传入了参数，那么这个参数会传给上一条执行的 yield语句左边的变量)
+        // function* startGame(){
+        //     const answer = yield 'Do you love JavaScript'
+        //     if(answer !== 'Yes'){
+        //         return 'Oh wow...'
+        //     }
+        //     return 'JavaScript loves you back'
+        // }
+        // const game = startGame()
+        // // console.log(game.next()) //获取generator对象 {value: "Do you love JavaScript", done: false}
+        // console.log(game.next().value) //Do you love JavaScript(此时answer变量的值为undefined,因为yield表达式本身没有返回值)
+        // console.log(game.next('Yes').value) //JavaScript loves you back(此时answer变量的值为Yes)
+
+
+        //19、
+        // const person = {
+        //     name:'Simon',
+        //     age:21
+        // }
+        // const changeAge = (x = {...person}) => x.age += 1
+        // const changeAgeAndName = (x = {...person}) => {
+        //     x.age += 1
+        //     x.name = 'Linn'
+        // }
+        // changeAge(person)
+        // changeAgeAndName()
+        // console.log(person)//{name:'Simon',age:22}
+
+
+        //20、this指向问题
+        // var status = 1
+        // setTimeout(() => {
+        //     const status = 2
+        //     const data = {
+        //         status:3,
+        //         getStatus(){
+        //             return this.status
+        //         }
+        //     }
+        //     console.log(data.getStatus()) //3
+        //     console.log(data.getStatus.call(this)) //1
+        // },0)
+
+
+        //21、在ES2020中，通过#可以给class添加私有变量，在class外部无法访问
+        // class Counter{
+        //     #age = 20
+        //     increment(){
+        //         this.#age++
+        //     }
+        //     getNum(){
+        //         return this.#age
+        //     }
+        // }
+        // const counter = new Counter()
+        // counter.increment()
+        // console.log(counter.#age) //SyntaxError
+
+
+        //22、
+        // function sum(number1,number2 = number1){
+        //     console.log(number1 + number2)
+        // }
+        // sum(10) //20
+
+
+        //23、使用标记的模板字符串，则第一个参数的值始终是字符串的数组，其余参数获取传递到字符串中的表达式的值
+        // function getTest(one,two,three){
+        //     console.log(one)
+        //     console.log(two)
+        //     console.log(three)
+        // }
+        // const person = 'Simon'
+        // const age = 20
+        // getTest`${person} is ${age} years old` //['','is','years old'],Simon,20
+    
+
+        //24、Rest参数接受函数的多余参数,Rest参数(...args)之后不能有再有其他的参数
+        // function getItems(fruitList,...args,favoriteFruit){
+        //     return [...fruitList,...args,favoriteFruit]
+        // }
+        // getItems(['banana','apple'],'pear','orange')
+
+
+        //25、
+        // function test1(){
+        //     return 1
+        // }
+        // const test2 = () => 2
+        // console.log(test1.prototype) //{constructor: ƒ}
+        // console.log(test2.prototype) //undefined
     </script>
 </body>
 </html>

@@ -7,42 +7,112 @@
 </head>
 <body>
     <script>
-        //1、合并两个有序数组 
-        //例:nums1 = [1,2,3,0,0,0],nums2 = [2,5,6] -->输出:[1,2,2,3,5,6]
-        let nums1 = [1,2,3,0,0,0]
-        let nums2 = [2,5,6]
-        function merge(arr1,arr2){
-            return arr1.concat(arr2).filter(item => item != 0).sort()
-        }
+        /*
+            题1:合并两个有序数组 
+            例:nums1 = [1,2,3,0,0,0],nums2 = [2,5,6] -->输出:[1,2,2,3,5,6]
+        */
+        
+        // let nums1 = [1,2,3,0,0,0]
+        // let nums2 = [2,5,6]
+        // function merge(arr1,arr2){
+        //     return arr1.concat(arr2).filter(item => item != 0).sort()
+        // }
         // console.log(merge(nums1,nums2))
 
 
-        //2、数组扁平化、去重、排序(去除扁平化再去重再排序)
-        //例:arr = [[1,2,2],[3,4,5,5],[6,7,8,9,[11,12,[12,13,14]]],10]
-        let arr = [[1,2,2],[3,4,5,5],[6,7,8,9,[11,12,[12,13,[14]]]],10]
-        function flat(arr){
-            let newArr = arr.join(',').split(',').map(item => Number(item))
-            return Array.from(new Set(newArr)).sort((a,b) => a - b)
-        }
+        /*
+            题2:数组扁平化、去重、排序(去除扁平化再去重再排序)
+            例:arr = [[1,2,2],[3,4,5,5],[6,7,8,9,[11,12,[12,13,14]]],10]
+        */
+        // let arr = [[1,2,2],[3,4,5,5],[6,7,8,9,[11,12,[12,13,[14]]]],10]
+        // function flat(arr){
+        //     let newArr = arr.join(',').split(',').map(item => Number(item))
+        //     return Array.from(new Set(newArr)).sort((a,b) => a - b)
+        // }
         // console.log(flat(arr))
 
-        //3、两数之和
-        //例:nums = [2,7,11,15],target = 9,返回[0,1]
-        let nums = [2,7,11,15],target = 9
-        function searchTwo(arr,target){
-            let map = new Map()
-            for (let i = 0; i < arr.length; i++) {
-                let k = target - arr[i]
-                if(map.has(k)){
-                    return [map.get(k),i]
-                }
-                map.set(nums[i],i)
-            }
-            return []
-        }
-        console.log(searchTwo(nums,target))
+        /*
+            题3:两数之和
+            例:nums = [2,7,11,15],target = 9,返回[0,1]
+        */
+        // let nums = [2,7,11,15],target = 9
+        // function twoSum(arr,target){
+        //     let map = new Map()
+        //     for (let i = 0; i < arr.length; i++) {
+        //         let k = target - arr[i]
+        //         if(map.has(k)){
+        //             return [map.get(k),i]
+        //         }
+        //         map.set(nums[i],i)
+        //     }
+        //     return []
+        // }
+        // console.log(twoSum(nums,target))
 
-        //4、
+
+        /*
+            题4:三数之和,给出一个包含n个整数的数组nums,判断nums中是否存在三个元素a,b,c,
+            使得a+b+c=0?找出满足条件且不重复的三元组
+            例:num = [-1,0,1,2,-1,-4],返回[[-1,0,-1],[-1,-1,2]]
+        */
+
+        // let num = [-1,0,1,2,-1,-4],target = 0
+
+        //此种方法会有重复的元素
+        // function threeSum(arr,targrt){
+        //     let map = new Map()
+        //     let result = []
+        //     for (let i = 0; i < arr.length - 2; i++) {
+        //         //第一个数
+        //         let first = arr[i]
+        //         for (let j = i+1; j < arr.length; j++) {
+        //             //第三个数
+        //             let third = arr[j]
+        //             //第二个数
+        //             let second = targrt - (first + third)
+        //             if(map.has(second)){
+        //                 result.push([first,second,third])
+        //             }   
+        //             map.set(third,j)
+        //         }
+        //         map.clear()
+        //     }
+        //     return result
+        // }
+
+        // function threeSum(arr,target){
+        //     if(!arr || arr.length < 3) return []
+        //     let result = [],second,last
+        //     //排序
+        //     arr.sort((a,b) => a-b)
+        //     for (let i = 0; i < arr.length; i++) {
+        //         //如果这位数大于目标数直接跳出循环(最小的值都大于目标数，跳出)
+        //         if(arr[i] > target) break 
+        //         //去重(在已经排序完成的前提下，第一个数和相邻数相同，相邻的这个数不选择作为第一个数)
+        //         if(i > 0 && arr[i] === arr[i-1]) continue
+        //         //第二个数在第一个数的后面
+        //         second = i + 1
+        //         last = arr.length - 1
+        //         while(second < last){
+        //             const sum = arr[i] + arr[second] + arr[last]
+        //             if(sum == target){
+        //                 //相加等于目标函数添加到数组里
+        //                 result.push([arr[i],arr[second],arr[last]])
+        //                 //循环中如果第二位数和它相邻(后一位)的数相同，直接把相邻的数作为第二位数
+        //                 while(second < last && arr[second] == arr[second + 1]) second++
+        //                 //循环中如果第三位数和它相邻(前一位)的数相同，直接把相邻的数作为第三位数
+        //                 while(second < last && arr[last] == arr[second - 1]) last--
+        //                 second++
+        //                 last--
+        //             }
+        //             else if(sum < target) second++
+        //             else if(sum > target) last--
+        //         }
+        //     }
+        //     return result
+        // }
+        // console.log(threeSum(num,target))
+
     </script>
 </body>
 </html>
