@@ -279,13 +279,69 @@
         // getItems(['banana','apple'],'pear','orange')
 
 
-        //25、
+        //25、构造函数和箭头函数的原型
         // function test1(){
         //     return 1
         // }
         // const test2 = () => 2
         // console.log(test1.prototype) //{constructor: ƒ}
         // console.log(test2.prototype) //undefined
+
+
+        //26、Set内置对象
+        // const set = new Set()
+        // set.add(1)
+        // set.add('Simon')
+        // set.add({name:'Linn'})
+        // for(let item of set){
+        //     console.log(item + 2)
+        //     //3
+        //     //Simon2
+        //     //[object Object]2
+        // }
+
+        
+        //27、eval(),此方法会为字符串传递的代码求值
+        // const sum = eval('10*10+5')
+        // console.log(sum) //105 number类型
+
+
+        //28、JavaScript中的假值
+        // undefined,null,NaN,0,'',false这六个假值
+        // new Number(0),new Boolean(false)不是假值
+
+
+        //29、catch块接收参数x，此变量是属于catch作用域的，在catch块之外x任然是undefined
+        // (() => {
+        //     let x,y
+        //     try {
+        //         throw new Error()
+        //     } catch (x) {
+        //         (x = 1),(y = 2)
+        //         console.log(x) //1
+        //     }
+        //     console.log(x) //undefined
+        //     console.log(y) //2
+        // })()
+
+
+        //30、删除声明的变量返回的结果
+        // const name = 'Simon'
+        // age = 20
+        // console.log(delete name) //false
+        // console.log(delete age) //true
+
+
+        //31、前置++,后置++ (后置++ 先返回操作值再累加操作值)
+        // let num = 10
+        // const test1 = () => num++
+        // const test2 = number => number++
+        // const num1 = test1()
+        // const num2 = test2(num1)
+        // console.log(num1) //10
+        // console.log(test1()) //11
+        // console.log(num2) //10
+        // console.log(test2(test1())) //12
     </script>
 </body>
 </html>
