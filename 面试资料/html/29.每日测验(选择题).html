@@ -342,6 +342,66 @@
         // console.log(test1()) //11
         // console.log(num2) //10
         // console.log(test2(test1())) //12
+
+
+        //32、
+        // let arr = [[0,1],[2,3]].reduce((acc,cur) => {
+        //     return acc.concat(cur)
+        // },[1,2])
+        // console.log(arr) //[1,2,0,1,2,3]
+
+
+        //33、
+        // console.log(typeof typeof 1) //string
+        // console.log(typeof number) //string
+
+
+        //34、
+        // console.log(Promise.resolve(5)) //Promise {<fulfilled>: 5}
+
+
+        //35、方法language是一个setter。setters并不保存一个实际值，他们的使命在于修改属性，调用方法setter返回undefined
+        // const config = {
+        //     languages:[],
+        //     set language(lang){
+        //         return this.languages.push(lang)
+        //     }
+        // }
+        // console.log(config.language)
+
+
+        //36、padStart()方法
+        /*
+            用另一个字符串填充当前字符串(如果需要的话，会重复多次)，以便产生的字符串达到给定的长度。从当前字符串的左侧开始填充。
+            当前字符串需要填充到的目标长度。如果这个数值小于当前字符串的长度，则返回当前字符串本身。
+        */
+        // const name  = 'Lydia Hallie'
+        // console.log(name.padStart(13)) //' Lydia Hallie'
+        // console.log(name.padStart(2)) //'Lydia Hallie'
+
+
+        //37、
+        // let num = 1
+        // const list = ['q','w','e','r']
+        // console.log(list[(num+=1)]) //e
+
+
+        //38、
+        /*
+            可以使用默认值传参，如果没有给函数传参，或者传的参数值为undefined，那么采纳数的值将是默认值。
+            下面例子中 将value对象进行解构赋值传到一个新的对象中，因此x的默认值为{number：10}
+        */
+        const value = {number:10}
+
+        const multiply = (x = {...value}) => {
+            console.log(x.number *= 2)
+        }
+
+        multiply() //20
+        multiply() //20
+        multiply(value) //20
+        multiply(value) //40
+
     </script>
 </body>
 </html>
