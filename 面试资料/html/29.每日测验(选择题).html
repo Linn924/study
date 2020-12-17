@@ -391,17 +391,63 @@
             可以使用默认值传参，如果没有给函数传参，或者传的参数值为undefined，那么采纳数的值将是默认值。
             下面例子中 将value对象进行解构赋值传到一个新的对象中，因此x的默认值为{number：10}
         */
-        const value = {number:10}
+        // const value = {number:10}
 
-        const multiply = (x = {...value}) => {
-            console.log(x.number *= 2)
-        }
+        // const multiply = (x = {...value}) => {
+        //     console.log(x.number *= 2)
+        // }
 
-        multiply() //20
-        multiply() //20
-        multiply(value) //20
-        multiply(value) //40
+        // multiply() //20
+        // multiply() //20
+        // multiply(value) //20
+        // multiply(value) //40
 
+
+        //39、
+        // async function getData(){
+        //     return await Promise.resolve('I made it!')
+        // }
+        // const data = getData()
+        // console.log(data) //Promise {<pending>}
+
+        //40、
+        // const person = {
+        //     name:'simon',
+        //     hobbies:['coding']
+        // }
+        // function addHobby(hobby,hobbies = person.hobbies){
+        //     hobbies.push(hobby)
+        //     return hobbies
+        // }
+        // addHobby('running',[])
+        // addHobby('dancing')
+        // addHobby('baking',person.hobbies)
+        // console.log(person.hobbies) //['coding','dancing','baking']
+
+
+        //41、以下哪一句代码会报错
+        // const arr = [1,2,3,4,5]
+        // arr.push(6)
+        // arr.splice(0,2)
+        // arr = [...arr,6] //此处报错
+        // arr.length = 0
+        // const 关键字意味着我们不能重定义变量中的值，它仅可读。然而值本身不可修改
+        // 数组arr中的值可被修改，如push新的值，拼接，或者将数组的长度设置为0
+    
+    
+        //42、
+        // const number = [1,2,3]
+        // number[10] = 11
+        // console.log(number) //[1,2,3,7 * empty,11]
+
+
+        //43、所有键值对都会被存储为字符串
+        // const obj = {1:'a',2:'b',3:'c'}
+        // const set = new Set([1,2,3,4,5])
+        // console.log(obj.hasOwnProperty('1')) //true
+        // console.log(obj.hasOwnProperty(1)) //true
+        // console.log(set.has('1')) //false
+        // console.log(set.has(1)) //true
     </script>
 </body>
 </html>
