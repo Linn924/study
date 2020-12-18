@@ -448,6 +448,47 @@
         // console.log(obj.hasOwnProperty(1)) //true
         // console.log(set.has('1')) //false
         // console.log(set.has(1)) //true
+
+        //44、
+        // let person = {name:'Simon'}
+        // const arr = [person]
+        // person = null
+        // console.log(arr) //[{name:'Simon'}]
+
+
+        //45、
+        // function greeting(){
+        //     throw 'Hello world!'
+        // }
+        // function sayHi(){
+        //     try{
+        //         const data = greeting()
+        //         console.log('It worked!',data)
+        //     }catch(e){
+        //         console.log('Oh no an error:',e)
+        //     }
+        // }
+        // sayHi() //Oh no an error: Hello world!
+
+
+        //46、
+        // let arr = [1,2,3].map(item => {
+        //     if(typeof item === 'number') return
+        //     return item * 2
+        // })
+        // console.log(arr) //[undefined, undefined, undefined]
+
+
+        //47、
+        // function addToList(item,list){
+        //     return list.push(item)
+        // }
+        // const result = addToList('aoole',['banana'])
+        // console.log(result) //2
+
+
+        //48、立即执行函数
+        // console.log(`${(x => x)('I Love')} to program`) //I Love to program 
     </script>
 </body>
 </html>
