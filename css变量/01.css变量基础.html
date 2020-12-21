@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    /*
+        一、变量声明
+            声明变量的时候，变量名前面要加两根连词线（--）;变量名大小写敏感，--Foo和--foo是两个不同变量。
+            body {
+                --Foo: #1E90FF;
+                --foo: #7F583F;
+                --bar: #F7EFD2;
+            }
+        二、var()函数
+
+            1、var()函数用于读取变量。
+            a {
+                color: var(--foo);
+                text-decoration-color: var(--bar);
+            }
+
+            2、var()函数还可以使用第二个参数，表示变量的默认值。如果该变量不存在，就会使用这个默认值。
+            color: var(--foo, #7F583F);
+
+            3、第二个参数不处理内部的逗号或空格，都视作参数的一部分。
+            var(--font-stack, "Roboto", "Helvetica");
+            var(--pad, 10px 15px 20px);
+
+            4、var()函数还可以用在变量的声明。
+            :root {
+                --primary-color: red;
+                --logo-text: var(--primary-color);
+            }
+
+            5、变量值只能用作属性值，不能用作属性名。
+            .foo {
+                --side: margin-top;
+                var(--side): 20px; 无效
+            }
+
+        三、变量值的类型
+            1、如果变量值是一个字符串，可以与其他字符串拼接。
+            body:after {
+                content: '--screen-category : 'var(--screen-category);
+            }
+
+            2、如果变量值是数值，不能与数值单位直接连用。
+            .foo {
+                --gap: 20;
+                margin-top: var(--gap)px; 无效
+            }
+
+            3、数值与单位直接写在一起，这是无效的。必须使用calc()函数，将它们连接。
+            .foo {
+                --gap: 20;
+                margin-top: calc(var(--gap) * 1px);
+            }
+
+            4、如果变量值带有单位，就不能写成字符串。
+            .foo {//无效
+                --foo: '20px';
+                font-size: var(--foo);
+            }
+            .foo {//有效 
+                --foo: 20px;
+                font-size: var(--foo);
+            }
+
+        四、作用域
+            同一个 CSS 变量，可以在多个选择器内声明。读取的时候，优先级最高的声明生效。
+        五、响应式布局
+            CSS 是动态的，页面的任何变化，都会导致采用的规则变化。利用这个特点，可以在响应式布局的media命令里面声明变量，
+            使得不同的屏幕宽度有不同的变量值
+            body {
+                --primary: #7F583F;
+                --secondary: #F7EFD2;
+            }
+            a {
+                color: var(--primary);
+                text-decoration-color: var(--secondary);
+            }
+            @media screen and (min-width: 768px) {
+                body {
+                    --primary:  #F7EFD2;
+                    --secondary: #7F583F;
+                }
+            }
+        六、兼容性处理
+            对于不支持 CSS 变量的浏览器，可以采用下面的写法。也可以使用@support命令进行检测。
+            a {
+                color: #7F583F;
+                color: var(--primary);
+            }
+            @supports ( (--a: 0)) {
+                supported
+            }
+            @supports ( not (--a: 0)) {
+                not supported
+            }
+
+        七、JavaScript 操作
+            1、JavaScript 操作 CSS 变量的写法如下。
+            
+            // 设置变量
+            document.body.style.setProperty('--primary', '#7F583F');
+            // 读取变量 '#7F583F'
+            document.body.style.getPropertyValue('--primary').trim();
+            // 删除变量
+            document.body.style.removeProperty('--primary');
+
+            2、JavaScript 可以将任意值存入样式表。下面是一个监听事件的例子，事件信息被存入 CSS 变量。
+            const docStyle = document.documentElement.style;
+            document.addEventListener('mousemove', (e) => {
+                docStyle.setProperty('--mouse-x', e.clientX);
+                docStyle.setProperty('--mouse-y', e.clientY);
+            });
+
+            3、那些对 CSS 无用的信息，也可以放入 CSS 变量。
+            --foo: if(x > 5) this.width = 10;
+    */
+</style>
+<body>
+    <div class="box">
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box{
+        position: relative;
+        display: flex;
+        max-width: 414px;
+        justify-content: space-between;
+        border-bottom: 1px solid #717678;
+        margin: 30px auto;
+    }
+    .box::before,
+    .box::after{
+        position: absolute;
+        width: calc(var(--target-width) * 1px);
+        left: calc(var(--target-left,0) * 1px);
+        color: #2a80eb;
+    }
+    .box[style]::before,
+    .box[style]::after{
+        content: "";
+    }
+    .box::before{
+        height: calc(var(--target-height) * 1px);
+        mix-blend-mode:overlay;
+    }
+    .box::after{
+        border-bottom: solid;
+        bottom: -2px;
+        transition: all .2s;
+    }
+    .box-a{
+        color: #717678;
+        padding: 10px 0;
+        text-decoration: none;
+    }
+
+</style>
+<body>
+    <div class="box">
+        <a href="javascript:" class="box-a">QQ阅读</a>
+        <a href="javascript:" class="box-a">起点读书</a>
+        <a href="javascript:" class="box-a">红袖读书</a>
+        <a href="javascript:" class="box-a">飞卢读书</a>
+    </div>
+</body>
+<script>
+    document.addEventListener('mousedown',e => {
+        var target = e.target
+        var body = document.body
+        var html = document.documentElement
+
+        //设置自定义属性值
+        body.style.setProperty('--pagex',e.pageX)
+        body.style.setProperty('--pagey',e.pageY)
+
+        html.style.setProperty('--clientx',e.clientX)
+        html.style.setProperty('--clienty',e.clientY)
+        html.style.setProperty('--scrolly',window.pageYOffset)
+
+        target.style.setProperty('--offsetx',e.offsetX)
+        target.style.setProperty('--offsety',e.offsetY)
+        target.parentElement.style.setProperty('--target-width',target.clientWidth)
+        target.parentElement.style.setProperty('--target-height',target.clientHeight)
+        target.parentElement.style.setProperty('--target-left',target.offsetLeft)
+        target.parentElement.style.setProperty('--target-top',target.offsetTop)
+
+        console.log(target.offsetLeft)
+    })
+</script>
+</html>
