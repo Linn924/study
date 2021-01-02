@@ -489,6 +489,44 @@
 
         //48、立即执行函数
         // console.log(`${(x => x)('I Love')} to program`) //I Love to program 
+
+
+        //49、String.raw方法(获取一个模板字符串的原始字符串，忽略转义符)
+        // console.log(String.raw`Hello\nword`) //Hello\nword
+
+
+        //50、Promise.race()方法 谁先执行完成就输出谁的结果(不管结果本身是成功状态还是失败状态)
+        // const firstPromise = new Promise((res,rej) => {
+        //     setTimeout(res,500,'one');
+        // })
+        // const secondPromise = new Promise((res,rej) => {
+        //     setTimeout(res,100,'two');
+        // })
+        // Promise.race([firstPromise,secondPromise]).then(res => console.log(res))
+
+
+        //51、JSON.stringify的第二个参数是替代者，替代者可以是个函数或数组，用以控制哪些值如何被转换成字符串
+        //    如果替代者是个数组，那么只有包含在数组中的属性会被转换成字符串；
+        //    如果替代者是个函数。这个函数将被对象的每个属性都调用一遍，函数返回值会成为这个属性的值。
+        // const setting = {
+        //     username:'Simon',
+        //     level:19,
+        //     health:90
+        // }
+        // const data = JSON.stringify(setting,['level','health'])
+        // console.log(data) //{"level":19,"health":90}
+
+
+        //52、对象键自动转换为字符串
+        //    将b对象设置为a对象的键时，就会变成a['Object object']
+        //    将c对象设置为a对象的键时，就会变成a['Object object']
+        //    所以我们打印的是 a['Object object'] 即 456
+        // const a = {}
+        // const b = { key:'b' }
+        // const c = { key:'c' }
+        // a[b] = 123
+        // a[c] = 456
+        // console.log(a[b]) //456
     </script>
 </body>
 </html>
