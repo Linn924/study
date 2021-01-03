@@ -9,14 +9,10 @@
     <div class="box">
         <img src="https://s3.ax1x.com/2020/12/04/DqFi6J.jpg">
         <img src="https://s3.ax1x.com/2020/12/04/DqFi6J.jpg">
-        <img src="https://s3.ax1x.com/2020/12/04/DqFi6J.jpg">
-        <img src="https://s3.ax1x.com/2020/12/04/DqFi6J.jpg">
     </div>
    <script>
-       /*
-            隐藏所有指定元素
-       */
-      const hide = data => [...data].forEach(item => item.style.display = 'none')
+      const hide = doms => [...doms].forEach(item => item.style.display = 'none')
+      
       hide(document.querySelectorAll('img'))
    </script>
 </body>

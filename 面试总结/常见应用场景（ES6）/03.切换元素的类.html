@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" class="input special"> 
+    <script>
+        const toggleClass = (dom,className) => dom.classList.toggle(className) 
+        
+        toggleClass(document.querySelector('input.special'),'special') //删除special类，保留input类
+    </script>
+</body>
+</html>

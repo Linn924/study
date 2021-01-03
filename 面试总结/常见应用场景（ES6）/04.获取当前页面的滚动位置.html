@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    html,body{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+</style>
+<body>
+    <img src="https://s3.ax1x.com/2020/12/04/DqFi6J.jpg" style="width: 100vw;height: 120vh;">
+    <script>
+        const getScrollPosition = (dom = window) => ({ //默认元素是整个文档
+            x: dom.pageXOffset !== undefined ? dom.pageXOffset : dom.scrollLeft, 
+            y: dom.pageYOffset !== undefined ? dom.pageYOffset : dom.scrollTop 
+        })
+        
+        window.addEventListener('scroll',() => {
+            console.log(getScrollPosition())
+        })
+    </script>
+</body>
+</html>

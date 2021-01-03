@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    html,body{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+</style>
+<body>
+    <div class="box" style="width: 100vw;height: 200vh;background-color: cornflowerblue;"></div>
+    <button>回到顶部</button>
+    <script>
+        /*
+            window.requestAnimationFrame(callback)
+                该方法告诉浏览器您希望执行动画，并请求浏览器调用指定的函数在下次重绘前更新动画；
+                该方法将回调函数作为参数
+        
+        */
+        const scrollToTop = () => {
+            let height = document.documentElement.scrollTop || document.body.scrollTop
+            if(height > 0){
+                window.requestAnimationFrame(scrollToTop)
+                window.scrollTo(0,height - height / 8)
+            }
+        }
+
+        document.querySelector('button').addEventListener('click',scrollToTop)
+    </script>
+</body>
+</html>
