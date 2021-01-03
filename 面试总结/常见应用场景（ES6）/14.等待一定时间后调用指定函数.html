@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        setTimeout((a,b,c) => {
+            console.log(a,b,c)
+        }, 1000, "my", "name", "is LinnCooper") //my name is LinnCooper
+
+        const delay = (fn,wait,...args) => setTimeout(fn,wait,...args)
+
+        delay(data => console.log(data),1000,'LinnCooper') //LinnCooper
+    </script>
+</body>
+</html>
