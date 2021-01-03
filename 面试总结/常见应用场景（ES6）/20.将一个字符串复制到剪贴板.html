@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">复制</button>
+    <script>
+        /*
+            document.execCommand() 此方法是交互方式如：复制、粘贴等
+        */
+        const copyToClipboard = str => {     
+            return () => {
+                const dom = document.createElement('textarea')  //创建文本域标签   
+                dom.value = str //将想要复制的值传给文本域的value属性     
+                dom.setAttribute('readonly', 'readonly') //设置文本域的值设置只读     
+                dom.style.opacity = '0' //隐藏文本域       
+                document.body.appendChild(dom) //添加到文档中     
+                const selected = document.getSelection().rangeCount > 0 ? document.getSelection().getRangeAt(0) : false     
+                dom.select() //选中值     
+                document.execCommand('copy') //复制选中的文字到剪贴板;     
+                document.body.removeChild(dom) //移除创建的文本域标签     
+                if (selected) { //文档中必须有可复制的文本框         
+                    document.getSelection().removeAllRanges() //双击禁止选择文字         
+                    document.getSelection().addRange(selected)     
+                } 
+            }
+        } 
+
+        document.getElementById('btn').addEventListener('click',copyToClipboard('LinnCooper'))
+
+    </script>
+</body>
+</html>

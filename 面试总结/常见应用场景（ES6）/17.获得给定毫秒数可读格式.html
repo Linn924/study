@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            Object.entries方法返回一个数组，成员是参数对象自身的（不含继承的）所有可遍历（enumerable）属性的键值对数组
+        */
+        const formatDuration = ms => {
+            if(ms < 0) ms = -ms
+            const time = {
+                day: Math.floor(ms / 86400000),         
+                hour: Math.floor(ms / 3600000) % 24,         
+                minute: Math.floor(ms / 60000) % 60,         
+                second: Math.floor(ms / 1000) % 60,         
+                millisecond: Math.floor(ms) % 1000
+            }
+            return Object.entries(time).filter(item => item[1] !== 0).map(([key, val]) => `${val} ${key}${val !== 1 ? "s" : ""}`).join(',')
+        }
+        
+        formatDuration(1001) //1 second,1 millisecond
+        formatDuration(34325055574) // 397 days, 6 hours, 44 minutes, 15 seconds, 574 milliseconds
+    </script>
+</body>
+</html>
