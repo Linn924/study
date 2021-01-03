@@ -122,7 +122,7 @@
         // const two = (null || false || '') //假 || 假 || 假
         // const three = ([] || 0 || true) //真 || 假 || 真
         // console.log(one,two,three) //{},'',[]
-
+        // console.log(null || false) //false
 
         //12、类继承
         // class Bird {
@@ -136,7 +136,7 @@
         //         super()
         //     }
         // }
-        // const pet = new Flamingo() //bird,pink
+        // const pet = new Flamingo() //pink,bird
 
 
         //13、Symbol类型不可枚举,Object.keys()方法返回对象上所有可枚举的键属性
@@ -367,7 +367,7 @@
         //         return this.languages.push(lang)
         //     }
         // }
-        // console.log(config.language)
+        // console.log(config.language) //undefined
 
 
         //36、padStart()方法
@@ -405,10 +405,10 @@
 
         //39、
         // async function getData(){
+        //     // console.log(await Promise.resolve('I made it!'))
         //     return await Promise.resolve('I made it!')
         // }
-        // const data = getData()
-        // console.log(data) //Promise {<pending>}
+        // console.log(getData()) //Promise {<pending>}
 
         //40、
         // const person = {
@@ -426,13 +426,14 @@
 
 
         //41、以下哪一句代码会报错
+        // const 关键字意味着我们不能重定义变量中的值，它仅可读。然而值本身不可修改
+        // 数组arr中的值可被修改，如push新的值，拼接，或者将数组的长度设置为0
         // const arr = [1,2,3,4,5]
         // arr.push(6)
         // arr.splice(0,2)
         // arr = [...arr,6] //此处报错
         // arr.length = 0
-        // const 关键字意味着我们不能重定义变量中的值，它仅可读。然而值本身不可修改
-        // 数组arr中的值可被修改，如push新的值，拼接，或者将数组的长度设置为0
+        
     
     
         //42、
@@ -441,7 +442,8 @@
         // console.log(number) //[1,2,3,7 * empty,11]
 
 
-        //43、所有键值对都会被存储为字符串
+        //43、所有键值对都会被存储为字符串,
+        //    set中has方法可以判断Set对象是否具有指定元素。Object中hasOwnProperty方法判断自身属性是否存在
         // const obj = {1:'a',2:'b',3:'c'}
         // const set = new Set([1,2,3,4,5])
         // console.log(obj.hasOwnProperty('1')) //true
@@ -527,6 +529,45 @@
         // a[b] = 123
         // a[c] = 456
         // console.log(a[b]) //456
+
+
+        //53、Object.freeze()
+        //    冻结对象，无法添加、删除、或者修改对象的属性（除非属性的值是另外一个对象）
+        //    由于x的值不是对象，所以无法修改；或许会报TypeError错误
+        // const box = {x:10,y:20}
+        // Object.freeze(box)
+        // const shape = box
+        // shape.x = 100
+        // console.log(shape) //{x:10,y:20}
+
+
+        //54、不使用new，则指的是全局对象即this.firstName = window.firstName
+        //    例子中并无返回值，所以是undefined
+        // function Person(firstName,lastName){
+        //     this.firstName = firstName
+        //     this.lastName = lastName
+        // }
+        // const simon = new Person('Simon','Linn')
+        // const linn = Person('Simon','Linn')
+        // console.log(simon) //Person {firstName: "Simon", lastName: "Linn"}
+        // console.log(linn) //undefined
+
+
+        //55、事件循环、任务队列
+        // const myPromise = Promise.resolve(Promise.resolve('Promise!'))
+        // function funcOne(){
+        //     myPromise.then(res => res).then(res => console.log(res))
+        //     setTimeout(() => console.log('Timeout!'),0)
+        //     console.log('Last line!')
+        // }
+        // async function funcTwo(){
+        //     const res = await myPromise
+        //     console.log(await res)
+        //     setTimeout(() => console.log('Timeout!'),0)
+        //     console.log('Last line!')
+        // }
+        // funcOne()
+        // funcTwo()
     </script>
 </body>
 </html>
