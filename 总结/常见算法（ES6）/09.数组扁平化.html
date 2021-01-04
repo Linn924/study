@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题:数组扁平化是指将一个多维数组变为一维数组
+            例:[1, [2, 3, [4, 5]]]  ------>    [1, 2, 3, 4, 5]
+        */
+
+        function flattenOne(arr){
+            if(!arr instanceof Array){
+                return arr
+            }
+            let newArr = []
+            for(let i of arr){
+                if(i instanceof Array){
+                    newArr = newArr.concat(flatten(i))
+                }else{
+                    newArr = newArr.concat([i])
+                }
+            }
+            return newArr
+        }
+
+        function flattenTwo(arr){
+            return arr.toString().split(",").map(item => Number(item))
+        }
+
+        function flattenThree(arr){
+            return arr.join(",").split(",").map(item => Number(item))
+        }
+
+        function flattenFour(arr){
+            while(arr.some(item => item instanceof Array)){
+                arr = [].concat(...arr)
+            }
+            return arr
+        }
+
+        let arr = [1, [2, 3, [4, 5]]]
+
+        console.log(flattenOne(arr))
+        console.log(flattenTwo(arr))
+        console.log(flattenThree(arr))
+        console.log(flattenFour(arr))
+    </script>
+</body>
+</html>

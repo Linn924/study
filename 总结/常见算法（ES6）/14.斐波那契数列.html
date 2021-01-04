@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：斐波那契数列
+        */
+
+        function fbnqOne(n){//有严重的效率问题，以及爆栈
+            if(n == 0 || n == 1){
+                return n
+            }else{
+                return fbnq(n-1) + fbnq(n-2)
+            }
+        }
+
+        function fbnqTwo(n){
+            let arr = [0,1]
+            if(n<2){
+                return arr[n]
+            }else{
+                let tmp = 0,fbnqOne = 0,fbnqTwo = 1    
+                for(let i = 2;i<=n;i++){
+                    tmp = fbnqOne + fbnqTwo 
+                    fbnqOne = fbnqTwo
+                    fbnqTwo = tmp
+                }
+                return tmp
+            }
+        }
+
+        console.log(fbnqOne(10))
+        console.log(fbnqTwo(10))
+    </script>
+</body>
+</html>

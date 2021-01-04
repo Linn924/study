@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：封装单链表和反转单链表
+            例：https://juejin.im/post/6844904055316152333
+        */
+        function LinkList(){
+            //封装节点类，保存每个节点的信息
+            function Node(number){
+                this.element = number
+                this.next = null
+            }
+            //初始化链表属性
+            this.length = 0
+            this.head = null
+
+            LinkList.prototype.append = function(element){
+                let newNode = new Node(element)
+                //如果链表为空
+                if(!this.head){
+                    this.head = newNode
+                }else{//如果链表不为空
+                    //将head复制给current变量
+                    let current = this.head
+                    // 操作current变量查找节点next属性为空的节点(循环)
+                    while(current.next){
+                        current = current.next
+                    }
+                    //找到节点后，把新的节点插入到找到的节点的next属性上
+                    current.next = newNode
+                }
+                this.length++
+            }
+        }
+
+        function myReverse (list) {
+            let head = list.head
+            if(head == null || head.next == null) return list
+
+            let current = head
+            let pre = null,next = null
+            //循环遍历到链表的最后一个节点 ，最后一个节点的next指向null
+            while(current != null){
+                //将当前节点的next属性值赋值给next变量
+                next = current.next
+                //将pre变量赋值给当前节点的next属性(第一次循环第一个节点的next属性值为null,达到改变next的指向，从而反转链表)
+                current.next = pre
+                //将当前节点赋值给pre变量，使得pre变量作为下次循环时下一节点next指向的节点
+                pre = current
+                //将next变量的值赋值给当前节点，从而达到循环的效果(next变量保存的是下一节点的值)
+                current = next
+            }
+            list.head = pre
+            return list
+        }
+
+        let list = new LinkList()
+        list.append(1)
+        list.append(2)
+        list.append(3)
+        list.append(4)
+        
+        console.log(list)
+        console.log(myReverse(list))
+    </script>
+</body>
+</html>

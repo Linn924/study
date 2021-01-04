@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：快速排序
+        */
+
+        function quickSort(arr){
+            //递归时的停止条件
+            if(!arr instanceof Array || arr.length <=1 ){
+                return arr
+            }
+            let leftArr = [],rightArr = []
+            let chooseIndex = Math.floor(arr.length / 2)
+            let chooseItem = arr.splice(chooseIndex,1)[0]
+            
+            for(let i of arr){
+                if(i < chooseItem){
+                    leftArr.push(i)
+                }else{
+                    rightArr.push(i)
+                }
+            }
+
+            return quickSort(leftArr).concat([chooseItem],quickSort(rightArr))
+        }
+
+        let arr = [5,1,8,4,9,12,78,100]
+        
+        console.log(quickSort(arr))
+    </script>
+</body>
+</html>

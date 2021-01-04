@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：实现一个模板字符串
+            要求：实现一个render(template,context)方法,将template中的占位符用context填充
+            例:
+                var template = '{{name}}很厉害，才{{age}}岁' 
+                var context = {name:'bottle',age:'15'}
+
+                输入:template context
+                输出:bottle很厉害，才15岁
+            思路:
+                利用非贪婪匹配/{{(.*?)}}/g匹配到所有的{{name}},{{age}}
+                利用String下面的replace()方法将匹配到的子字符串替换掉
+
+                str.place(regexp/substr,newSubStr|function),其中第二个参数可以是函数
+                该函数的返回值将替换掉第一个参数匹配的结果，将所有匹配的字符串替换成指定的字符
+        */
+
+        let template = '{{name}}很厉害，才{{age}}岁' 
+        let context = {name:'bottle',age:'15'}
+
+        function render(template,context){
+            return template.replace(/{{(.*?)}}/g,(match,key) => {
+                // console.log(match)
+                // console.log(key)
+                context[key.trim()]
+            })
+        }
+        console.log(render(template,context))
+    </script>
+</body>
+</html>

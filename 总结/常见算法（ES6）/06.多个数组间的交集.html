@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：求多个数组之间的交集
+            例如：[1,2,3],[2,3],[3,3] -> [3]
+            思路：通过...args接收所有的数组，利用reduce方法，参数一是运算结果，参数二是每一个传入的数组
+                  把第一个传入的数组作为结果，遍历结果数组，如果第二个数组里面包含结果数组的元素，就过滤出来
+                  形成新的结果数组，依次进行。最后把得到的结果去重，得到最终结果。
+        */
+       
+        function test(...args){
+            if(args.length === 0) return []
+            if(args.length === 1) return args[0]
+
+            return [...new Set(args.reduce((result,arg) => {
+                return result.filter(item => arg.includes(item))
+            }))]
+        }
+
+        console.log(test([1,2,3],[2,3],[3,3]))
+    </script>
+</body>
+</html>

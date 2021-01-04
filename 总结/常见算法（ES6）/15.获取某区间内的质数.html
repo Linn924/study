@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：获取某区间的质数
+        */
+
+        function prime(first,last){
+            let arr = []
+            for(let i = first; i <= last; i++){
+                if(i == 1) continue
+                else if(i == 2) arr.push(i)
+                else if(i > 2){
+                    let flag = false
+                    for(let j = 2; j < i; j++){
+                        if(i % j === 0){
+                            flag = true
+                            break 
+                        }
+                    }
+                    if(flag) continue
+                    arr.push(i)
+                }           
+            }
+            return arr
+        }
+
+        console.log(prime(1,10))
+    </script>
+</body>
+</html>

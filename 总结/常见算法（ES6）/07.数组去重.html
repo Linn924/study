@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：数组去重
+        
+        */
+
+        function testOne(arr){
+            if(!arr instanceof Array){
+                return arr
+            }
+            let obj = {},newArr = []
+            for(let i of arr){
+                if(!obj[i]){
+                    newArr.push(i)
+                    obj[i] = i
+                }
+            }
+            return newArr
+        }
+
+        function testTwo(arr){
+            if(!arr instanceof Array){
+                return arr
+            }
+            return Array.from(new Set(arr))
+        }
+
+        function testThree(arr){
+            if(!arr instanceof Array){
+                return arr
+            }
+            let newArr = []
+            for(let i of arr){
+                !newArr.includes(i)&& newArr.push(i)
+            }
+            return newArr
+        }
+
+        let arr = [1,2,3,4,1,5,8,1,42,2,4]
+
+        console.log(testOne(arr))
+        console.log(testTwo(arr))
+        console.log(testThree(arr))
+    </script>
+</body>
+</html>

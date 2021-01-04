@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：动态规划（01背包问题）
+            例：https://juejin.im/post/6844903607855251463
+
+            w 包的重量 
+            weightArr 物品重量数组 
+            valArr 物品价值数组
+        */
+        
+        let backpack = function(w, weightArr, valArr){
+            //获取物品数量
+            let n = weightArr.length
+            //声明一个长度为 n 的数组
+            let tmpArr = new Array(n)
+            // 增加一个-1行，全部填充成0
+            tmpArr[-1] = new Array(w+1).fill(0)  
+            //循环物品数量
+            for(let i = 0; i < n; i++){
+                //把每个物品对应的价值全部填充为0
+                tmpArr[i] = new Array(w).fill(0)
+                //循环包的重量
+                for(let j = 0; j <= w; j++){
+                    //最后一件物品(i)装不进去，最大值应为(i-1)的值
+                    if(j < weightArr[i]){
+                        tmpArr[i][j] = tmpArr[i-1][j]
+                    }else{//最后一个物品(i)能装进去，找装与不装的最大值
+                        tmpArr[i][j] = Math.max(tmpArr[i-1][j], tmpArr[i-1][j-weightArr[i]]+valArr[i])
+                    }
+                }
+            }
+            return tmpArr[n-1][w]
+        }
+
+        console.log(backpack(5, [2, 3, 4], [3, 4, 5]))
+    </script>
+</body>
+</html>
