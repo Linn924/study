@@ -568,6 +568,31 @@
         // }
         // funcOne()
         // funcTwo()
+
+
+        //56、当值不是预期类型时，会抛出TypeErrors;
+        //    当编写了非有效的JavaScript时，抛出ReferenceErrors语法错误，例如当你把return这个词写成retrun时，就会抛出语法错误
+        // const name = 'simon'
+        // console.log(name()) //TypeError: name is not a function
+
+
+        //57、
+        // async function getData(){
+        //     console.log(await Promise.resolve('I made it')) //I made it
+        //     return await Promise.resolve('I made it')
+        // }
+        // const data = getData()
+        // console.log(data) //Promise {<pending>}
+        // data.then(res => console.log(res)) //I made it
+
+        
+        //58、
+        // const colorConfig = {
+        //     red:true
+        // }
+        // const colors = ['pink','red']
+        // console.log(colorConfig.colors) //undefined(此属性在对象中不存在，所以是undefined)
+        // console.log(colorConfig.colors[0]) //TypeError: Cannot read property '0' of undefined(无法对未定义的属性进行操作)
     </script>
 </body>
 </html>

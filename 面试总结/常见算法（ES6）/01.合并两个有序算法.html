@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题:合并两个有序数组 
+            例:nums1 = [1,2,3,0,0,0],nums2 = [2,5,6] -->输出:[1,2,2,3,5,6]
+        */
+        
+        function merge(arr1,arr2){
+            return arr1.concat(arr2).filter(item => item != 0).sort()
+        }
+
+        let nums1 = [1,2,3,0,0,0],
+            nums2 = [2,5,6]
+
+        console.log(merge(nums1,nums2))
+    </script>
+</body>
+</html>
