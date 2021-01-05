@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：删除链表倒数第n个结点
+            详解：给定一个链表，删除链表的倒数第n个结点，并且返回链表的头结点
+            例：
+                给定一个链表：1->2->3->4->5,n = 2.
+                当删除了倒数第二个结点后，链表变为1->2->3->5
+
+            实现思路：利用两个指针，一个是快指针，另一个是慢指针。快指针提前走n步，判断fast.next是否为null
+                     ，即fast是否是最后一个结点，如果是，则head为倒数第n个结点。此时问题简化为删除头结点；
+                     如果不是,fast和slow同步向前走，直到fast.next为null
+        */
+
+        function removeNtnFormEnd(head,n){
+            let fast = head,slow = head
+            while(--n){//提前走n步
+                fast = fast.next
+            }
+            if(!fast.next) return head.next //返回倒数第n个结点
+            while(fast && fast.next){ //fast、slow一起前进
+                fast = fast.next
+                slow = slow.next
+            }
+            slow.next = slow.next.next //将第n-1个结点的next指向第n+1个结点
+            return head
+        }
+
+    </script>
+</body>
+</html>
