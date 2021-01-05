@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="debounce">测试防抖</button>
+    <button id="throttle">测试节流</button>
+    <script>
+        /*
+            防抖：一个事件触发后在单位时间内，如果发生重复触发了同一事件，则取消上一次的事件，并重新计时
+            节流：在单位时间内，只会触发一次事件，如果事件触发后，又重复触发了同一事件，则忽略后面触发的事件，直到第一次事件的计时结束
+        */
+
+        function debounce(fn,wait = 500){
+            let timer = null
+            return function() {
+                clearTimeout(timer)
+                timer = setTimeout(() => {
+                    fn.apply(this,arguments)
+                },wait)
+            }
+        }
+
+        function fn(){
+            console.log(this)
+        }
+
+        
+        function throttleOne(fn,wait = 500){
+            let flag = true
+            return function(){
+                if(!flag) return
+                flag = false
+                setTimeout(() => {
+                    fn.apply(this,arguments)
+                    flag = true
+                },wait)
+            }
+        }
+
+        function throttleTwo(fn,wait = 500){
+            let activeTime = 0
+            return function(){
+                const currentTIme = Date.now()
+                if(currentTIme - activeTime < wait) return 
+                fn.apply(this,arguments)
+                activeTime  = Date.now()
+            }
+        }
+
+        document.getElementById('debounce').addEventListener('click',debounce(fn))
+        document.getElementById('throttle').addEventListener('click',throttleOne(fn))
+        document.getElementById('throttle').addEventListener('click',throttleTwo(fn))
+    </script>
+</body>
+</html>

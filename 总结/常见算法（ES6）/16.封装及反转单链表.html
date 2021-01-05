@@ -42,12 +42,11 @@
 
         function myReverse (list) {
             let head = list.head
-            if(head == null || head.next == null) return list
+            if(!head || !head.next) return list
 
-            let current = head
-            let pre = null,next = null
+            let current = head,pre = null,next = null
             //循环遍历到链表的最后一个节点 ，最后一个节点的next指向null
-            while(current != null){
+            while(current){
                 //将当前节点的next属性值赋值给next变量
                 next = current.next
                 //将pre变量赋值给当前节点的next属性(第一次循环第一个节点的next属性值为null,达到改变next的指向，从而反转链表)

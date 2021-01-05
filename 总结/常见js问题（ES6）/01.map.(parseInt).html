@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：['1','2','3'].map(parseInt) what & why ?
+            parseInt() 函数解析一个字符串参数，并返回一个指定基数的整数
+
+            const intValue = parseInt(string[,radix])
+                string 要被解析的值。若参数不是一个字符串，则将其转换为字符串。字符串开通头的空白符将会被忽略
+                radix 简单来说就是多少进制，默认是十进制
+                返回值 若radix小于2或者大于36,则返回NaN
+            例：
+                parseInt(100) //100
+                parseInt(100,10) //100
+                parseInt(100,2) //4
+            注意：在radix为undefined,或者radix为0，或者没有指定情况下，JavaScript将做如下处理
+                若字符串string以'0X'或者'0x'开头，则是十六进制
+                若字符串string以'0'开头，则是八进制或者十进制，具体要看实现环境。
+                若字符串string以其他任何值开头，则是十进制
+
+            map方法创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果
+
+        */
+
+        ['1','2','3'].map(parseInt) 
+
+        //实际执行代码
+        ['1','2','3'].map((item,index) => {
+            return parseInt(item,index)
+        })
+
+        //实际结果
+        parseInt('1',0) //1
+        parseInt('2',1) //Nav
+        parseInt('3',2) //NAN,3不是二进制数
+
+    </script>
+</body>
+</html>

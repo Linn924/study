@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：判断单链表是否有环
+            pos表示链表尾连接到链表中的位置（索引从0开始），若pos是-1，则在该链表中没有环
+            示例1：
+                输入：head = [3,2,0,-4],pos = 1
+                输出：true
+                解释：链表中有一个环，其尾部连接到第二个节点；3->2->0->-4->2(-4节点连接2这个节点，形成环)
+            示例2：
+                输入：head = [1],pos = -1
+                输出：false
+                解释：链表中没有环
+        */
+
+        //给每个以遍历的节点加标志位，遍历链表，当出现的下一节点已被标记，则证明单链表有环
+        function hasCycleOne(head){
+            while(head){
+                if(head.flag) return true
+                head.flag = true
+                head = head.next
+            }
+            return false
+        }
+
+        //JSON.stringify()不能序列化含有循环引用的结构
+        function hasCycleTwo(head){
+            try {
+                JSON.stringify(head)
+                return false
+            } catch (err) {
+                return true
+            }
+        }
+
+        
+    </script>
+</body>
+</html>

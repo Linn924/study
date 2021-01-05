@@ -593,6 +593,18 @@
         // const colors = ['pink','red']
         // console.log(colorConfig.colors) //undefined(此属性在对象中不存在，所以是undefined)
         // console.log(colorConfig.colors[0]) //TypeError: Cannot read property '0' of undefined(无法对未定义的属性进行操作)
+    
+            
+        // //59、通过const关键字声明的变量在被初始化之前不可被引用，这里称为暂时性死区。
+        // //    在打印变量前，变量未被初始化。
+        // const randomValue = 21
+        // function getInfo(){
+        //     console.log(randomValue)
+        //     console.log(typeof randomValue)
+        //     const randomValue = 'LinnCooper'
+        // }
+        // getInfo() //ReferenceError
+
     </script>
 </body>
 </html>
