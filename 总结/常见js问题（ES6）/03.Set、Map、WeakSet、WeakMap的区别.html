@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            Set: let set = new Set()
+                成员唯一、无序且不重复；允许存储任何类型的唯一值
+                [value,value]，键值与键名是一致的（或者说只有键值，没有键名）
+                操作方法：add(value)、delete(value)、has(value)、clear
+                遍历方法：keys()、values()、entries()、forEach()
+
+            WeakSet:let ws = new WeakSet()
+                成员都是对象
+                成员都是弱引用，可以被垃圾回收机制回收，可以用来保存DOM节点，不容易造成内存泄漏
+                不能遍历，方法有add、delete、has
+
+            Map:let map = new Map()
+                本质上是键值对的集合，类似集合;可以跟各种数据格式转换
+                操作方法：set(key,value)、get(key)、has(key)、delete(key)、clear()
+                遍历方法：keys()、values()、entries()、forEach()
+            
+            WeakMap:let wm = new WeakMap()
+                只接受对象作为键名（null除外），不接受其他类型的值作为键名
+                键名是弱引用，键值可以是任意的，键名所指向的对象可以被垃圾回收此时键名是无效的
+                不能遍历，方法有get、set、has、delete
+
+            数据格式转换
+                Map转Array：
+                    const map = new Map([[1,1],[2,2],[3,3]])
+                    console.log([...map]) //[[1,1],[2,2],[3,3]]
+                Array转Map
+                    const map = new Map([[1,1],[2,2],[3,3]])
+                    console.log(map) //Map {1=>1,2=>2,3=>3}
+                Map转JSON
+                    const map = new Map().set('name','LinnCooper').set('age',20)
+                    console.log(JSON.stringify([...map])) //[['name','LinnCooper'],['age',20]]
+                JSON转Map
+                    objToMap(JSON.parse('{'name':'LinnCooper','age':20}')) //Map {'name'=>'LinnCooper','age'=>20}
+        */
+
+        let set = new Set(),
+            a = NaN,
+            b= NaN
+        set.add(a)
+        set.add(b)
+        console.log(set) //Set{NaN}
+
+        let set1 = new Set() //向Set加入值的时候，不会发生类型转换，5和'5'是两个不同的值
+        set1.add(5)
+        set1.add('5')
+        console.log(set1) //Set{5,'5'}
+
+        let set3 = new Set([1,2,3,2,1])
+        console.log(set3.length) //undefined
+        console.log(set3.size) //3
+
+        let set4 = new Set()
+        set4.add(1).add(2).add(1)
+        console.log(set4.has(1)) //true
+        console.log(set4.has(3)) //false
+        set4.delete(1)
+        console.log(set4.has(1)) //false
+        set4.clear()
+        console.log(set4) //Set{}
+
+        let set5 = new Set([1,2,3])
+        console.log(set5.keys()) //SetIterator {1, 2, 3},返回一个包含集合中所有键的迭代器
+        console.log(set5.values()) //SetIterator {1, 2, 3},返回一个包含集合中所有值的迭代器
+        console.log(set5.entries()) //SetIterator {1 => 1, 2 => 2, 3 => 3},返回一个包含集合中所有元素的键值对的迭代器
+        for(let item of set5.keys()){
+            console.log(item) //1 2 3
+        }
+        for(let item of set5.entries()){    
+            console.log(item) //[1,1] [2,2] [3,3]
+        }
+        set5.forEach((value,key) => {
+            console.log(key + ':' + value) //1:1 2:2 3:3
+        })
+        console.log([...set5]) //[1,2,3]
+
+
+        let map = new Map()
+        let obj = {name:'LinnCooper'}
+        map.set(obj,'content')
+        console.log(map) //Map(1) {{…} => "content"}
+        console.log(map.get(obj)) //content
+        console.log(map.has(obj)) //true
+        console.log(map.delete(obj)) //true
+        console.log(map.has(obj)) //false
+        console.log(map.get('LinnCooper')) //undefined
+        let mapSet = new Set([
+            ['foo',1],
+            ['bar',2]
+        ])
+        console.log(mapSet) //Set(2) {Array(2), Array(2)}
+        let map2 = new Map(mapSet)
+        console.log(map2) //Map(2) {"foo" => 1, "bar" => 2}
+        console.log(map2.get('foo')) //1
+
+        let map3 = new Map([['baz',3]])
+        console.log(map3) //Map(1) {"baz" => 3}
+        let map4 = new Map(map3)
+        console.log(map4) //Map(1) {"baz" => 3}
+
+        let map5 = new Map()
+        map5.set(['a'],555) 
+        console.log(map5.get(['a']) ) //undefined,因为设置的键和获取的键内存地址不同
+
+        let map6 = new Map()
+        map6.set(-0,123).set(true,1).set('true',2).set(undefined,3).set(null,4).set(NaN,123)
+        console.log(map6.get(+0)) //123
+        console.log(map6.get(true)) //1
+        console.log(map6.get('true')) //2
+        console.log(map6.get(undefined)) //3
+        console.log(map6.get(NaN)) //123
+
+        let map7 = new Map([
+            ['name','LinnCooper'],
+            ['age',10]
+        ])
+        console.log(map7.keys()) //MapIterator {"name", "age"}
+        console.log(map7.values()) //MapIterator {"LinnCooper", 10}
+        console.log(map7.entries()) //MapIterator {"name" => "LinnCooper", "age" => 10}
+        let reporter = {
+            report:function(key,value){
+                console.log(key,value)
+            }
+        }
+        map7.forEach(function(value,key,map7){
+            this.report(key,value)
+        },reporter) //this指向reporter
+        //name LinnCooper
+        //age 10
+    </script>
+</body>
+</html>

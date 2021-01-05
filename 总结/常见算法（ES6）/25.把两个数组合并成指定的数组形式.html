@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function mergeOne(arr1,arr2){
+            return [...arr1,...arr2.map(item => item = item + 3)].sort().map((item,index) => {
+                if((index + 1) % 3 == 0) item = item.split('')[0]
+                return item
+            })
+            
+        }
+
+        function mergeTwo(arr1,arr2){
+            let newArr1 = arr1.slice(0),newArr2 = arr2.slice(0)
+            newArr2.forEach((item,index) => {
+                newArr1.splice((index + 1) * 2 + index,0,item)
+            })
+            return newArr1
+        }
+
+        function mergeThree(arr1,arr2){
+            return [...arr1,...arr2].sort((a,b) => a.charCodeAt() -b.charCodeAt())
+        }
+
+        let arr1 = ['A1','A2','B1','B2','C1','C2','D1','D2'],
+            arr2 = ['A','B','C','D']
+
+       console.log(mergeOne(arr1,arr2))
+       console.log(mergeTwo(arr1,arr2))
+       console.log(mergeThree(arr1,arr2))
+    </script>
+</body>
+</html>

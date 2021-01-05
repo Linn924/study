@@ -140,10 +140,13 @@
 // 15. Array.splice(开始位置， 删除的个数，元素)
 // 万能方法，可以实现增删改
 
-// let arr = [1, 2, 3, 4, 5]
-// let arr1 = arr.splice(2, 0,'haha')
-// let arr2 = arr.splice(2, 3)
-// let arr1 = arr.splice(2, 1,'haha')
+// let arr1 = [1, 2, 3, 4, 5]
+// arr1.splice(2, 0,'haha')
+// let arr2 = [1, 2, 3, 4, 5]
+// arr2.splice(2, 3)
+// let arr3 = [1, 2, 3, 4, 5]
+// arr3.splice(2, 1,'haha')
+
 
 // console.log(arr1) //[1, 2, 'haha', 3, 4, 5]新增一个元素
 // console.log(arr2) //[1, 2] 删除三个元素
@@ -193,8 +196,8 @@
 // 20. Array.slice()
 // slice() 方法返回一个新的数组对象，这一对象是一个由 begin 和 end 决定的原数组的浅拷贝（包括 begin，不包括end）。原始数组不会被改变。
 
-let arr = [1, 2, 3, 4, 5]
+// let arr = [1, 2, 3, 4, 5]
 
-console.log(arr.slice(2)) //[ 3, 4, 5 ]
-console.log(arr.slice(2,4)) //[ 3, 4 ]
-console.log(arr.slice(1,5)) //[ 2, 3, 4, 5 ]
+// console.log(arr.slice(2)) //[ 3, 4, 5 ]
+// console.log(arr.slice(2,4)) //[ 3, 4 ]
+// console.log(arr.slice(1,5)) //[ 2, 3, 4, 5 ]
