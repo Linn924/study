@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：找出两个单链表相交的起始节点
+            例1：
+                A：a1->a2->c1->c2->c3 B：b1->b2->b3->c1->c2->c3
+                在结点c1开始相交
+            例2：
+                A：4->1->8->4->5 B：5->0->1->8->4->5
+                在结点8开始相交
+            例3：
+                A：2->6->4 B：1->5
+                不想交，输出null
+        */
+
+        function getIntersectionNode(headA,headB){//标记法
+            while(headA){//循环遍历单链表A，给每个结点标记已被遍历过。
+                headA.flag = true
+                headA = headA.next
+            }
+            while(headB){//循环遍历单链表B，若某个结点已被遍历过，则此结点就是相交结点。
+                if(headB.flag) return headB
+                headB = headB.next
+            }
+            return null
+        }
+
+
+        /*
+            双指针法：同步遍历A、B链表，直到遍历完其中一个链表（短链表）
+            此时就可以把短链表的尾结点指向长链表的头结点，长链表遍历完后，就可以把长链表的尾结点指向短链表的头结点
+            最终会消除长短链表的高度差，以便找出相交结点
+        */
+        function getIntersectionNode(headA,headB){
+            let PA = headA,PB = headB
+            while(PA || PB){ //一直遍历到PA和PB为空
+                if(PA === PB) return PA //判断是否是相同结点
+                PA = PA === null ? headB : PA.next //当下一节点为空时，代表已遍历完
+                PB = PB === null ? headA : PB.next ////当下一节点为空时，代表已遍历完
+            }
+            return null
+        }
+    </script>
+</body>
+</html>
