@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：实现一个sleep函数，如sleep(1000)意味着等待1000毫秒，可从Promise、Generator、Async/Await等角度实现
+
+        */
+
+        function sleepOne(wait = 1000,content = '执行'){
+            return (() => setTimeout(console.log,wait,content))()
+        }
+
+        function sleepTwo(wait = 1000,content = '执行'){
+            return new Promise(resolve => setTimeout(resolve,wait,content))
+        }
+
+        async function sleepThree(wait = 1000,content = '执行'){
+            let res = await sleepTwo()
+            console.log(res)
+        }
+
+        function* sleepFour(wait = 1000,content = '执行'){
+            yield new Promise(resolve => setTimeout(resolve,wait,content))
+        }
+
+        sleepOne()
+        sleepTwo().then(res => console.log(res))
+        sleepThree()
+        sleepFour().next().value.then(res => console.log(res))
+    </script>
+</body>
+</html>

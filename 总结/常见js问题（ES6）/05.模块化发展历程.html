@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            从IIFE、AMD、CMD、CommonJS、UMD、webpack(require.ensure)、
+            ES Module、<script type='module'>这几个角度考虑
+
+            模块化主要是用来抽离公共代码，隔离作用域，避免变量冲突等
+
+            IIFE：使用自执行函数来编写模块化，特点：在一个单独的函数作用域中执行代码，避免变量冲突
+            (function(){
+                return {
+                    data:[]
+                }
+            })()
+            
+            AMD：使用requireJS来编写模块化，特点：依赖必须提前声明好。
+            define('./index.js',function(code){
+                //wxxcode-style 就是index.js返回的内容
+            })
+
+            CMD：使用seaJS来编写模块化，特点支持动态引入依赖文件
+            define(function(require,exports,module){
+                var indexCode = require('./index.js')
+            })
+
+            commonJS：nodejs中自带的模块
+            var fs = require('fs')
+
+            UMD：兼容AMD，CommonJS模块化语法
+
+            webpack(require.ensure)：代码分割
+
+            ES Modules：ES6引入的模块化，支持import来引入另一个js
+            import a from 'a'
+        */
+
+        /*
+            模块的特性
+                为创建一个内部作用域而调用了一个包装函数
+                包装函数的返回值至少包含了一个对内部函数的引用，这样才会创建涵盖整个包装函数内部作用域的闭包
+            
+                CommonJS
+                    特点：require、module.exports、exports
+
+                    一般用在服务器或者Node用来同步加载模块，它对于模块的依赖发生在代码运行阶段，不适合在浏览器
+                    端做异步加载
+
+                    exports实际上是一个对module.exports的引用
+                    exports.add = function add(){}等同于module.exports.add = function add(){}
+                    但是不能给exports赋值，否则会断开module.exports的连接
+                
+                ES6 Module
+                    特点：import、export
+
+                    ES6模块化不是对象，import会在JS引擎静态分析，在编译时就引入模块代码，而非在代码运行时加载
+                    因此不适合异步加载
+                    在HTML中如果要使用模块即 <script type='module' src='./module.js'><script>
+                
+                    优势：
+                        死代码检测和排除。可以用静态分析工具检测出哪些模块没有被调用过。比如，在引用工具类库时，
+                        工程中往往只用到了其中一部分组件或接口，但有可能会将其代码完整的加载进来，也就成了死代码。
+                        通过静态分析可以在打包时去掉这些未曾使用过的模块，以减少打包体积。
+
+                        模块变量类型检查。JS属于动态类型语言，不会在代码执行前检查类型错误。ES6 Module的静态分析
+                        模块结构有助于确保模块之间传递的值或接口类型是正确的。
+
+                        编译器优化。在CommonJS等动态模块系统中，无论采用哪种方式，在本质上导入都是一个对象，而ES6 Module
+                        支持直接导入变量，减少了引用层级，程序效率更高。
+                        
+            二者的差异：
+                    CommonJS模块引用后是一个值的拷贝，而ES6 Module引用后是一个值的动态映射，并且这个映射是只读的。
+                        CommonJS模块输出的是值的拷贝，一旦输出之后，无论模块内部怎么变化，都无法影响之前的引用。
+                        
+                        ES6 Module是引擎会在遇到import后生成一个引用链接，在脚本真正执行时才会根据这个引用链接去
+                        模块里面取值，模块内部的原始值变了，import加载的模块也会改变。
+
+                    CommonJS运行时加载，ES6 Module编译阶段引用。
+                        CommonJS在引用时加载的是整个模块，生成一个对象然后，再从这个生成的对象上读取方法和属性。
+
+                        ES6 Module不是对象，而是通过export暴露出要输出的代码块，在import是使用静态命令的方法
+                        引用指定的方法导出代码块，并在import语句处执行这个要输出的代码块，而不是加载整个模块
+        */
+    </script>
+</body>
+</html>
