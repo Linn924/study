@@ -595,8 +595,8 @@
         // console.log(colorConfig.colors[0]) //TypeError: Cannot read property '0' of undefined(无法对未定义的属性进行操作)
     
             
-        // //59、通过const关键字声明的变量在被初始化之前不可被引用，这里称为暂时性死区。
-        // //    在打印变量前，变量未被初始化。
+        //59、通过const关键字声明的变量在被初始化之前不可被引用，这里称为暂时性死区。
+        //    在打印变量前，变量未被初始化。
         // const randomValue = 21
         // function getInfo(){
         //     console.log(randomValue)
@@ -605,6 +605,21 @@
         // }
         // getInfo() //ReferenceError
 
+        
+        //60、解构赋值
+        // const { name : myName } = {name : 'LinnCooper'}
+        // console.log(myName) //LinnCooper
+        // console.log(name) //ReferenceError,未定义变量
+
+        
+        //61、Map
+        // const myMap = new Map()
+        // const fn = () => 'LinnCooper'
+
+        // myMap.set(fn,'Simon')
+        // console.log(myMap.get('LinnCooper')) //undefined,键名不是'LinnCooper'
+        // console.log(myMap.get(fn)) //Simon
+        // console.log(myMap.get(() => 'LinnCooper')) //undefined,传递的是一个新的函数。对象受引用影响，函数也是对象，因此fn函数和此函数的内存引用地址不同
     </script>
 </body>
 </html>

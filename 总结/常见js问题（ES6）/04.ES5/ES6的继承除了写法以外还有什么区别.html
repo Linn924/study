@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            子类的__proto__指向不一样
+            ES5的子类和父类一样都是创建好，再实现继承，所以他们的指向都是[Function]
+            ES6的子类指向父类，因为子类是通过super来改造的
+
+            ES5的继承，实质是先创造子类的实例对象this，然后再将父类的方法添加到this上面(Parent.apply(this))
+            ES6的继承，实质是先将父类实例对象的属性和方法，加到this上面(所以必须先调用super方法)，然后再用子类的构造函数修改this
+        */                                                                                                                                                                              
+
+        class Super {}
+        class Sub extends Super {}
+
+        const sub = new Sub()
+        console.log(Sub.__proto__ === Super) //true
+        console.log(Sub.prototype.__proto__ === Super.prototype) //true
+        console.log(sub.__proto__ === Sub.prototype) //true
+        console.log(sub.__proto__.constructor === Sub) //true
+
+
+        function Animal(){}
+        function Dog(){}
+        Animal.prototype.eat = function(){console.log('吃')}
+
+        Dog.prototype = new Animal()
+        const dog = new Dog()
+        console.log(Dog.__proto__ === Animal) //false
+        console.log(Dog.prototype.__proto__ === Animal.prototype) //true
+        console.log(dog.__proto__ === Dog.prototype) //true
+        console.log(dog.__proto__.constructor === Animal) //true
+
+
+        function Father(age){
+            this.age = age
+        }
+        Father.prototype.introduce = function(){
+            return `今年${this.age}岁了`
+        }
+        function Son(age){
+            Father.call(this,age)
+        }
+        function deal(A,B){
+            let pr = Object.create(A.prototype)
+            pr.constructor = B
+            B.prototype = pr
+        }
+        deal(Father,Son)
+
+        const son = new Son(20)
+        console.log(son.__proto__ === Son.prototype) //true
+        console.log(son.__proto__.constructor === Son) //true
+        console.log(son.__proto__.__proto__ === Father.prototype) //true
+    </script>
+</body>
+</html>
