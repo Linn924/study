@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：判断一个字符串是否是回文字符串
+            解释：正读和反读都一样的字符串
+            例：AABAA
+        */
+
+        function isPlalindromeOne(str){
+            if(!str instanceof String) return false
+            return str === str.split('').reverse().join('')
+        }
+
+        function isPlalindromeTwo(str){
+            if(!str instanceof String) return false
+            let i = 0,j = str.length - 1
+            while(i<j){
+                if(str.charAt(i) !== str.charAt(j)) return false
+                i++
+                j--
+            }
+            return true
+        }   
+
+        console.log(isPlalindromeOne('AABAA')) //true
+        console.log(isPlalindromeOne('AABCC')) //false
+        console.log(isPlalindromeTwo('AABAA')) //true
+        console.log(isPlalindromeTwo('AABCC')) //false
+    </script>
+</body>
+</html>

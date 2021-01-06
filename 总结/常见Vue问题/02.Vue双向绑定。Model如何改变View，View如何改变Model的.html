@@ -11,8 +11,15 @@
     <div id="text"></div>
     <script>
         /*
-            核心是利用ES5的OBject.definePRoperty.这也是为什么不能兼容IE8及以下浏览器的原因
-
+            通过Object.definePRoperty劫持传进来的数据，然后在数据getter的时候订阅重新编译模板的信息，然后通过js监听元素的事件，，总是监听输入框值变化
+            将新的值重新赋值给被劫持的data，这样就会触发setter函数，在setter函数中就会去发布重新编译模板的消息
+            核心是利用ES5的Object.definePRoperty.这也是为什么不能兼容IE8及以下浏览器的原因
+            Object.defineProperty(
+                obj, 定义属性的对象
+                prop, 要定义或修改的属性的名称
+                descriptor 将被定义或修改属性的描述符 
+            )
+            该方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回这个对象
         */
 
         let input = document.getElementById('input')
