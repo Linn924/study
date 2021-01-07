@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：删除字符串中出现次数大于等于2次的相邻字符
+            例：
+                输入：'abbbaca'
+                输出：'ca'
+                解释：'abbbaca' => 'aaca' => 'ca'
+        */
+
+        function removeDuplicate(str){
+            let stack = [],
+                top,
+                next,
+                i = 0
+            while(i < str.length){
+                top = stack[stack.length - 1]
+                next = str[i]
+                if(next === top){
+                    stack.pop()
+                    while(str[i] === top) i++
+                }else{
+                    stack.push(next)
+                    i++
+                }
+            }
+            return stack.join('')
+        }
+
+        console.log(removeDuplicate('abbbaca'))
+    </script>
+</body>
+</html>

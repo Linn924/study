@@ -15,29 +15,56 @@
                 解释：在'abbaca'中，我们可以删除'bb',得到'aaca'，再删除'aa'，最终得到'ca'
         */
 
+        /*
+            如果字符串的长度小于等于1，则返回字符串本身；
+            如果字符串的长度等于2，那么判断这两个字符是否相等，相等返回null，不等返回字符串本身；
+            如果字符串的长度大于2，循环字符串，利用快慢指针。快指针比慢指针快一步，当相邻的字符不同时，
+            快指针和慢指针各加一步继续循环。当相邻的字符相同时，删除这两个相邻的字符，执行递归。
+            这种方法太麻烦
+        */
         function test(str){
             if(!str instanceof String) throw('This is not a string!') 
-            if(str.length <= 1) return str
 
             let arr = str.split('')
 
-            for(let i = 0,j = 1; j < str.length; j++){
-                if(str.length > 2){
-                    if(str[i] !== str[j]) i++
+            if(arr.length <= 1){
+                return str
+            }else if(arr.length == 2){
+                if(arr[0] === arr[1]) return null
+                else return str
+            }else{
+                for(let i = 0,j = 1; j < arr.length; j++){
+                    if(arr[i] !== arr[j]) i++
                     else {
                         arr.splice(i,2)
                         return test(arr.join(''))
                     }
-                }else{
-                    if(str[i] !== str[j]) return str
-                    return ''
                 }
-                
             }
         }
 
         console.log(test('abbaca')) //ca
         console.log(test('abbaa')) //a
+
+
+        /*
+            利用栈：遍历字符串，依次入栈，入栈时判断与栈头元素是否一致，如果一致，即这两个元素相同相邻，
+            则需要将栈头元素出栈，并且当前元素也无需入栈。
+        */
+
+        function removeDuplicates(str){
+            let stack = [] //定义一个栈
+            for(let item of str){ //循环遍历str
+                let prev = stack.pop() //取出栈头元素
+                if(item !== prev){ //对比栈头元素和当前元素
+                    stack.push(prev) //把取出的栈头再次入栈
+                    stack.push(item) //把当前元素入栈，作为新的栈头
+                }
+            }
+            return stack.join('')
+        }
+        console.log(removeDuplicates('abbaca'))
+        console.log(removeDuplicates('abbaa'))
     </script>
 </body>
 </html>
