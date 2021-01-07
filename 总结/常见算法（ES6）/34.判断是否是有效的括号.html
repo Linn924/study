@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：给定一个只包括'(',')','{','}','[',']'的字符串，判断字符串是否有效
+            例1：
+                输入：'()'
+                输出：true
+            例2：
+                输入：'()[]{}'
+                输出：true
+            例3：
+                输入：'(]'
+                输出：true
+            例4：
+                输入：'([)]'
+                输出：true
+            例5：
+                输入：'{[]}'
+                输出：true
+
+            解题思路：
+                首先判断该元素是否是{、(、[,是,直接入栈。不是,那么该字符就一定是}、)、]中的一种，如果该字符
+                有效，则该元素应该与栈顶匹配，例如栈中元素有({,如果继续遍历到的元素为),那么当前元素序列为({)
+                是不可能有效的，所以此时与栈顶元素匹配失败，这直接返回false，字符串无效
+                当遍历完成时，所有以匹配的字符都以匹配出站，如果此时栈为空，则字符串有效，反之，无效。
+        */
+
+        function isValid(str){
+            let map = {
+                '(':')',
+                '[':']',
+                '{':'}'
+            },stack = []
+            for(let i = 0; i < str.length; i++){
+                if(map[str[i]]) stack.push(str[i])
+                else if(str[i] !== map[stack.pop()]) return false
+            }
+            return stack.length === 0
+        }
+
+        console.log(isValid('()')) //true
+        console.log(isValid('()[]{}')) //true
+        console.log(isValid('(]')) //false
+        console.log(isValid('([)]')) //false
+        console.log(isValid('{[]}')) //true
+    </script>
+</body>
+</html>

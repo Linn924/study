@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：实现(5).add(3).minus(2)功能
+            例：5 + 3 - 2 = 6
+        */
+
+        // Number.prototype.add = function(number){
+        //     return this + number
+        // }
+        // Number.prototype.minus = function(number){
+        //     return this - number
+        // }
+        // console.log((5).add(3).minus(2))
+
+
+        const getDeimalPlaces = num => { //获取当前数字有多少位小数
+            const _num = parseFloat(num)
+            if(Number.isNaN(_num)) throw('This is not a Number!')
+            const _strArr = _num.toString().split('.')
+            console.log(_strArr)
+            return _strArr.length > 1 ? _strArr[1].length : 0
+        }
+
+        const getMaxDecimalPlaces = (x,y) => Math.max(getDeimalPlaces(x),getDeimalPlaces(y)) //获取这两个数最多的小数位
+        const calculateFloatSafely = (num,decimalPlaces) => parseFloat(num.toFixed(decimalPlaces))
+
+        Number.prototype.add = function(num){
+            return calculateFloatSafely((this + num),getMaxDecimalPlaces(this,num))
+        }
+        Number.prototype.minus = function(num){
+            return calculateFloatSafely((this - num),getMaxDecimalPlaces(this,num))
+        }
+
+        console.log((5).add(3).minus(2)) //6
+        console.log((5.08).add(3.12).minus(2.1)) //6.1
+        console.log(5.08 + 3.12 + 2.1) //10.299999999999999
+    </script>
+</body>
+</html>

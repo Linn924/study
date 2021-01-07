@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：无重复字符的最长子串
+            解释：给定一个字符串，请你找出其中不含有重复字符的最长子串的长度
+            例1：
+                输入：'abcabcbb'
+                输出：3
+                解释：因为无重复字符串的最长子串是'abc',所以其长度为3
+            例2：
+                输入：'bbbbb'
+                输出：1
+                解释：因为无重复字符串的最长子串是'b',所以其长度为1
+            例3：
+                输入：'pwwkew'
+                输出：3
+                解释：因为无重复字符串的最长子串是'wke',所以其长度为3
+        */
+
+        /*
+            使用一个数组来维护滑动窗口遍历字符串，判断字符是否在滑动窗口数组里
+                不在，则push进入数组
+                在，则删除滑动窗口数组里相同字符及相同字符前的字符，然后将当前字符push进入数组
+                将max更新为当前最长子串的长度
+        */
+        function lengthOfLongestSubstringOne(str){
+            let arr = [],max = 0
+            for(let i = 0; i < str.length; i++){
+                let index = arr.indexOf(str[i])
+                if(index !== -1) arr.splice(0,index + 1)
+                arr.push(str[i])
+                max = Math.max(arr.length,max)
+            }
+            return max
+        }
+
+        console.log(lengthOfLongestSubstringOne('abcabcbb')) //3
+        console.log(lengthOfLongestSubstringOne('bbbbb')) //1
+        console.log(lengthOfLongestSubstringOne('pwwkew')) //3
+
+
+        /*
+            使用map来存储当前已经比那里过的字符，key为字符，value为下标
+            使用i来标记无重复子串开始下标，j为当前遍历字符下标
+            遍历字符串，判断当前字符是否已经在map中存在，存在则更新无重复子串的下标i为相同字符的下一位置
+            此时从i到j为最新的无重复子串，更新max，将当前字符与下标放入map中
+        */
+
+        function lengthOfLongestSubstringTwo(str){
+            let map = new Map(),max = 0
+            for(let i = 0,j = 0; j < str.length; j++){
+                if(map.has(str[j])) i = Math.max(map.get(str[j]),i)
+                max = Math.max(j - i,max)
+                map.set(str[j],j)
+            }
+            return max
+        }
+
+        console.log(lengthOfLongestSubstringTwo('abcabcbb')) //3
+        console.log(lengthOfLongestSubstringTwo('bbbbb')) //1
+        console.log(lengthOfLongestSubstringTwo('pwwkew')) //3
+    </script>
+</body>
+</html>
