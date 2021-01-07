@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：设计一个支持push、pop、top操作，并能在常熟时间内检索到最小元素的栈
+            push(x) 将元素x推入栈中
+            pop() 删除栈顶的元素
+            top() 获取栈顶元素
+            getMin() 检索栈中的最小元素
+        */
+
+        // function MinStack(){
+        //     this.stack = []
+        //     this.min = null
+        // }
+
+        // MinStack.prototype.push = function(x){
+        //     if(this.stack.length === 0) this.min = x
+        //     this.min = Math.min(this.min,x)
+        //     this.stack.push(x)
+        // }
+
+        // MinStack.prototype.pop = function(){
+        //     let num = this.stack.pop()
+        //     this.min = Math.min(...this.stack)
+        //     return num
+        // }
+
+        // MinStack.prototype.top = function(){
+        //     if(!this.stack.length) return null
+        //     return this.stack[this.stack.length - 1]
+        // }
+
+        // MinStack.prototype.getMin = function(){
+        //     return this.min
+        // }
+
+        // let minStack = new MinStack()
+        // minStack.push(-2)
+        // minStack.push(0)
+        // minStack.push(-3)
+        // console.log(minStack.getMin())
+        // minStack.pop()
+        // console.log(minStack.top())
+        // console.log(minStack.getMin())
+
+
+        class MinStack {
+            constructor(){
+                this.stack = []
+                this.min = null
+            }
+            push(num){
+                this.stack.push(num)
+                if(!this.stack.length) this.min = num
+                this.min = Math.min(...this.stack)
+            }
+            pop(){
+                this.stack.pop()
+                this.min = Math.min(...this.stack)
+            }
+            top(){
+                return this.stack[this.stack.length - 1]
+            }
+            getMin(){
+                return this.min
+            }
+        }
+
+        let minStack = new MinStack()
+        console.log(minStack)
+        minStack.push(-2)
+        minStack.push(0)
+        minStack.push(-3)
+        console.log(minStack.getMin())
+        minStack.pop()
+        console.log(minStack.top())
+        console.log(minStack.getMin())
+    </script>
+</body>
+</html>
