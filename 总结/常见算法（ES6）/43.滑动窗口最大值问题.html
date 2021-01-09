@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：滑动窗口最大值问题
+            解释：给定一个数组arr和滑动窗口的大小k，找出滑动窗口例的最大值
+            例：
+                输入：arr = [1,3,-1,-3,5,3,6,7],k = 3
+                输出：[3, 3, 5, 5, 6, 7]
+                解释：
+                    [1,3,-1],-3,5,3,6,7 -> 3
+                    1,[3,-1,-3],5,3,6,7 -> 3
+                    1,3,[-1,-3,5],3,6,7 -> 5
+                    1,3,-1,[-3,5,3],6,7 -> 5
+                    1,3,-1,-3,[5,3,6],7 -> 6
+                    1,3,-1,-3,5,[3,6,7] -> 7
+        */
+
+        function test(arr,k){
+            let i = 0,result = []
+            if(k == 1) return arr
+            else{
+                while(i <= arr.length - k){
+                    let newArr = arr.slice(i,i + k)
+                    result.push(Math.max(...newArr))
+                    i++
+                }
+                return result
+            }
+        }
+
+        console.log(test([1,3,-1,-3,5,3,6,7],3))
+    </script>
+</body>
+</html>

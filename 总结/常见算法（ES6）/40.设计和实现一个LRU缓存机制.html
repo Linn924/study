@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：设计和实现一个LRU（最近最少）缓存机制
+            解释：此缓存机制需支持两种操作，获取数据get和写入数据put
+            获取数据get(key) - 如果密钥(key)存在于缓存中，则获取密钥的值，否则返回-1
+            写入数据put(key,value) - 如果密钥不存在，则写入数据。当缓存容量达到上限时，它应该在写入
+            新数据之前删除最久未使用的数据，从而为新数据流出空间 
+        */
+
+        class LRUCache{
+            constructor(size){
+                this.cache = new Map() //缓存器
+                this.size = size //缓存容量
+            }
+            get(key){
+                if(this.cache.has(key)){
+                    let value = this.cache.get(key) //获取对应key的值
+                    this.cache.delete(key) //删除对应key这一条键值对
+                    this.cache.set(key,value) //插入对应key这一条键值对(意味着这是被最近使用的数据)
+                    return value
+                }
+                return -1
+            }
+            put(key,value){
+                if(this.cache.has(key)){
+                    this.cache.delete(key) //存在对应key即删除对应key这一条键值对
+                }else if(this.cache.size >= this.size){
+                    this.cache.delete(this.cache.keys().next().value) //缓存器容量达到极限，删除最久未使用的数据
+                }
+                this.cache.set(key,value) //无论存在还是不存在都要插入这一条新的键值对
+            }
+        }
+
+        let cache = new LRUCache(2)
+
+        cache.put(1,1)
+        cache.put(2,2)
+        console.log(cache.get(1)) //1
+        cache.put(3,3)
+        console.log(cache.get(2)) //-1
+        cache.put(4,4)
+        console.log(cache.get(1)) //-1
+        console.log(cache.get(3)) //3
+        console.log(cache.get(4)) //4
+    </script>
+</body>
+</html>
