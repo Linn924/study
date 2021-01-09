@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：设计LazyMan类
+            功能设计：
+                LazyMan('Tony') //Hi I am Tony
+                LazyMan('Tony').sleep(10).eat('lunch') // Hi I am Tony 10秒后 I am eating lunch
+                LazyMan('Tony').eat('lunch').sleep(10).eat('diner') 
+                // Hi I am Tony 
+                // I am eating lunch 
+                // 10秒后
+                // I am eating diner 
+                LazyMan('Tony').eat('lunch').eat('diner').sleepFirst(5).sleep(10).eat('junk food')
+                // Hi I am Tony 
+                // 5秒后
+                // I am eating lunch 
+                // I am eating diner
+                // 10秒后 
+                // I am eating junk food 
+        */
+
+        class LazyMan{
+            constructor(name){
+                this.name = name
+            }
+        }
+    </script>
+</body>
+</html>
