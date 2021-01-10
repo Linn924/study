@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：随机生成一个长度为10的整数类型数组，并将其按一定规则排序
+            例：[2,10,3,4,5,11,10,11,20,21] -> [[2,3,4,5],[10,11],[20,21]]
+        */
+
+        function getRandomArr(min,max){
+           return Array.from({length:10}).map((item,index) => Math.floor(Math.random() * (max - min)) + min)
+        }
+        function arrSort(arr){
+            let obj = {},newArr = [...(new Set(arr))].sort((a,b) => a - b)
+            newArr.forEach(item => {
+                let result = Math.floor(item / 10)
+                if(!obj[result]) obj[result] = []
+                obj[result].push(item)
+            })
+            return Object.values(obj)
+        }
+        console.log(arrSort(getRandomArr(0,99)))
+    </script>
+</body>
+</html>

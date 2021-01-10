@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    html,
+    body{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .carousel {
+        position: relative;
+        width: 600px;
+        height: 400px;
+        box-sizing: border-box;
+        overflow: hidden;
+        margin: 200px auto;
+        cursor: pointer;
+    }
+    .carousel:hover .carousel-prev{
+        display: block;
+        animation: showLeft .5s forwards;
+    }
+    .carousel:hover .carousel-next{
+        display: block;
+        animation: showRight .5s forwards;
+    }
+    .carousel-board {
+        display: flex;
+        position: relative;
+        list-style: none;
+        width: 600px;
+        height: 400px;
+        margin: 0;
+        padding: 0;
+    }
+    .carousel-board-item {
+        max-width: 600px;
+        min-width: 600px;
+        height: 400px;
+        line-height: 400px;
+        text-align: center;
+        font-size: 30px;
+        color: #fff;
+    }
+    .carousel-btn {
+        position: absolute;
+        z-index: 100;
+        transform: translateY(-50%);
+        cursor: pointer;
+        width: 25px;
+        height: 25px;
+        color: #fff;
+        background-color: rgba(0, 0, 0, .25);
+        border-radius: 50%;
+        padding: 10px;
+        display: none;
+    }
+    .carousel-prev {
+        top: 50%;
+        left: 5px;
+    }
+    .carousel-next {
+        top: 50%;
+        right: 5px;
+    }
+    @keyframes showLeft {
+        form{
+            left: 5px;
+        }
+        to{
+            left: 20px;
+        }
+    }
+    @keyframes showRight {
+        form{
+            right: 5px;
+        }
+        to{
+            right: 20px;
+        }
+    }
+    .carousel-prev::after{
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: calc(50% + 3px);
+        transform: translate(-50%,-50%) rotate(-45deg);
+        clip: rect(0px,10px,10px,0px);
+        width: 10px;
+        height: 10px;
+        border: 1px solid #fff;
+    }
+    .carousel-next::after{
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: calc(50% - 4px);
+        transform: translate(-50%,-50%) rotate(135deg);
+        clip: rect(0px,10px,10px,0px);
+        width: 10px;
+        height: 10px;
+        border: 1px solid #fff;
+    }
+</style>
+<body>
+    <div class="carousel">
+        <ul class="carousel-board">
+            <li class="carousel-board-item" style="background-color:#2980b9">4</li>
+            <li class="carousel-board-item" style="background-color:#3498db">1</li>
+            <li class="carousel-board-item" style="background-color:#9b59b6">2</li>
+            <li class="carousel-board-item" style="background-color:#8e44ad">3</li>
+            <li class="carousel-board-item" style="background-color:#2980b9">4</li>
+            <li class="carousel-board-item" style="background-color:#3498db">1</li>
+        </ul>
+        <span class="carousel-btn carousel-prev"></span>
+        <span class="carousel-btn carousel-next"></span>
+    </div>
+    <script>
+        /*
+            题：实现无缝轮播
+            实现原理：轮播图li排成一排，移动ul
+        */
+        (function(){
+            let prev = document.getElementsByClassName("carousel-prev")[0]
+            let next = document.getElementsByClassName("carousel-next")[0]
+            let board = document.getElementsByClassName("carousel-board")[0]
+            let panels = Array.from(document.getElementsByClassName('carousel-board-item'))
+            let index = 1 //设置默认的index值
+            board.style.left = -600 + 'px'
+            prev.addEventListener('click',() => {
+                index--
+                animate(600)
+                if(index === 0){
+                    setTimeout(() => {
+                        //去掉动画
+                        board.style.transition = "0s"
+                        let distance = -(panels.length - 2) * 600
+                        //默默的右移board至 4
+                        board.style.left = parseInt(board.style.left) + distance + "px"
+                    }, 500)
+                    index = 4
+                }
+            })
+
+            next.addEventListener("click", () => {
+                index++
+                animate(-600)
+                if (index === panels.length - 1) {
+                    setTimeout(() => {
+                        board.style.transition = "0s"
+                        let distance = (panels.length - 2) * 600
+                        //默默的左移board 至 1
+                        board.style.left = parseInt(board.style.left) + distance + "px"
+                    }, 500)
+                    index = 1
+                }
+            })
+
+            function animate(width = 600) {
+                board.style.transition = "0.5s"
+                board.style.left || (board.style.left = 0)
+                board.style.left = parseInt(board.style.left,10) + width + "px"
+            }
+        })()
+    </script>
+</body>
+</html>
