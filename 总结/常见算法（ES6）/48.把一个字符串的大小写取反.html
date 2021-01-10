@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：把一个字符串的大小写取反（大写变小写，小写变大写）
+            例：'AbC' -> 'aBc'
+        */
+
+        function testOne(str){
+            return [].map.call(str,item => /[a-z]/.test(item) ? item.toUpperCase() : item.toLowerCase()).join('')
+        }
+
+        function testTwo(str){
+            return str.replace(/(\w)/g,item => item === item.toUpperCase() ? item.toLowerCase() : item.toUpperCase())
+        }
+
+        console.log(testOne('AbC'))
+        console.log(testTwo('AbC'))
+    </script>
+</body>
+</html>
