@@ -26,11 +26,55 @@
                 // I am eating junk food 
         */
 
-        class LazyMan{
+        class LazyManClass{
             constructor(name){
                 this.name = name
+                this.fns = []
+                console.log(`Hi I am ${name}`)
+                setTimeout(() => this.next(),0)
             }
+            next(){
+                const fn = this.fns.shift()
+                fn && fn.call(this,null)
+            }
+            sleepFirst(wait){
+                const fn = () => {
+                    setTimeout(() => {
+                        console.log(`${wait}秒后`)
+                        this.next()
+                    },wait)
+                }
+                this.fns.unshift(fn)
+                return this
+            }
+            sleep(wait){
+                const fn = () => {
+                    setTimeout(() => {
+                        console.log(`${wait}秒后`)
+                        this.next()
+                    },wait)
+                }
+                this.fns.push(fn)
+                return this
+            }
+            eat(food){
+                const fn = () => {
+                    console.log(`I am eating ${food}`)
+                    this.next()
+                }
+                this.fns.push(fn)
+                return this
+            }  
         }
+        
+        const LazyMan = name => new LazyManClass(name)
+        LazyMan('Tony').eat('lunch').eat('diner').sleepFirst(5).sleep(10).eat('junk food')
+        // Hi I am Tony 
+        // 5秒后
+        // I am eating lunch 
+        // I am eating diner
+        // 10秒后 
+        // I am eating junk food
     </script>
 </body>
 </html>
