@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div"></div>
+    <input type="text" id="input">
+    <script>
+        /*
+            题：利用Proxy实现一个简易的MVVM
+            参照vue的响应式设计模式，将数据劫持部分的Object.defineProperty替换为Proxy即可，其他部分，
+            如complie，watcher，dep,事件监听保持不变
+        */
+        class Watcher{
+            constructor(cb) {
+                this.cb = cb
+            }
+            update(){
+                this.cb()
+            }
+        }
+
+        class Dep{
+            constructor() {
+                this.subs = []
+            }
+            publish(){
+                this.subs.forEach(item => {
+                    item.update && item.update()
+                })
+            }
+        }
+
+        class MVVM{
+            constructor(data){
+                let that = this
+                this.dep = new Dep()
+                this.data = new Proxy(data,{
+                    get(obj,key,proxy){
+                        that.dep.target && that.dep.subs.push(that.dep.target)
+                        return obj[key]
+                    },
+                    set(obj,key,value,proxy){
+                        obj[key] = value
+                        that.dep.publish()
+                        return true
+                    }
+                })
+                this.compile()
+            }
+            compile(){
+                let divWatcher = new Watcher(() => this.complieUtils().div())
+                this.dep.target = divWatcher
+                this.complieUtils().div()
+                this.dep.target = null
+
+                let inputWatcher = new Watcher(() => this.complieUtils().input())
+                this.dep.target = inputWatcher
+                this.complieUtils().input()
+                this.complieUtils().addListener()
+                this.dep.target = null
+            }
+            complieUtils(){
+                let that = this
+                return {
+                    div(){
+                        document.getElementById('div').innerHTML = that.data.div
+                    },
+                    input(){
+                        document.getElementById('input').value = that.data.input
+                    },
+                    addListener(){
+                        document.getElementById('input').addEventListener('input',function(){
+                            that.data.input = this.value
+                        })
+                    }
+                }
+            }
+        }
+
+        let mvvm = new MVVM({div:'测试div',input:'测试input'})
+
+        // mvvm.data.div = '改变div'
+        // mvvm.data.input = '改变input'
+    </script>
+</body>
+</html>

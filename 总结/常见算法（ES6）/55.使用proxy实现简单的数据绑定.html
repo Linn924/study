@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="input">
+    <p id="p"></p>
+    <script>
+        /*
+            Proxy 对象用于创建一个对象的代理，从而实现基本操作的拦截和自定义（如属性查找、赋值、枚举、函数调用等）
+            
+            const p = new Proxy(target, handler)
+            target 要使用 Proxy 包装的目标对象（可以是任何类型的对象，包括原生数组，函数，甚至另一个代理）
+            handler 一个通常以函数作为属性的对象，各属性中的函数分别定义了在执行各种操作时代理 p 的行为
+
+            handler.get() 属性读取操作的捕捉器。
+            handler.set() 属性设置操作的捕捉器。
+
+            Reflect.get()方法与从 对象 (target[propertyKey]) 中读取属性类似，但它是通过一个函数执行来操作的。
+        */
+        const input = document.getElementById('input')
+        const p = document.getElementById('p')
+        var obj = {}
+
+        const newObj = new Proxy(obj,{
+            get:function(target,key){
+                return Reflect.get(target,key)
+            },
+            set:function(target,key,value){
+                // console.log(`target:${target},key:${key},value:${value}`)
+                if(key === 'text'){
+                    input.value = value
+                    p.innerHTML = value
+                }
+                return Reflect.set(target,key,value)
+            }
+        })
+
+        input.addEventListener('keyup',e => newObj.text = e.target.value)
+    </script>
+</body>
+</html>

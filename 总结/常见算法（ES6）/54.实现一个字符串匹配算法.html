@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：实现一个字符串匹配算法，从长度为n的字符串S中，查找是否存在字符串T,T的长度为m,若存在返回所在位置
+        */
+
+        function findOne(S,T){
+            return S.search(T)
+        }
+
+        function findTwo(S,T){
+            const match = S.match(T)
+            console.log(match)
+            return match ? match.index : -1
+        }
+
+        console.log(findOne('LinnCooper','Cooper')) //4
+        console.log(findTwo('LinnCooper','Cooper')) //4
+    </script>
+</body>
+</html>

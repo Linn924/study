@@ -534,6 +534,7 @@
         //53、Object.freeze()
         //    冻结对象，无法添加、删除、或者修改对象的属性（除非属性的值是另外一个对象）
         //    由于x的值不是对象，所以无法修改；或许会报TypeError错误
+        //    调用不存在的函数时，报TypeError错误
         // const box = {x:10,y:20}
         // Object.freeze(box)
         // const shape = box
@@ -635,6 +636,25 @@
         // Object.defineProperty(person,'age',{value:21})
         // console.log(person) //{name: "LinnCooper", age: 21}
         // console.log(Object.keys(person)) //["name"]
+
+
+        //64、对象的引用
+        // const person = {
+        //     name:'LinnCooper',
+        //     age:21
+        // }
+        // let city = person.city
+        // city = 'shanghai'
+        // console.log(person) //{name: "LinnCooper", age: 21}
+        // console.log(city) //shanghai
+
+
+        //65、箭头函数
+        // const add = x => y => z => {
+        //     console.log(x,y,z) //4,5,6
+        //     return x + y + z
+        // }
+        // console.log(add(4)(5)(6)) //15
     </script>
 </body>
 </html>
