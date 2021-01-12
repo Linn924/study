@@ -21,8 +21,8 @@
             const inRight = inorder.slice(index + 1) //获取中序遍历右子树数组
             const preLeft = preorder.slice(1,index + 1) //获取前序遍历左子树数组
             const preRight = preorder.slice(index + 1) //获取前序遍历右子树数组
-            node.left = buildTree(preLeft,inLeft) 
-            node.right = buildTree(preRight,inRight)
+            node.left = buildTree(preLeft,inLeft) //左子树递归
+            node.right = buildTree(preRight,inRight) //右子树递归
             return node
         }
     </script>
