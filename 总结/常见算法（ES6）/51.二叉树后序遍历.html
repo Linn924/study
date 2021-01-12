@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：二叉树后序遍历
+            思路：先遍历左子树，在遍历右子树，在遍历根结点。
+            例：
+                输入：[1,null,2,3]
+                输出：[3,2,1]
+        */
+        
+        function postorderTraversal(root){
+            let result = []
+            var postorderTraverseNode = node => {
+                if(node){
+                    //先遍历左子树
+                    postorderTraverseNode(node.left)
+                    //再遍历右子树
+                    postorderTraverseNode(node.right)
+                    //再遍历根结点
+                    result.push(node.val)
+                }
+            }
+            postorderTraverseNode(root)
+            return result
+        }
+
+
+        /*
+            迭代实现,利用栈的先进后出特点
+        */
+        function postorderTraversal(root){
+            let result = [],
+                stack = [],
+
+            //当根结点不为空时，将根结点入栈
+            if(root) stack.push(root)
+            while(stack.length > 0){
+                const curNode = stack.pop()
+                //在结果数组的头部添加结点
+                result.unshift(curNode.val)
+                if(curNode.left){
+                    stack.push(curNode.left)
+                }
+                if(curNode.right){
+                    stack.push(curNode.right)
+                }
+            }
+            return result
+        }
+    </script>
+</body>
+</html>

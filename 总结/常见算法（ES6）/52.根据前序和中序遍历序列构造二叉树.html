@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：根据前序和中序序列构造二叉树
+            思路：根据前序遍历可以知道二叉树的根结点，根据中序遍历，可以知道根结点的左右子树的中序遍历及左右组数的节点数
+            根据左右子树的节点数目，结合前序遍历，就知道左右子树的前序遍历
+        */
+
+        function buildTree(preorder,inorder){
+            if(!preorder.length) return null
+            const node  = new TreeNode(preorder[0])
+            const index = inorder.indexOf(preorder[0]) //获取当前根结点在中序遍历数组中的下标
+            const inLeft = inorder.slice(0,index) //获取中序遍历左子树数组
+            const inRight = inorder.slice(index + 1) //获取中序遍历右子树数组
+            const preLeft = preorder.slice(1,index + 1) //获取前序遍历左子树数组
+            const preRight = preorder.slice(index + 1) //获取前序遍历右子树数组
+            node.left = buildTree(preLeft,inLeft) 
+            node.right = buildTree(preRight,inRight)
+            return node
+        }
+    </script>
+</body>
+</html>

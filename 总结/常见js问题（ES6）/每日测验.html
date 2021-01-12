@@ -630,6 +630,11 @@
         // console.log([...person]) //person无法迭代，所以会报错
 
 
+        //63、通过Object.defineProperty方法可以给对象添加或修改属性，添加的属性默认Wie不可枚举
+        // const person = {name : 'LinnCooper'}
+        // Object.defineProperty(person,'age',{value:21})
+        // console.log(person) //{name: "LinnCooper", age: 21}
+        // console.log(Object.keys(person)) //["name"]
     </script>
 </body>
 </html>

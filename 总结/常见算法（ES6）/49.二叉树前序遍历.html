@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：二叉树前序遍历，给定一个二叉树，返回它的前序遍历
+            思路：先遍历根结点，在遍历左子树，在遍历右子树
+            例：
+                输入:[1,null,2,3]
+                输出：[1,2,3]
+        */
+
+        function preorderTraversal(root){
+            let result = []
+            var preorderTraverseNode = node => {
+                if(node){
+                    //先根结点
+                    result.push(node.val)
+                    //在遍历左子树
+                    preorderTraversal(node.left)
+                    //在遍历右子树
+                    preorderTraversal(node.right)
+                }
+            }
+            preorderTraverseNode(root)
+            return result
+        } 
+
+
+        /*
+            迭代实现，利用栈来模拟递归的过程。
+                首先根入栈
+                将根结点出栈，将根结点放入结果数组中
+                遍历左子树、右子树，因为栈是先进后出，所以，先右子树入栈，然后左子树入栈
+                继续出栈（左子树被出栈）
+                依次循环出栈遍历入栈，直到栈为空，遍历完成
+        */
+        function preorderTraversal(root){
+            let result = [],
+                stack = []
+            
+            //当根结点不为空时，将根结点入栈
+            if(root) stack.push(root)
+            while(stack.length > 0){
+                const curNode = stack.pop()
+                //先访问根结点
+                result.push(curNode.val)
+                //先把右子树入栈
+                if(curNode.right){
+                    stack.push(curNode.right)
+                }
+                //再把左子树入栈
+                if(curNode.left){
+                    stack.push(curNode.left)
+                }
+            }
+            return result
+        }
+
+    </script>
+</body>
+</html>
