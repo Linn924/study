@@ -13,7 +13,7 @@
             arr.some((item,index) => {
                 if(map.has(target - item)){
                     result.push(map.get(target - item),index)
-                    delete map
+                    map = null
                     return true
                 }else map.set(item,index)
             })
