@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：旋转数组，将数组中的元素向右移动k个位置
+            例1：
+                输入：[1,2,3,4,5,6,7] , k = 3
+                输出：[5,6,7,1,2,3,4]
+        */
+        console.time()
+        function moveArrOne(arr,k){
+            let newArr = []
+            arr.forEach((item,index) => {
+                if(index + k < arr.length){
+                    newArr[index + k] = item
+                }else{
+                    newArr[index+ k - arr.length] = item
+                }
+            })
+            return newArr
+        }
+        console.log(moveArrOne([1,2,3,4,5,6,7],3)) //[5,6,7,1,2,3,4]
+        console.timeEnd() //default: 0.6259765625 ms
+
+
+        /*
+            向右移动k个位置意味着，将最后k个元素移动到最前面
+        */
+        console.time()
+        function moveArrTwo(arr,k){
+            return [...arr.splice(arr.length - k,k),...arr]
+        }
+        console.log(moveArrTwo([1,2,3,4,5,6,7],3)) //[5,6,7,1,2,3,4]
+        console.timeEnd() //default: 0.298095703125 ms
+
+        /*
+            利用栈，先进后出
+        */
+       console.time()
+       function moveArrThree(arr,k){
+           for(let i = 1; i <= k; i++){
+               const item = arr.pop()
+               arr.unshift(item)
+           }
+           return arr
+       }
+       console.log(moveArrThree([1,2,3,4,5,6,7],3)) //[5,6,7,1,2,3,4]
+       console.timeEnd() //default: 0.35986328125 ms
+    </script>
+</body>
+</html>
