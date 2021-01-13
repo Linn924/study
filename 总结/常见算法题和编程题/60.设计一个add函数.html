@@ -21,7 +21,7 @@
         function add(){
             let args = [...arguments]
             
-            let fn = function(){ //箭头函数没有自己的this和arguments
+            let fn = function(){ //箭头函数没有自己的this和arguments,所以此处不能写箭头函数
                 args.push(...arguments)
                 return fn
             }
