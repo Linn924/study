@@ -24,15 +24,14 @@
             array:[{a:1},2],
             [symbolName]:9
         }
-        obj.d = obj
 
         const isObject = obj => obj !== null && (typeof obj === 'object' || typeof obj === 'function')
         const isFunction = obj => typeof obj === 'function'
 
         function deepClone(obj,hash = new WeakMap()){
             if(hash.get(obj)) return hash.get(obj) //环处理
-            if(!isObject) return obj
-            if(isFunction) return obj //function返回原引用
+            if(!isObject(obj)) return obj
+            if(isFunction(obj)) return obj //function返回原引用
             let copyObj
             const Constructor = obj.constructor
 

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：输入数字，返回数字逆序后的字符串
+            例：
+                输入：1234
+                输出：'4321'
+            要求：
+                必须使用递归函数
+                不能使用全局变量
+                输入函数有且仅有一个参数传入
+                必须返回字符串
+        */
+
+        function fn(number){
+            let num1 = 0,
+                num2 = 0
+            
+            num1 = number % 10
+            num2 = Math.floor(number / 10)
+
+            if(num2 < 1) return number
+            else return `${num1}${fn(num2)}` 
+        }
+
+        console.log(fn(1234))
+    </script>
+</body>
+</html>
