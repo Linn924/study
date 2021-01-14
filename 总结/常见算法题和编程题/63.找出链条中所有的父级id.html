@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：已知数据格式，实现一个函数fn找出链条中所有的父级id
+            const value = '112'
+            const fn = value => {
+
+            }
+            fn(value) //[1,11,112]
+
+            arr = [
+                {
+                    id:'1',
+                    name:'江苏省',
+                    children:[
+                        {
+                            id:'11',
+                            name:'徐州市',
+                            children:[
+                                {
+                                    id:'111',
+                                    name:'丰县'
+                                },
+                                {
+                                    id:'112',
+                                    name:'沛县'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        */
+
+        function fn(arr,value){
+            let result = []
+            let search = (data,temp = []) => {
+                for(let item of data){
+                    if(item.id !== value) 
+                    item.children && search(item.children,temp.concat(item.id))
+                    else{
+                        result = temp
+                        return 
+                    }
+
+                }
+            }
+            search(arr)
+            return result
+        }
+
+        let arr = [
+                {
+                    id:'1',
+                    name:'江苏省',
+                    children:[
+                        {
+                            id:'11',
+                            name:'徐州市',
+                            children:[
+                                {
+                                    id:'111',
+                                    name:'丰县'
+                                },
+                                {
+                                    id:'112',
+                                    name:'沛县'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        console.log(fn(arr,'112'))
+    </script>
+</body>
+</html>

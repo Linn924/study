@@ -673,6 +673,27 @@
         //67、flat()函数
         // const arr = [1,[2,3]]
         // console.log(arr.flat(1)) //[1,2,3]
+
+
+        //68、Object.seal()
+        //Object.seal()方法密封对象，防止向其添加新属性，不可删除存在的属性
+        // const person = {name:'LinnCooper'}
+        // Object.seal(person)
+        // person.age = 21
+        // console.log(person) //{name:'LinnCooper'}
+
+
+        //69、双等和三等，new Number()是一个对象
+        // let a = 2,
+        //     b = new Number(2),
+        //     c = 2
+        // console.log(a == b) //true
+        // console.log(a === b) //false
+        // console.log(b === c) //false
+
+
+        //70、parseInt()方法检查字符串中的字符是否合法，不合法立即停止解析，所以解析到7就结束了
+        // console.log(parseInt('7*6',10)) //7
     </script>
 </body>
 </html>

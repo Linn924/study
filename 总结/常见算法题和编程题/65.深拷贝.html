@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：深拷贝，考虑相互引用以及Symbol拷贝的情况
+        */
+
+        const symbolName = Symbol()
+        const obj = {
+            objNumber:new Number(1),
+            number:1,
+            objString:new String('LinnCooper'),
+            string:'LinnCooper',
+            objRegexp:new RegExp('\\w'),
+            regexp:/w+/g,
+            date:new Date(),
+            function:function(){},
+            array:[{a:1},2],
+            [symbolName]:9
+        }
+        obj.d = obj
+
+        const isObject = obj => obj !== null && (typeof obj === 'object' || typeof obj === 'function')
+        const isFunction = obj => typeof obj === 'function'
+
+        function deepClone(obj,hash = new WeakMap()){
+            if(hash.get(obj)) return hash.get(obj) //环处理
+            if(!isObject) return obj
+            if(isFunction) return obj //function返回原引用
+            let copyObj
+            const Constructor = obj.constructor
+
+            switch(Constructor){
+                case Boolean:
+                case Date:
+                    return new Date(+obj)
+                case Number:
+                case String:
+                case RegExp:
+                    return new Constructor(obj)
+                default:
+                    copyObj = new Constructor()
+                    hash.set(obj,copyObj)
+            }
+
+            [...Object.getOwnPropertyNames(obj),...Object.getOwnPropertySymbols(obj)].forEach(item => {
+                copyObj[item] = deepClone(obj[item],hash)
+            })
+            return copyObj
+        }
+
+        const copy = deepClone(obj)
+        console.log(copy.objNumber === obj.objNumber) //true
+        console.log(copy.number === obj.number) //true
+        console.log(copy.objString === obj.objString) //true
+        console.log(copy.string === obj.string) //true
+        console.log(copy.objRegexp === obj.objRegexp) //true
+        console.log(copy.regexp === obj.regexp) //true
+        console.log(copy.date === obj.date) //true
+        console.log(copy.function === obj.function) //true
+        console.log(copy.array[0] === obj.array[0]) //true
+        console.log(copy[symbolName] === obj[symbolName]) //true
+    </script>
+</body>
+</html>

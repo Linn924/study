@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：求解两个有序数组的中间数,一个长度为m,另一个长度为n
+            例：
+                输入：nums1 = [1,2],nums2 = [3,4]
+                输出：2.5
+                解释：(2 + 3) / 2 = 2.5
+            注意：时间复杂度为o(m + n)
+        */
+
+        //归并排序
+        function sortMN(arr1,arr2){
+            let i = 0,
+                j = 0,
+                newArr = []
+            
+            while(i < arr1.length && j < arr2.length){
+                if(arr1[i] < arr2[j]){
+                    newArr.push(arr1[i])
+                    ++i
+                }else{
+                    newArr.push(arr2[j])
+                    ++j
+                }
+            }
+            if(i === arr1.length) return newArr.concat(arr2.slice(j))
+            else return newArr.concat(arr1.slice(i))
+        }
+
+        function middleNumber(arr1,arr2){
+            let arr = sortMN(arr1,arr2),
+                length = arr.length
+            if(length % 2 === 0) return (arr[length / 2] + arr[length / 2 - 1]) / 2.00
+            else return arr[length / 2]
+        }
+
+        console.log(middleNumber([1,3],[2,4])) //2.5
+    </script>
+</body>
+</html>
