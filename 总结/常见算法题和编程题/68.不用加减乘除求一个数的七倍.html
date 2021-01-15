@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：不用加减乘除实现一个数的七倍
+            思路：利用位运算符
+        */
+
+        function testOne(number,times){
+            let newNumber = number.toString(times) //将数字转成七进制
+            return parseInt(`${newNumber}0`,times) //再将数字转换成十进制
+        }
+
+
+        function testTwo(number,times){
+            return ''.padEnd(number).repeat(times).length
+        }
+
+        console.log(testOne(10,7)) //70
+        console.log(testTwo(10,7)) //70
+    </script>
+</body>
+</html>

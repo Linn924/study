@@ -631,7 +631,7 @@
         // console.log([...person]) //person无法迭代，所以会报错
 
 
-        //63、通过Object.defineProperty方法可以给对象添加或修改属性，添加的属性默认Wie不可枚举
+        //63、通过Object.defineProperty方法可以给对象添加或修改属性，添加的属性默认不可枚举
         // const person = {name : 'LinnCooper'}
         // Object.defineProperty(person,'age',{value:21})
         // console.log(person) //{name: "LinnCooper", age: 21}
@@ -694,6 +694,15 @@
 
         //70、parseInt()方法检查字符串中的字符是否合法，不合法立即停止解析，所以解析到7就结束了
         // console.log(parseInt('7*6',10)) //7
+
+
+        //71、严格模式下未声明变量
+        // function getAge(){
+        //     'use strict'
+        //     age = 21
+        //     console.log(age) //ReferenceError
+        // }
+        // getAge()
     </script>
 </body>
 </html>
