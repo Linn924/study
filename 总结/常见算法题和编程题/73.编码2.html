@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：转换对象
+            例：
+                var entry = {
+                    a:{
+                        b:{
+                            c:{
+                                dd:'abcdd'
+                            }
+                        },
+                        d:{
+                            xx:'adxx'
+                        },
+                        e:'ae'
+                    }
+                }
+
+                转换成
+
+                var output = {
+                    'a.b.c.dd' : 'abcdd',
+                    'a.d.xx' : 'adxx',
+                    'a.e' : 'ae'
+                }
+        */
+
+        function flatObj(obj){
+            let result = {},
+                arr = [{
+                    prop:'',
+                    value:obj
+                }]
+            
+            while(arr.length){
+                let {prop,value} = arr.shift()
+                Object.keys(value).forEach(key => {
+                    if(value[key] instanceof Object){
+                        arr.push({
+                            prop:`${prop}${prop && '.'}${key}`,
+                            value:value[key]
+                        })
+                    }else{
+                        result[`${prop}${prop && '.'}${key}`] = value[key]
+                    }
+                })
+            }
+            return result
+        }
+
+        var obj = {
+            a:{
+                b:{
+                    c:{
+                        dd:'abcdd'
+                    }
+                },
+                d:{
+                    xx:'adxx'
+                },
+                e:'ae'
+            }
+        }
+        console.log(flatObj(obj))
+    </script>
+</body>
+</html>
