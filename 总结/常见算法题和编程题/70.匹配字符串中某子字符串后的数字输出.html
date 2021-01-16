@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            例：匹配elective后的数字输出
+                https://www.xx.cn/api?keyword=$local_batch_id=&elective=$local_province_id=33
+                https://www.xx.cn/api?keyword=$local_batch_id=&elective=800$local_province_id=33
+                https://www.xx.cn/api?keyword=$local_batch_id=&elective=800,700$local_province_id=33
+
+                输出：[] || ['800'] || ['800','700']
+                
+        */
+
+        function getUrlValueOne(url){
+            if(!url) return 
+            let res = url.match(/(?<=elective=)(\d+(,\d+)*)/)
+            return res ? res[0].split(',') : []
+        }
+
+        let url1 = 'https://www.xx.cn/api?keyword=$local_batch_id=&elective=$local_province_id=33',
+            url2 = 'https://www.xx.cn/api?keyword=$local_batch_id=&elective=800$local_province_id=33',
+            url3 = 'https://www.xx.cn/api?keyword=$local_batch_id=&elective=800,700$local_province_id=33'
+        
+        console.log(getUrlValueOne(url1)) //[]
+        console.log(getUrlValueOne(url2)) //['800']
+        console.log(getUrlValueOne(url3)) //['800','700']
+
+        function getUrlValueTwo(url){
+            return new URLSearchParams(url).get('elective')
+        }
+
+        console.log(getUrlValueOne(url1)) //[]
+        console.log(getUrlValueOne(url2)) //['800']
+        console.log(getUrlValueOne(url3)) //['800','700']
+    </script>
+</body>
+</html>
