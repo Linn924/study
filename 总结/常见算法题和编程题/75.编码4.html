@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：数组去重函数
+            例1：
+                输入：[123,',meili','123','mogu',123]
+                输出：[123,'meili','123','mogu']
+            例2：
+                输入：[123,[1,2,3],[1,'2',3],[1,2,3],'meili']
+                输出：[123,[1,2,3],[1,'2',3],'meili']
+            例3：
+                输入：[123,{a:1},{a:{b:1}},{a:'1'},{a:{b:1}},'meili']
+                输出：[123,{a:1},{a:{b:1}},{a:'1'},'meili']
+        */
+
+        //判断数组、对象等是否相等
+        function diff(a,b){
+            if(typeof a !== typeof b) return false
+            if(typeof a !== 'object'){
+                if(!Object.is(a,b)) return false
+                else return true
+            }
+            if(Array.isArray(a)){
+                if(a.length !== b.length) return false
+                else return a.every((item,index) => diff(a[index],b[index]))
+            }
+            if(a instanceof Object){
+                const arrA = Object.keys(a)
+                const arrB = Object.keys(b)
+                if(arrA.length !== arrB.length) return false
+                else return arrA.every((item,index) => diff(a[arrA[index]],b[arrB[index]]))
+            }
+        }
+
+        function deduplicationOne(arr){
+            let newArr = [],flag = false
+            arr.forEach(item => {
+                flag = newArr.some(i => diff(i,item) && true)
+                if(!flag) newArr.push(item)
+                else flag = false
+            })
+            return newArr
+        }
+
+        console.log(deduplicationOne([123,',meili','123','mogu',123]))
+        console.log(deduplicationOne([123,[1,2,3],[1,'2',3],[1,2,3],'meili']))
+        console.log(deduplicationOne([123,{a:1},{a:{b:1}},{a:'1'},{a:{b:1}},'meili']))
+    </script>
+</body>
+</html>

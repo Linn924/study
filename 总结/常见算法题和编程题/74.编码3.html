@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：转换数据格式
+            例：
+                var output = {
+                    'a.b.c.dd' : 'abcdd',
+                    'a.d.xx' : 'adxx',
+                    'a.e' : 'ae'
+                }
+                转换成
+                var entry = {
+                    a:{
+                        b:{
+                            c:{
+                                dd:'abcdd'
+                            }
+                        },
+                        d:{
+                            xx:'adxx'
+                        },
+                        e:'ae'
+                    }
+                }  
+        */
+        console.time()
+        function test(object){
+            let result = {}
+            for(const key in object){
+                let recursion = (obj = result,arr = key.split('.')) => {
+                    const number = arr.shift()
+                    if(!obj[number]) obj[number] = arr.length == 0 ? object[key] : {}
+                    while(arr.length){recursion(obj[number],arr)}
+                }
+                recursion()
+            }
+            return result 
+        }
+
+        var output = {
+            'a.b.c.dd' : 'abcdd',
+            'a.d.xx' : 'adxx',
+            'a.e' : 'ae'
+        }
+
+        console.log(test(output))
+        console.timeEnd() //default: 0.693603515625 ms
+    </script>
+</body>
+</html>

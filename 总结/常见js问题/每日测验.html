@@ -714,6 +714,20 @@
         //     console.log('Hi')
         // }, 1000)
         // console.log(timer) //1
+
+
+        //74、暂时性死区
+        //在块级作用域内，存在变量a，便不会继续去外部作用域查找变量
+        //严格来讲，let和const也会有类似的提升行为，但根var不同，提升的时候变量并不会默认赋值为undefined，并且会禁止在声明变量之前使用这些变量，这就是暂时性死区
+        // var a = 1
+        // if(true){
+        //     a = 2
+        //     console.log(a) //ReferenceError
+        //     let a
+        // }
+
+
+        //75、
     </script>
 </body>
 </html>
