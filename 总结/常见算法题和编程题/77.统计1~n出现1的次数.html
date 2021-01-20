@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：统计1~n出现1的次数
+        */
+
+        function testOne(n){
+            let count = 0
+            for(let i = 1; i <= n; i++){
+                count += String(i).split('').filter(item => item == 1).length
+            }
+            return count
+        }
+
+        console.time()
+        console.log(testOne(1000000)) //600001,太耗时
+        console.timeEnd() //default: 371.5068359375 ms
+
+
+        function testTwo(n){
+            if(n < 1) return 0
+            if(n < 10) return 1
+            const str = String(n)
+            const rest = Number(str.slice(1))
+            const power = 10 ** (str.length - 1)
+            const head = Number(str.slice(0,1))
+            if(head === 1) return testTwo(rest) + testTwo(power - 1) + rest + 1
+            else return testTwo(rest) + power + testTwo(power - 1) * head
+        }
+
+        console.time()
+        console.log(testTwo(1000000)) //600001
+        console.timeEnd() //default: 0.202880859375 ms
+    </script>
+</body>
+</html>

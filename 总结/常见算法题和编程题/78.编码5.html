@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：将[{id:1},{id:2,pId:1},...]的重复数组转成树形结构的数组[{id:1,children:[{id:2,pId:1}]},...]
+        */
+
+        function test(arr){
+            let result = []
+            //去重且把数据放在一个对象里面
+            let map = arr.reduce((result,item) => ((result[item.id] = item),result),{}) 
+            for(const item of Object.values(map)){
+                if(!item.pId) result.push(item)
+                else{
+                    const parent = map[item.pId]
+                    parent.children = parent.children || []
+                    parent.children.push(item)
+                }
+            }
+            return result
+        }
+
+        console.log(test([{id:1},{id:2,pId:1},{id:3,pId:2},{id:3,pId:2},{id:4},{id:5,pId:4}]))
+    </script>
+</body>
+</html>

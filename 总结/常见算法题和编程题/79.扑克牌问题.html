@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：有一堆扑克牌，将牌堆第一张放在桌子上，再将接下来的牌堆的第一张放在牌底，如此往复
+            最后桌子上的牌顺序为：(牌底)1,2,3,4,5,6,7,8,9,10,11,12,13(牌顶)
+            问：原来那堆牌的顺序
+        */
+
+        //正向
+        function pos(arr){
+            let newArr = []
+            while(arr.length > 0){
+                newArr.push(arr.pop())
+                if(arr.length) arr.unshift(arr.pop())
+            }
+            return newArr
+        }
+
+        //反向
+        function rev(arr){
+            let newArr = []
+            while(arr.length > 0){
+                if(newArr.length) newArr.push(newArr.shift())
+                newArr.push(arr.pop())
+            }
+            return newArr
+        }
+
+        console.log(pos([7,10,6,13,5,9,4,11,3,8,2,12,1]))
+        console.log(rev([1,2,3,4,5,6,7,8,9,10,11,12,13]))
+
+        
+    </script>
+</body>
+</html>
