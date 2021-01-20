@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：反转单链表，每K个节点反转一次，不足保持原有顺序
+            例：
+                输入：1->2->3->4->5,k = 3
+                输出：3->2->1->4->5
+        */
+        //封装单链表
+        function LinkList(){
+            //封装节点类，保存每个节点的信息
+            function Node(number){
+                this.element = number
+                this.next = null
+            }
+            //初始化链表属性
+            this.length = 0
+            this.head = null
+
+            LinkList.prototype.append = function(element){
+                let newNode = new Node(element)
+                //如果链表为空
+                if(!this.head){
+                    this.head = newNode
+                }else{//如果链表不为空
+                    //将head复制给current变量
+                    let current = this.head
+                    // 操作current变量查找节点next属性为空的节点(循环)
+                    while(current.next){
+                        current = current.next
+                    }
+                    //找到节点后，把新的节点插入到找到的节点的next属性上
+                    current.next = newNode
+                }
+                this.length++
+            }
+        }
+
+        //按照k个节点翻转单链表
+        let reverseGroup = function(head,k){
+            let current = head,
+                count = 0
+            while(current != null && count != k){
+                current = current.next
+                count++
+            }
+            if(count == k){ //如果足够K个元素，则翻转，否则返回
+                current = reverseGroup(current,k) //将后面的元素递归翻转
+                let newHead = current
+                while(count !== 0){ //翻转这一组的K个节点
+                    let next = head.next
+                    head.next = newHead
+                    newHead = head
+                    head = next
+                    count--
+                }
+                head = newHead
+            }
+            return head
+        }
+        let list = new LinkList()
+        list.append(1)
+        list.append(2)
+        list.append(3)
+        list.append(4)
+        list.append(5)
+        console.log(list)
+        console.log(reverseGroup(list.head,3)) //3->2->1->4->5
+    </script>
+</body>
+</html>

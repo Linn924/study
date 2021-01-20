@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：在一个字符串数组中有红、黄、蓝三种颜色的球，且个数不相等、顺序不一致，请按照黄、红、蓝的顺序排序
+            例：红蓝蓝黄红黄蓝红红黄红 -> 黄黄黄红红红红红蓝蓝蓝
+        */
+
+        function test(str){
+            let arr = str.split('')
+            let result = {}
+            arr.forEach(item => {
+                if(result[item]){
+                    result[item].push(item)
+                }else{
+                    result[item] = [item]
+                }
+            })
+            return result['黄'].concat(result['红'],result['蓝']).join('')
+        }
+
+        console.time()
+        console.log(test('红蓝蓝黄红黄蓝红红黄红'))
+        console.timeEnd() //default: 0.51611328125 ms
+
+        function testTwo(str){
+            let rule = {
+                '黄':0,
+                '红':1,
+                '蓝':2
+            }
+            return [...str].sort((a,b) => rule[a] - rule[b]).join('')
+        }
+        console.time()
+        console.log(test('红蓝蓝黄红黄蓝红红黄红'))
+        console.timeEnd() //default: 0.10205078125 ms
+    </script>
+</body>
+</html>

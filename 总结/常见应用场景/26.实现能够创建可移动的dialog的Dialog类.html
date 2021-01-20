@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：实现Dialog类，可以创建dialog对话框，对话框支持拖拽
+        */
+
+        class Dialog {
+            constructor(){
+                this.dialog
+                this.startX
+                this.startY
+                this.moveing = false
+            }
+            create(){
+                this.dialog = document.createElement('div')
+                this.dialog.style = `
+                    width:200px;
+                    height:200px;
+                    background:rgba(0,0,0,.5);
+                    position:absolute;
+                    left:0;
+                    top:0;`
+                document.body.appendChild(this.dialog)
+                this.dialog.addEventListener('mousedown',this.mousedown.bind(this))
+                document.addEventListener('mousemove',this.mousemove.bind(this))
+                document.addEventListener('mouseup',this.mouseup.bind(this))
+            }
+            mousedown(event){
+                this.moveing = true
+                this.startX = event.clientX - this.dialog.offsetLeft
+                this.startY = event.clientY - this.dialog.offsetTop
+            }
+            mousemove(event){
+                if(!this.moveing) return
+                var left = event.clientX - this.startX
+                var top = event.clientY - this.startY
+                var bodyWidth = document.documentElement.clientWidth || document.body.clientWidth
+                var bodyHeight = document.documentElement.clientHeight || document.body.clientHeight
+                if(left <= 0) left = 0
+                else if(left >= bodyWidth - this.dialog.offsetWidth){
+                    left = bodyWidth - this.dialog.offsetWidth
+                }
+                if(top <= 0) top = 0
+                else if(top >= bodyHeight - this.dialog.offsetHeight){
+                    top = bodyHeight - this.dialog.offsetHeight
+                }
+                this.dialog.style.left = left + 'px'
+                this.dialog.style.top = top + 'px'
+            }
+            mouseup(event){
+                this.moveing = false
+                document.removeEventListener('mousemove',this.mousemove)
+                document.removeEventListener('mouseup',this.mouseup)
+            }
+        }
+
+        let dialog = new Dialog()
+        dialog.create()
+    </script>
+</body>
+</html>

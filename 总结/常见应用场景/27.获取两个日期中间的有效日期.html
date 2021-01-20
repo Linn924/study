@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：获取两个日期中间的有效日期
+        */
+
+        function rangeDay(date1,date2){
+            let result = [],
+                startTime = new Date(date1).getTime(),
+                finishTime = new Date(date2).getTime()
+
+            while((startTime += 24*60*60*1000) < finishTime){
+                result.push(new Date(startTime).toLocaleDateString().replace(/\//g,'-'))
+            }
+            return result
+        }
+
+        console.log(rangeDay('2015-02-08','2015-03-03'))
+    </script>
+</body>
+</html>

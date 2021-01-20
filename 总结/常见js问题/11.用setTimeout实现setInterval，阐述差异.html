@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：用setTimeout实现setInterval，阐述与setInterval的差异
+        */
+
+        function mySetInterval(fn,wait){
+            let timer = null
+            let interval = () => {
+                clearTimeout(timer)
+                timer = setTimeout(() => {
+                    fn()
+                    interval()
+                },wait)
+            }
+            interval()
+            interval.cancel = function(){
+                clearTimeout(timer)
+            }
+            return interval
+        }
+        
+        let start = 1
+        let timer = mySetInterval(() => {
+            console.log(start++)
+        },1000)
+        setTimeout(() => {timer.cancel()},5000)
+    </script>
+</body>
+</html>
