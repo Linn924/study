@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：实现一个normalize函数，能将输入的特定的字符串转化Wie特定的结构化数据
+            注意：字符串仅由小写字母和[]组成，且字符串不会包含多余的空格
+            例1：'abc' -> {value:'abc'}
+            例2：'[abc[bcd[def]]]' -> {value:'abc',children:{value:'bcd',children:{value:'def'}}}
+        */
+
+        function normalize(str){
+            let arr = str.match(/\w+/g)
+            console.log(arr)
+        }
+        normalize('[abc[bcd[def]]]')
+    </script>
+</body>
+</html>

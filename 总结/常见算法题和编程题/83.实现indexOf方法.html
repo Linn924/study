@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：实现indexOf方法
+        */
+        function _indexOf(str,target){ //简单的考虑
+            if(typeof string !== 'string') throw new Error('string only')
+            let mt = str.match(new RegExp(target))
+            return mt ? mt.index : -1
+        }
+
+        Object.prototype.myIndexOf = function(str,from = 0){
+            let data = this,
+                isArray = Array.isArray(data),
+                isString = Object.prototype.toString.call(data) == '[object string]'
+            
+            if(!isArray && !isString) throw new SyntaxError()
+            let len = data.length
+            if(from >= len) return -1
+            for(let i = from; i < len; i++){
+                if(isString){
+                    let strLen = str.length
+                    if(data.substr(i,i + strLen) == str) return i
+                }
+                if(isArray && data[i] == str) return i
+            }
+            return -1
+        }
+        
+    </script>
+</body>
+</html>

@@ -7,35 +7,15 @@
 </head>
 <body>
     <script>
-        // function print(n){
-        //     setTimeout(() =>{
-        //         console.log(n)
-        //     },0,Math.floor(Math.random() * 1000))
-        // }
-        // function print(n){
-        //     setTimeout(console.log(n),Math.floor(Math.random() * 1000))
-        // }
-        // function print(n){
-        //     setTimeout(() =>{
-        //         console.log(n)
-        //     },0*Math.floor(Math.random() * 1000))
-        // }
-        // function print(n){
-        //     setTimeout(console.log(n),0,n,Math.floor(Math.random() * 1000))
-        // }
-        // function print(n){
-        //     setTimeout((() => {
-        //         console.log(n)
-        //     }).call(null,n),Math.floor(Math.random() * 1000))
-        // }
-        function print(n){
-            setTimeout(((n) => {
-                console.log(n)
-            })(n),Math.floor(Math.random() * 1000))
+        function test(...args){
+            if(args.length === 0) return
+            if(args.length === 1) return args[0]
+
+            return [...new Set(args.reduce((result,arr) => {
+                return result.filter(item => arr.includes(item))
+            }))]
         }
-       for(var i = 0;i < 100; i++){
-           print(i)
-       }
+        console.log(test([1,2,3],[2,3],[3,3]))
     </script>
 </body>
 </html>
