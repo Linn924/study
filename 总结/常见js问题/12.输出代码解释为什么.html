@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：输出一下代码执行的结果并解释为什么
+        */
+
+        var obj = {
+            '2':3,
+            '3':4,
+            'length':2,
+            'splice':Array.prototype.splice,
+            'push':Array.prototype.push
+        }
+        obj.push(1)
+        obj.push(2)
+        console.log(obj) //Object(4) [empty × 2, 1, 2, splice: ƒ, push: ƒ],length = 4
+
+
+        var object = {
+            '2':3,
+            '3':4,
+            'length':0,
+            'splice':Array.prototype.splice,
+            'push':Array.prototype.push
+        }
+        object.push(1)
+        object.push(2)
+        console.log(object) //Object(2) [1, 2, 2: 3, 3: 4, splice: ƒ, push: ƒ],length = 2
+
+        /*
+            类数组判断方法
+                存在且是对象
+                对象上的splice属性是函数类型
+                对象上有length属性且为正整数
+        */
+
+        function isArrayLike(obj){
+            if(!obj || typeof obj !== 'object') return false
+            try {
+                if(typeof obj.splice === 'function'){
+                    const len = obj.length
+                    return typeof len === 'number' && (len >>0 === len && (len > 0 || 1 / len > 0))
+                }
+            } catch (err) {}
+            return false
+        }
+
+
+        /*
+            所以题目中的是一个类数组，当调用对象中的push（可应用在类似数组的对象上）方法时，
+            以为此时对象中定义 length 属性值为 2，所以从下表为 2 的地方开始插入，但对象中
+            已经赋值了下标2和下标3的值，所以它会替换第三项也就是下标2的值，同理所以结果为
+            Object(4) [empty × 2, 1, 2, splice: ƒ, push: ƒ]
+        */
+    </script>
+</body>
+</html>

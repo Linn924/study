@@ -15,10 +15,25 @@
         */
 
         function normalize(str){
-            let arr = str.match(/\w+/g)
-            console.log(arr)
+            let arr = str.match(/\w+/g),
+                temp = {},
+                result
+            
+            while(arr.length){
+                let item = arr.pop()
+                temp.value = item
+                result && (temp.children = result)
+                if(arr.length){
+                    result = {...temp}
+                    temp = {}
+                }else{
+                    result = temp
+                }
+            }
+            return result
         }
-        normalize('[abc[bcd[def]]]')
+        console.log(normalize('[abc[bcd[def]]]'))
+
     </script>
 </body>
 </html>
