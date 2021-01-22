@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function changeObjProperty(o){
+
+            // o = webSite,可以添加这一句加以理解
+            //改变对应地址的对象属性值
+            o.siteUrl = 'http://www.baidu.com'
+            //变量o指向新的地址 以后的变动和旧地址无关
+            o = new Object()
+            o.siteUrl = 'http://www.google.com'
+        }
+
+        let webSite = new Object()
+        changeObjProperty(webSite)
+        console.log(webSite.siteUrl) //http://www.baidu.com
+    </script>
+</body>
+</html>

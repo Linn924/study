@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //加性操作符，如果只有一个操作数是字符串，则将另一个操作数转换为字符串，然后在拼接
+        console.log(1 + '1') //'11'
+        //乘性操作符：如果有一个操作数不是数值，则后台调用Number()将其转换为数值
+        console.log(2 * '2') //4
+        //JavaScript中所有的对象基本都是先调用valueOf方法，如果不是数值，在调用toString方法
+        console.log([1,2] + [2,1]) //'1,22,1'
+        //'a' + + 'b' 是先 + 'b',所以NaN =>'a' + NaN => 'aNaN'
+        console.log('a' + + 'b')//aNaN
+        console.log(+ 'b') //NaN
+    </script>
+</body>
+</html>

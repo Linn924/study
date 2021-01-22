@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Foo(){
+            Foo.a = function(){
+                console.log(1)
+            }
+            this.a = function(){
+                console.log(2)
+            }
+        }
+        //以上只是Foo的构建方法，没有产生实例，此刻也没有执行
+
+        Foo.prototype.a = function(){
+            console.log(3)
+        }
+        //现在在Foo的原型上挂载了方法a
+
+        Foo.a = function(){
+            console.log(4)
+        }
+        //现在在Foo上挂在了直接方法a
+
+        Foo.a() //4,立即执行了Foo上的直接方法a
+        let obj = new Foo() //调用了Foo的构建方法，将全局的Foo上的直接方法a替换为一个输出1的方法。
+        obj.a() //2,直接使用直接方法a，不需要查找原型上的方法
+        Foo.a() //1,构建方法里已经替换了全局Foo上的方法a
+    </script>
+</body>
+</html>

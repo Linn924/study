@@ -6,6 +6,38 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <input type="text" id="input">
+    <script>
+        //防抖函数
+        function debounce(fn,wait = 500){
+            let timer = null
+            return function(){
+                if(e.target.composing) return
+                if(timer) clearTimeout(timer)
+                timer = setTimeout(() => {
+                    fn.apply(this,arguments)
+                },wait)
+            }
+        }
+
+        function onCompositionStart(e){
+            e.target.composing = true
+        }
+
+        function onCompositionEnd(e){
+            e.target.composing = false
+            // let event = document.createEvent('HTMLEvent')
+            // event.initEvent('input')
+
+            //手动触发input事件
+            let event = new Event('input')
+            e.target.dispatchEvent(event)
+        }
+
+        let input = document.getElementById('input')
+        input.addEventListener('input',debounce(1000))
+        input.addEventListener('compositionstart',onCompositionStart)
+        input.addEventListener('compositionend',onCompositionEnd)
+    </script>
 </body>
 </html>

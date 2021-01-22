@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var name = 'Tom'
+
+        // (function(){
+        //     if(typeof name == 'undefined'){
+        //         var name = 'Jack'
+        //         console.log('Goodbye' + name)
+        //     }else{
+        //         console.log('Hello' + name)
+        //     }
+        // })()
+        //输出：Goodbye Jack
+        //立即执行函数中 var name = 'Jack',var name 被提升到if判断语句前 此时name = undefined
+
+        var name = 'Tom'
+
+        (function(){
+            if(typeof name == 'undefined'){
+                let name = 'Jack'
+                console.log('Goodbye' + name)
+            }else{
+                console.log('Hello' + name)
+            }
+        })()
+        //输出：Hello Tom
+    </script>
+</body>
+</html>

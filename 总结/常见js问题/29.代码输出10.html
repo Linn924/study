@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function wait(){
+            return new Promise(resolve => {
+                setTimeout(resolve,10 * 1000)
+            })
+        }
+
+        async function main(){
+            console.time()
+            const x = wait()
+            const y = wait()
+            const z = wait()
+            await x
+            await y
+            await z
+            console.timeEnd() //default: 10001.347900390625 ms
+        }
+        main()
+    </script>
+</body>
+</html>

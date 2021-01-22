@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var t1 = new Date().getTime()
+        for(let i = 0; i < 100; i++){
+            for(let j = 0; j < 1000; j++){
+                for(let k = 0; k < 10000; k++){
+                
+                }
+            }
+        }
+
+        var t2 = new Date().getTime() 
+        console.log('first time',t2 - t1) //387
+
+        for(let i = 0; i < 10000; i++){
+            for(let j = 0; j < 1000; j++){
+                for(let k = 0; k < 100; k++){
+                
+                }
+            }
+        }
+        
+        var t3 = new Date().getTime()
+        console.log('two time',t3 - t2) //824
+
+
+        /*
+            第一个循环的j初始化次数是100次，k的初始化次数是10w次
+            第二个循环的j初始化次数是1W次，k的初始化次数是1000w次
+            所以相同循环次数，外层越大，越影响性能
+        */
+    </script>
+</body>
+</html>
