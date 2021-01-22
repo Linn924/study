@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            利用Babel，将ES6代码转换成ES5代码
+                将代码字符串解析成抽象语法数即所谓的AST(将ES6的代码转换成AST语法数)
+                对AST进行处理，在这个阶段可以对ES6代码进行相应转换，即转成ES5代码(然后再将ES6 AST转换成ES5 AST)
+                根据处理后的AST再生成代码字符串(再将AST转换成代码字符串)
+
+            使用@babel/parser的parse方法，将代码字符串解析成AST；
+            使用@babel/core的transformFromAstSync方法，对AST进行处理，将其转换成ES5并生成相应的代码字符串
+            处理过程中，可能还需要使用@babel/traverse来获取依赖文件
+        
+
+            ES6通过babel等工具为ES5语法，本质是将ES6语法转AST（抽象语法树——对编程语言的程序的一种描述——）再将AST转换为ES5语法代码
+            例如：let，const转换为var，箭头函数转换为function函数声明等
+            采用babel-polyfill等工具为ES5中不存在的API（包括Set等ES6中新的数据结构）做修复，例如：Array.prototype.includes
+            Set Map等在ES5中不存在，需要用相应的ES5代码实现这些API
+
+            .vue文件通过webpack的vue-loader分析出script style template 再走上面的ES5转ES6流程
+            .jsx通过babel插件转js语法再走上面的ES5转ES6流程
+            .ts通过tsc结合tsconfig.json直接转ES5
+        */
+    </script>
+</body>
+</html>

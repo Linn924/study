@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            对象的键名只能是字符串和Symbol类型
+            其他类型的键名会被转换成字符串类型
+            对象转字符串默认会调用toString方法
+
+            注意：任何一个Symbol类型的值都是不相等的
+        */
+
+        // var a = {},b = '123',c = 123
+        // a[b] = 'b'
+        // a[c] = c
+        // console.log(a[b]) //123
+        // console.log(a) //{123:123}
+
+        // var a = {},b = Symbol('123'),c = Symbol('123')
+        // a[b] = 'b'
+        // a[c] = 'c'
+        // console.log(a[b]) //b
+
+        // var a = {},b = {key:'123'},c = {key:'456'}
+        // a[b] = 'b'
+        // a[c] = 'c'
+        // console.log(a[b]) //c
+    </script>
+</body>
+</html>
