@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：vue在v-for时给每项元素绑定事件需要用事件代理吗？为什么？
+
+            答：vue源码没有做事件代理
+
+            事件代理能够避免我们逐个的去给元素新增和删除事件
+            事件代理比每一个元素都绑定一个事件性能要更好
+
+            在v-for中，直接用一个for循环就能在模板中将每个元素都绑定上事件，并且当组件销毁时，vue也会自动
+            将所有的时间处理器移除掉。所以事件代理能够做到的这一点vue已经做到了
+            在v-for中，给元素绑定的都是相同的事件，所以除非上千行的元素需要加上事件，其实和使用事件代理的性能
+            差别不大，所以没必要使用事件代理
+        */
+    </script>
+</body>
+</html>

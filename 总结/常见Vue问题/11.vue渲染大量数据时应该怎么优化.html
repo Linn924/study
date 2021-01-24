@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：vue渲染大量数据时应该怎么优化
+
+            答：
+                如果是一次性传入大量数据
+                1、架设中间件
+                2、利用服务器渲染SSR，在服务器渲染组件
+                3、增加加载动画提升用户体验
+                4、避免浏览器处理大量的dom，懒加载，异步渲染组件，分页处理
+                5、尽量不要使用vue的双向数据绑定或者只用部分页面中处理的数据
+                6、对于固定的非响应式数据，使用Object.freeze冻结，不让vue劫持
+
+                如果是非一次性传入大量数据，而是分段加载但次数特别多
+                1、异步渲染组件
+                2、使用vue的v-if最多显示上中(可视区域)下三屏，避免出现大量的dom节点
+                3、考虑使用分页
+        */
+    </script>
+</body>
+</html>

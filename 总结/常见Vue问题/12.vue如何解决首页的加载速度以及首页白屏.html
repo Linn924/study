@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            题：vue如何优化首页的加载速度？vue首页白屏是什么问题引起的？如何解决？
+
+            答：
+                原因    
+                vue首页加载过慢，其原因是因为他是一个单页面应用，需要将所有需要的资源都下载到浏览器并解析
+                方法，网速差的时候会产生一定程度的白屏
+                1、使用首屏SSR + 跳转SPA方法来优化
+                2、该单页面应用为多页面应用，需要改webpack的entry
+                3、改成多页以后应该使用prefetch的就使用
+                4、处理加载的时间片，合理安排加载顺序，尽量不要有大面积空隙
+                5、CDN资源很重要，最好分开，也能减少一些不必要的资源消耗
+                6、使用Quicklink，在网速好的时候，可以帮助你预加载页面资源
+                7、首页loading和骨架屏，最好借助stream先将这部分输出给浏览器解析
+                8、合理使用web worker优化一些计算
+                9、利用缓存
+                10、优化webpack减少模块打包体积，code-split按需加载
+                11、服务端渲染，在服务器端事先拼装好首页所需的HTML
+                12、开始gzip压缩
+                13、使用iconfont或者雪碧图
+                14、接口响应时间优化
+                15、路由懒加载
+        */
+    </script>
+</body>
+</html>
