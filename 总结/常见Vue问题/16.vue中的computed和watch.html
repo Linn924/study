@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            watch用于观察和监听页面上的vue实例，当你需要在数据变化响应时，执行异步操作，或高性
+            能消耗的操作，那么watch为最佳选择
+            computed可以关联多个实时计算的对象，当这些对象中的其中一个改变时都会触发这个属性
+            具有缓存能力，所以只有当数据再次改变时才会重新渲染，否则就会直接拿取缓存中的数据
+
+            watch擅长处理的场景：一个数据影响多个数据
+            computed擅长处理的场景：一个数据受多个数据影响
+
+            watch 会生成一个watcher对象，在监视的属性每次变动时都会触发回调
+            computed 则是生成一个惰性的watcher，只有在取值操作(getter触发)时收集依赖且计算值
+            当有依赖变动时仅将 dirty 置为 true，不做计算操作 当有取值操作时，根据自身标记
+            dirty 属性返回上一次计算结果/重新计算值
+        */
+    </script>
+</body>
+</html>

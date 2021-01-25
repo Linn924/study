@@ -3,12 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <title>Document</title>
 </head>
 <body>
+    <div id="app">
+        <div>{{number}}</div>
+        <div @click="handleClick">click</div>
+    </div>
     <script>
         /*
             讲解：https://muyiy.cn/question/frame/139.html
+
+            nextTick好处: 碰到太频繁的js操作,只需要显示最后一次的数据的视图,如果每次都实时更新视图,会消耗太多性能
+
+            例：按下click按钮的时候，number会被循环增加1000次。每次number 被+1的时候，都会触发number
+                的setter方法，从而根据上面的流程一直跑下来最后修改真实DOM。那么在这个过程中，DOM会被更
+                新1000 次！
+                Vue.js中的nextTick函数，会传入一个cb，这个cb会被存储到一个队列中，在下一个tick 时触发
+                队列中的所有cb事件。Vue.js肯定不会以如此低效的方法来处理。在默认情况下，每次触发某个数
+                据的setter方法后，对应的Watcher对象其实会被push进一个队列queue中，在下一个tick的时候
+                将这个队列queue全部拿出来run（Watcher对象的一个方法，用来触发patch操作）一遍。因为目
+                前浏览器平台并没有实现nextTick方法，所以Vue.js源码中分别用Promise、setTimeout、
+                setImmediate等方式在 microtask（或是task）中创建一个事件，目的是在当前调用栈执行完毕
+                以后（不一定立即）才会去执行这个事件。
+        */
+        const vue = new Vue({
+            el:'#app',
+            data() {
+                return {
+                    number:0
+                }
+            },
+            methods: {
+                handleClick () {
+                    for(let i = 0; i < 1000; i++) {
+                        this.number++
+                    }
+                }
+            }
+        })
+
+        /*
+            上面例子中，当我们将number增加1000次时，先将对应的Watcher对象给push进一个队列queue中去，等
+            下一个tick的时候再去执行，这样做是对的。但另一个问题出现了？
+            因为number执行++操作以后对应的Watcher对象都是同一个，我们并不需要在下一个tick的时候执行1000
+            个同样的Watcher对象去修改界面，而是只需要执行一个Watcher对象，使其将界面上的0变成1000即可。
+            那么，我们就需要执行一个过滤的操作，同一个的Watcher在同一个tick的时候应该只被执行一次，也就是
+            说队列queue中不应该出现重复的Watcher对象。可以用id来标记每一个Watcher对象，让他们
+            看起来不太一样。number会被不停地进行++操作，不断地触发它对应的Dep中的Watcher对象的
+            update方法。然后最终queue中因为对相同id的Watcher对象进行了筛选，从而queue中实际上只会存在
+            一个number对应的Watcher对象。在下一个tick的时候（此时number已经变成了1000），触发Watcher
+            对象的run方法来更新视图，将视图上的number从0直接变成1000。
         */
     </script>
 </body>

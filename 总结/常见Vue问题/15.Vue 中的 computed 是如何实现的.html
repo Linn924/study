@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            实质是一个惰性的watcher，在取值操作时根据自身标记 dirty属性返回上一次计算结果/重新计算
+            值在创建时就进行一次取值操作，收集依赖变动的对象/属性(将自身压入dep中) 在依赖的对象/属性
+            变动时，仅将自身标记dirty致为true
+
+            在对computed的属性进行watcher的时候，传入一个lazy为true的参数，在watcher内部将
+            lazy值赋值给dirty属性，在获取computed属性的时候，如果dirt为true，则重新执行被
+            defineComputed改写过的get方法，获取最新值，如果dirty为false，则获取上一次watcher
+            实例的value值，这里就实现了缓存。对于dirty值更改为true的时机，则是在props和data等
+            被defineProperty劫持改写的set方法内，每当数据发生变化，则通过defineReactive$$1方
+            法最后执行update方法更新dirty值。
+
+
+            初始化data，使用Object.defineProperty把这些属性全部转为getter/setter。初始化
+            computed, 遍历computed里的每个属性，每个computed属性都是一个watch实例。每个属性
+            提供的函数作为属性的getter，使用Object.defineProperty转化。Object.defineProperty
+            getter依赖收集。用于依赖发生变化时，触发属性重新计算。若出现当前computed计算属性
+            嵌套其他computed计算属性时，先进行其他的依赖收集
+        */
+        var Dep = null
+        function defineReactive(obj,key,val){
+            var deps = [] // deps 收集依赖用
+            Object.defineProperty(obj,key,{
+                get:function(){
+                    if(Dep){
+                        deps.push(Dep)
+                    }
+                    return val
+                },
+                set:function(newVal){
+                    val = newVal;
+                    deps.forEach(func=>func()) // deps 在set函数中被引用 形成闭包
+                }
+            })
+        }
+
+        function defineComputed(obj,key,func){
+            func = func.bind(obj)
+            var value
+            Dep = function(){
+                value = func() // value 在此函数中被引用 形成闭包
+            }
+            value = func() // 执行一次 属性计算函数，计算属性函数中的this.a(36行)的执行,会执行a的get函数(5行),将计算属性函数放到依赖项中(第7行)
+            Dep = null
+            Object.defineProperty(obj,key,{
+                get:function(){
+                    return value // value 在set函数中被引用 形成闭包
+                }
+            })
+        }
+
+        var obj = {}
+        defineReactive(obj,"a",0)
+        defineComputed(obj,"b",function(){
+            var a = this.a
+            return a + 1
+        })
+    </script>
+</body>
+</html>
