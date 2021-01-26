@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    :root {
+        --loading-grey: #ededed;
+    }
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    html,
+    body{
+        background-color: #f6f6f6;
+        font-family: Helvetica;
+        font-size: 15px;
+        min-height: 100vh;
+    }
+    #app{
+        width: 1200px;
+        min-height: 100vh;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(3,1fr);
+        place-items: center;
+        gap: 20px;
+    }
+    .card {
+        width: 320px;
+        background-color: #fff;
+        border-radius: 6px;
+        overflow: hidden;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, .12);
+    }
+    .image {
+        height: 200px;
+    }
+    .image img {
+        display: block;
+        width: 100%;
+        height: inherit;
+        object-fit: cover;
+    }
+    .content {
+        padding: 1.5rem 1.8rem;
+    }
+    h4 {
+        margin: 0 0 1rem;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+    }
+    .description {
+        font-size: 1rem;
+        line-height: 1.4rem;
+    }
+    
+    .loading .image,
+    .loading h4,
+    .loading .description {
+        background-color: var(--loading-grey);
+        background: linear-gradient(
+            100deg,
+            rgba(255, 255, 255, 0) 40%,
+            rgba(255, 255, 255, .5) 50%,
+            rgba(255, 255, 255, 0) 60%
+        ) var(--loading-grey);
+        background-size: 200% 100%;
+        background-position-x: 180%;
+        animation: 1s loading ease-in-out infinite;
+    }
+
+    @keyframes loading {
+        to {
+            background-position-x: -20%;
+        }
+    }
+
+    .loading h4 {
+        min-height: 1.5rem;
+        border-radius: 4px;
+        animation-delay: .05s;
+    }
+    .loading .description {
+        min-height: 1.5rem;
+        border-radius: 4px;
+        animation-delay: .06s;
+    }
+</style>
+<body>
+    <div id="app">
+        <div :class="isLoading?'card loading':'card'" v-for="item in list">
+            <div class="image"><img :src="item.url" v-show="!isLoading"></div>
+            <div class="content">
+              <h4>{{item.title || null}}</h4>
+              <div class="description">{{item.content || null}}</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const vm = new Vue({
+        el:'#app',
+        data:{
+            list:[],
+            isLoading:true
+        },
+        created() {
+            this.initList()
+            setTimeout(() => {
+                this.getData()   
+            },1000)
+        },
+        methods: {
+            initList(){
+                this.list = Array.from({length:9}).fill('')
+            },
+            async getData(){
+                const {data:res} = await axios.get('http://139.196.210.43:0924/getHomePageWallpaper')
+                this.list = res.data
+                this.list.forEach(item => {
+                    item.title = 'LinnCooper'
+                    item.content = 'The heat in three minutes is only 180 seconds...'
+                })
+                this.isLoading = false
+            }
+        },
+    })
+</script>
+</html>
