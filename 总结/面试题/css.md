@@ -452,6 +452,7 @@ p {
 ```
 + visibility属性类似opacity属性，该属性值为hidden的时候，元素将会隐藏，也会占据着自己的位置，并对网页的布局起作用，与 opacity 唯一不同的是它不会响应任何用户交互。
 + 能够实现动画效果，只要它的初始和结束状态不一样。这确保了 visibility 状态切换之间的过渡动画可以是时间平滑的。
++ 父元素设置visibility:hidden;父元素不可见，子元素设置visibility:visible;子元素可见
 
 ## 15、css单位
 

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    /* 单行 */
+    .p1{
+        overflow: hidden; 
+        text-overflow:ellipsis; 
+        white-space: nowrap; 
+    }
+    /* 多行 */
+    .p2{
+        display: -webkit-box; 
+        -webkit-box-orient: vertical; 
+        -webkit-line-clamp: 3;/* 行数，超出三行隐藏且多余的用省略号表示... */
+        overflow: hidden;
+    }
+    /* 利用js */
+    .p3{
+        height: 4em;
+        width: 100%;
+        overflow: hidden;
+    }
+    .p3-after:after{
+        content: "..."; 
+        position: absolute; 
+        bottom: 0; 
+        right: 0; 
+        background: -webkit-linear-gradient(left, transparent, #fff 55%);
+        background: -moz-linear-gradient(left, transparent, #fff 55%);
+        background: -o-linear-gradient(left, transparent, #fff 55%);
+        background: linear-gradient(to right, transparent, #fff 55%);
+    }
+</style>
+<body>
+    <p class="p1" style="width: 100px">这是一段测试文字，this is some test text</p>
+    <p class="p2" style="width: 100px">这是一段测试文字，this is some test text</p>
+    <p class="p3" style="width: 100px">这是一段测试文字，this is some test text</p>
+    <script>
+        const p = document.querySelector('.p3')
+        const words = p.innerHTML.split(/(?<=[\u4e00-\u9fa5])|(?<=\w*?\b)/g)
+        while (p.scrollHeight > p.clientHeight) {
+            words.pop()
+            p.innerHTML = words.join('') + '...'
+        }
+    </script>
+</body>
+</html>

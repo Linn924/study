@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    html,
+    body{
+        min-height: 100vh;
+        display: grid;
+        place-content: center center;
+    }
+    .container{
+        width: 600px;
+        height: 300px;
+        display: flex;
+        
+    }
+    .left{
+        flex: 1 2 500px;
+        background: red;
+    }
+    .right{
+        flex: 2 1 400px;
+        background: blue;
+    }
+</style>
+<body> 
+    <!-- https://www.jianshu.com/p/bb48fcfe7fa0 -->
+    <div class="container">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+    <script>
+        /*
+            父元素 container 的 width 为 600px
+            left 元素 flex-grow 为 1，flex-shrink 为 2，flex-basis 为 500px
+            right 元素 flex-grow 为 2，flex-shrink 为 1，flex-basis 为 400px
+
+            left 和 right 的主轴空间和大于父元素的宽度 超了 300px -> 500 + 400 = 900 - 600 = 300
+            总权重为 -> 2 * 500 + 1 * 400 = 1400
+            超出了 所以是收缩 则分别的收缩长度 -> left：300 * 2 * 500 / 1400 = 214.28,right: 300 * 1 * 400 / 1400 = 85.72
+            最终宽度 -> leftWidth：500 - 214.28 = 285.72,rightWidth：400 - 85.72 = 314.28
+        */
+    </script>
+</body>
+
+
+</html>
