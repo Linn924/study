@@ -733,6 +733,19 @@
         // }    
         // console.log(sayHi()) //Hi there,undefined
 
+
+        //76、基本类型通过他们的值进行比较，而对象通过他们的引用进行比较
+        // 作为参数传递的对象和用于检查相等性的对象在内存中的位置不同，所以他们的引用也不相同
+        // function checkAge(data){
+        //     if(data === { age:18 }){
+        //         console.log(1)
+        //     }else if(data == { age:18 }){
+        //         console.log(2)
+        //     }else{
+        //         console.log(3)
+        //     }
+        // }
+        // checkAge({ age:18 }) //3
     </script>
 </body>
 </html>
