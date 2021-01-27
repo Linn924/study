@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        async function async1(){
+            console.log('async1 start')
+            await async2()
+            // setTimeout(() => {
+            //     console.log('async1 end')
+            // },0)
+            console.log('async1 end')
+        }
+        async function async2(){
+            console.log('async2')
+        }
+        console.log('script start')
+        setTimeout(function(){
+            console.log('setTimeout')
+        },0)
+        async1()
+        new Promise(function(resolve){
+            console.log('promise1')
+            resolve()
+        }).then(function(){
+            console.log('promise2')
+        })
+        console.log('script end')
+
+
+        /*
+            script start
+            async1 start
+            async2
+            promise1
+            script end
+            async1 end
+            promise2
+            setTimeout
+
+
+            await是一个出线程的标志。await后面的函数会先执行一遍，然后跳出整个async函数执行后面的代码。
+            等本轮事件循环执行完了之后又会跳回async函数中执行后面的代码，如果async函数里面的内容是同步
+            代码就立即执行，如果是异步就加入到任务队列。
+        */
+    </script>
+</body>
+</html>
