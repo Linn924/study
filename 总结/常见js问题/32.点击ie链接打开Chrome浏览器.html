@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function mytest() {
+        alert("start")
+        var url = "https://www.baidu.com/";//跳转的指定路劲
+
+        var regEdit = new RegEdit();
+        // 判断是否安装谷歌浏览器s
+        var x = regEdit.regRead('HKEY_CURRENT_USER\\Software\\Google\\Chrome\\BlBeacon\\version');
+        alert(x)
+        if (!x) {
+        } else {
+            regEdit.Runopen(url)
+        }
+
+    }
+    function mytest2() {
+        alert("start2")
+        var url = "https://www.baidu.com/";
+        // ActiveObject仅在IE下可创建
+        var objShell = new ActiveXObject("WScript.Shell");
+        var cmd = 'cmd.exe /c start "C:\Program Files\Google\Chrome\Application\chrome.exe" ' + url;
+        objShell.Run(cmd, 0, true);
+    }
+
+    function mytest3() {
+
+        var url = "https://www.baidu.com/";
+        var shell = new ActiveXObject("WScript.Shell");
+
+        var exePath = shell.RegRead("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Google Chrome\\InstallLocation");
+		
+		var exe='cmd.exe /c start ' +exePath+'\\chrome.exe';
+        alert(exe)
+        //据注册表信息找到本地应用程序安装路径
+        var cmd =  exe +'   ' +url;
+		
+		 alert(cmd)
+        shell.run(cmd,0,true);
+    }
+</script>
+
+<body>
+
+    <button onclick="mytest()">跳转</button>
+    <button onclick="mytest2()">跳转2</button>
+    <button onclick="mytest3()">跳转3</button>
+</body>
+
+
+</html>
