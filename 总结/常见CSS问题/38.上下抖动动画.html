@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+
+.container {
+  background: #2D97DB;
+  width: 90%;
+  height: 90%;
+  padding: 100px;
+  margin: 20px auto;
+  font-family: "微软雅黑";
+  font-size: 40px;
+  color: white;
+  text-align: center;
+  line-height: 90%;
+  animation: shake 1s infinite;
+}
+ 
+
+@keyframes shake{
+  0%,
+  100%,
+  20%,
+  50%,
+  80% {
+  transition-timing-function: cubic-bezier(0.215,.61,.355,1); /*贝塞尔曲线 ： X1 Y1 X2 Y2*/
+  transform: translate3d(0,0,0);
+  }
+  40%,
+  43%{
+  transition-timing-function: cubic-bezier(0.755,0.50,0.855,0.060);
+  transform: translate3d(0,-30px,0);
+  }
+  70%{
+  transition-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
+  transform: translate3d(0,-15px,0);
+  }
+  90%{
+  transform: translate3d(0,-4px,0);
+  }
+}
+</style>
+
+<body>
+    <div id="square" class="container">晃动</div>
+</body>
+</html>

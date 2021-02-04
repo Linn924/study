@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>音乐播放器</title>
+</head>
+
+    <style>
+        body{
+            height: 500px;
+            background-color: #ccc;
+        }
+        .musicBox{
+            width: 300px;
+            height: 80px;
+            background-color: white;
+            position: relative;
+            display: flex;
+            border-radius: 5px;
+            margin: 400px auto;
+            transition: all .5s;
+        }
+        .introduce{
+            display: flex;
+            flex-direction: column;
+            padding: 0 10px;
+        }
+        .progress{
+            display: flex;
+            align-items: center;
+        }
+        .musicBox:hover{
+            box-shadow: 5px 8px 5px #333;
+        }
+        .musicBox img:first-child{
+            width: 80px;
+            height:80px;
+            border-radius: 5px 0 0 5px;
+        }
+        .introduce p{
+            font-size:16px;
+            color: #888;
+        }
+        .musicBox img:nth-child(3){
+            height: 20px;
+            width: 20px;
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+        }
+        .mp3Box{
+            position: absolute;
+            top: 50%;
+            left: 25px;
+            width: 30px;
+            height: 30px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            z-index: 999;
+        }
+        .finish{
+            background-image: url(source/pause-circle-o.png);
+            background-size: 30px 30px!important;
+        }
+        .begin{
+            background-image: url(source/play-circle-o.png);
+            background-size: 30px 30px!important;
+        }
+    </style>
+
+<body>
+    <div class="musicBox">
+        <img src="source/img3.jpg">
+        <div class="introduce">
+            <p>洪佩瑜 - 踮起脚尖爱</p>
+            <div class="progress">
+                <div id="all_time" style="background-color:rgb(220,220,220);height:5px;">
+                    <div id="now_time" style="background-color:rgb(120,120,120);height:5px;"></div>
+                </div>
+                <span style="font-size: 12px;margin-left: 5px;" id="progress"></span>
+            </div>
+        </div>
+        <img src="source/music.png">
+        <div :class="status ? 'mp3Box finish' : 'mp3Box begin'" @click="start">
+            <audio id="mp3Btn">
+                <source src="https://music.163.com/song/media/outer/url?id=5235179.mp3" type="audio/mpeg" />
+            </audio>
+        </div>
+    </div>
+</body>
+
+<script>
+    const vm = new Vue({
+        el:'.musicBox',
+        data: {
+            status:false
+        },
+        mounted() {
+            var btn = document.querySelector("#mp3Btn")
+            btn.addEventListener("ended",()=>{
+               console.log("播放完成")
+               this.status = false
+            })
+        },
+        methods: {
+            start(e){
+                var box = document.querySelector(".mp3Box")
+                var btn = document.querySelector("#mp3Btn")
+                btn.volume = .5
+                e.stopPropagation(); //防止冒泡
+                var that = this
+                if (btn.paused) { //如果当前是暂停状态
+                    var timer = setInterval(()=>{
+                        that.getTime(btn)
+                    },100)
+                    this.status = true
+                    btn.play(); //播放
+                } else { //当前是播放状态
+                    window.clearInterval(timer)
+                    this.status = false
+                    btn.pause(); //暂停
+                }
+            },
+            getTime(btn){
+                var all_time = parseInt(btn.duration)
+                var now_time = parseInt(btn.currentTime)
+                var speed = 100
+                document.querySelector("#all_time").style.width = speed + 'px'
+                document.querySelector("#now_time").style.width = now_time*speed/all_time + 'px'
+                var m1 = parseInt(all_time/60) < 10 ? '0' + parseInt(all_time/60) : parseInt(all_time/60)
+                var s1 = parseInt(all_time%60) < 10 ? '0' + parseInt(all_time%60) : parseInt(all_time%60)
+                var m2 = parseInt(now_time/60) < 10 ? '0' + parseInt(now_time/60) : parseInt(now_time/60)
+                var s2 = parseInt(now_time%60) < 10 ? '0' + parseInt(now_time%60) : parseInt(now_time%60)
+                document.querySelector("#progress").innerHTML = m2 + ':' + s2 + ':' + '/' + m1 + ':' + s1
+            }
+        },
+    })
+</script>
+
+</html>

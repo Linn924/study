@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.css" rel="stylesheet">
+    <title>滑动效果</title>
+</head>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    html,body{
+        display: grid;
+        height: 100%;
+        place-items: center;
+        text-align: center;
+    }
+    .wrapper{
+        height: 60px;
+        width: 55vw;
+        line-height: 60px;
+        background:#fff;
+        border-radius: 50px;
+        box-shadow: 0 5px 10px rgba(0,0,0, 0.25);
+    }
+    .wrapper nav{
+        display: flex;
+        position: relative;
+    }
+    .wrapper nav label{
+        flex: 1;
+        z-index: 1;
+        width: 100%;
+        position: relative;
+        cursor: pointer;
+    }
+    .wrapper nav label a{
+        position: relative;
+        z-index: -1;
+        color: #1d1f20;
+        font-size: 20px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: color .5s;
+    }
+    .wrapper nav label a i{
+        font-size: 25px;
+        margin: 0 10px;
+    }
+    .wrapper nav .tab{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20%;
+        height: 100%;
+        background:linear-gradient(45deg,#05abe0 0%, #8200f4 100%);
+        border-radius: 50px;
+        transition: .5s cubic-bezier(0.68,-0.55,0.265,1.55);
+    }
+    .wrapper nav #home:checked ~ label.home a,
+    .wrapper nav #inbox:checked ~ label.inbox a,
+    .wrapper nav #contact:checked ~ label.contact a,
+    .wrapper nav #heart:checked ~ label.heart a,
+    .wrapper nav #about:checked ~ label.about a{
+        color: #fff;
+    }
+    .wrapper nav #inbox:checked ~ .tab{
+        left: 20%;
+    }
+    .wrapper nav #contact:checked ~ .tab{
+        left: 40%;
+    }
+    .wrapper nav #heart:checked ~ .tab{
+        left: 60%;
+    }
+    .wrapper nav #about:checked ~ .tab{
+        left: 80%;
+    }
+    .wrapper nav input{
+        display: none;
+    }
+</style>
+
+<body>
+    <div class="wrapper">
+        <nav>
+            <input type="radio" name="tab" id="home" checked>
+            <input type="radio" name="tab" id="inbox">
+            <input type="radio" name="tab" id="contact">
+            <input type="radio" name="tab" id="heart">
+            <input type="radio" name="tab" id="about">
+            <label for="home" class="home"><a href="#"><i class="fa fa-home">Home</i></a></label>
+            <label for="inbox" class="inbox"><a href="#"><i class="fa fa-comment">Inbox</i></a></label>
+            <label for="contact" class="contact"><a href="#"><i class="fa fa-envelope">Contact</i></a></label>
+            <label for="heart" class="heart"><a href="#"><i class="fa fa-heart">Heart</i></a></label>
+            <label for="about" class="about"><a href="#"><i class="fa fa-user">About</i></a></label>
+            <div class="tab"></div>
+        </nav>
+    </div>
+</body>
+</html>

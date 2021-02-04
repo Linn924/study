@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #18191f;
+    }
+    ul{
+        display: flex;
+    }
+    ul li{
+        list-style: none;
+    }
+    ul li label{
+        position: relative;
+    }
+    ul li label input[type="checkbox"]{
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+    ul li label .icon{
+        position: relative;
+        width: 60px;
+        height: 60px;
+        background: #18191f;
+        color: #555;
+        font-size: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        margin: 0 20px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: -1px -1px 4px rgba(255,255,255,0.05),
+                    4px 4px 6px rgba(0, 0, 0, .2),
+                    inset -1px -1px 4px rgba(255, 255, 255, 0.05),
+                    inset 1px 1px 1px rgba(0, 0, 0, .1);
+    }
+    /* 将选中的按钮后面的icon都选中 */
+    ul li label input[type="checkbox"]:checked ~ .icon{
+        box-shadow: inset 0px 0px 2px rgba(255, 255, 255, 0.05),
+                    inset 4px 4px 6px rgba(0, 0, 0, .1);
+    }
+    ul li label input[type="checkbox"]:checked ~ .icon .fa{
+        color: #00f3ff;
+        text-shadow: 0 0 15px #00f3ff,
+                     0 0 25px #00f3ff;
+        animation: switchColor 5s linear infinite;
+    }
+    @keyframes switchColor {
+        0%{
+            filter: hue-rotate(0deg);
+        }
+        100%{
+            filter: hue-rotate(360deg);
+        }
+    }
+</style>
+
+<body>
+    <ul>
+        <li>
+            <label>
+                <input type="checkbox">
+                <div class="icon"><i class="fa fa-gift" aria-hidden="true"></i></div>
+            </label>
+        </li>
+        <li>
+            <label>
+                <input type="checkbox">
+                <div class="icon"><i class="fa fa-glass" aria-hidden="true"></i></div>
+            </label>
+        </li>
+        <li>
+            <label>
+                <input type="checkbox">
+                <div class="icon"><i class="fa fa-globe" aria-hidden="true"></i></div>
+            </label>
+        </li>
+        <li>
+            <label>
+                <input type="checkbox">
+                <div class="icon"><i class="fa fa-graduation-cap" aria-hidden="true"></i></div>
+            </label>
+        </li>
+        <li>
+            <label>
+                <input type="checkbox">
+                <div class="icon"><i class="fa fa-heart" aria-hidden="true"></i></div>
+            </label>
+        </li>
+    </ul>
+</body>
+</html>

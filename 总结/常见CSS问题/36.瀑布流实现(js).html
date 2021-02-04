@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>瀑布流</title>
+</head>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            position: relative;
+        }
+        .box{
+            float: left;
+            padding: 5px;
+            animation: show 1s;
+        }
+        .box-img{
+            padding: 5px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 5px #ccc;
+            border-radius: 5px;
+            animation: show 1s;
+        }
+        .box-img img{
+            width: 230px;
+            height: auto;
+            animation: show 1s;
+        }
+        @keyframes show {
+            0%{
+                transform: scale(0,0);
+            }
+            100%{
+                transform: scale(1,1);
+            }
+        }
+    </style>
+
+
+<body>
+    <div id="container">
+        <div class="box">
+            <div class="box-img">
+                <img src="https://s1.ax1x.com/2020/05/17/YRMQyt.jpg" alt="">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-img">
+                <img src="https://s1.ax1x.com/2020/05/17/YRMMQI.jpg" alt="">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-img">
+                <img src="https://s1.ax1x.com/2020/05/17/YRMKSA.jpg" alt="">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-img">
+                <img src="https://s1.ax1x.com/2020/05/17/YRMlOP.jpg" alt="">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-img">
+                <img src="https://s1.ax1x.com/2020/05/17/YRdSHJ.jpg" alt="">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-img">
+                <img src="https://s1.ax1x.com/2020/05/17/YRd9E9.jpg" alt="">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-img">
+                <img src="https://s1.ax1x.com/2020/05/17/YRdCNR.jpg" alt="">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-img">
+                <img src="https://s1.ax1x.com/2020/05/17/YRdP41.jpg" alt="">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-img">
+                <img src="https://s1.ax1x.com/2020/05/17/YRdF9x.jpg" alt="">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-img">
+                <img src="https://s1.ax1x.com/2020/05/17/YRdk36.jpg" alt="">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-img">
+                <img src="https://s1.ax1x.com/2020/04/27/JWtzX6.jpg" alt="">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-img">
+                <img src="https://s1.ax1x.com/2020/04/27/JWtx6x.jpg" alt="">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-img">
+                <img src="https://s1.ax1x.com/2020/04/27/JWGymF.jpg" alt="">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-img">
+                <img src="https://s1.ax1x.com/2020/04/27/JWG8OS.jpg" alt="">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-img">
+                <img src="https://s1.ax1x.com/2020/04/27/JWGZee.jpg" alt="">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-img">
+                <img src="https://s1.ax1x.com/2020/05/19/Y5Q0OJ.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    var oParent = document.getElementById("container");//获取最外层容器
+    const imgData = [
+            {'src':'https://s1.ax1x.com/2020/05/19/Y5Qbff.jpg'},
+            {'src':'https://s1.ax1x.com/2020/05/19/Y5QHtP.jpg'},
+            {'src':'https://s1.ax1x.com/2020/05/19/Y5Q7kt.jpg'},
+            {'src':'https://s1.ax1x.com/2020/05/19/Y5QoTI.jpg'},
+            {'src':'https://s1.ax1x.com/2020/05/19/Y5QI0A.jpg'},
+            {'src':'https://s1.ax1x.com/2020/05/19/Y5Q5md.jpg'},
+            {'src':'https://s1.ax1x.com/2020/05/19/Y5QhOH.jpg'},
+            {'src':'https://s1.ax1x.com/2020/05/19/Y5Qf6e.jpg'},
+            {'src':'https://s1.ax1x.com/2020/05/19/Y5QWlD.jpg'}
+        ]
+    window.addEventListener("load",() => {
+        imgLocation("box")
+        this.addEventListener("scroll",() => {
+            if(checkLoading("box")){
+                imgData.map( (current,index) => {
+                    const oDiv = document.createElement("div")
+                    oDiv.className = 'box'
+                    oParent.appendChild(oDiv)
+                    const boxImg = document.createElement("div")
+                    boxImg.className = 'box-img'
+                    oDiv.appendChild(boxImg)
+                    const img = new Image()
+                    img.src = current.src
+                    boxImg.appendChild(img)
+                })
+                imgLocation("box")//添加完图片后需要设置添加的图片的位置
+            }
+        })
+        this.addEventListener("resize",() => {
+            imgLocation("box")
+            this.addEventListener("scroll",() => {
+                if(checkLoading("box")){
+                    imgData.map( (current,index) => {
+                        const oDiv = document.createElement("div")
+                        oDiv.className = 'box'
+                        oParent.appendChild(oDiv)
+                        const boxImg = document.createElement("div")
+                        boxImg.className = 'box-img'
+                        oDiv.appendChild(boxImg)
+                        const img = new Image()
+                        img.src = current.src
+                        boxImg.appendChild(img)
+                    })
+                    imgLocation("box")//添加完图片后需要设置添加的图片的位置
+                }
+            })
+        })
+        
+    })
+
+    //判断浏览器滚动的高度加页面的高度是否大于最后一张图片的offsetTop
+    const checkLoading = (child) => {
+        const aContent = getChilds(child)
+        const lastTop = aContent[aContent.length - 1].offsetTop
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+        const pageHeight = document.documentElement.clientHeight || document.body.clientHeight
+        if(scrollTop + pageHeight > lastTop){
+            return true
+        }
+        
+    }
+
+    //设置添加的图片的位置
+    const imgLocation = (child) => {
+        const aContent = getChilds(child)//获取所有box盒子
+        const imgWidth = aContent[0].offsetWidth//获取box盒子的宽度
+        const num = ~~(document.documentElement.clientWidth / imgWidth)// ~~ 去除小数
+        oParent.style.cssText = 'width:' + imgWidth * num + 'px;margin:0 auto;'//最外层容器居中
+
+        //计算出图片的高度
+        const heightArr = [];
+        [].map.call(aContent,(current,index) => {
+            if(index < num){
+                heightArr.push(current.offsetHeight)
+            }else{
+                const minHeight = Math.min(...heightArr)//得到最小高度
+                const minIndex = getMinIndex(minHeight,heightArr)//得到最小高度图片的下标
+                current.style.position = 'absolute'
+                current.style.top = minHeight + 'px'
+                current.style.left = aContent[minIndex].offsetLeft + 'px'
+                heightArr[minIndex] = heightArr[minIndex] + current.offsetHeight//更新最小的高度
+            }
+        })
+    }
+
+    //获取父级下的所有子元素
+    const getChilds = (child) =>{
+        const childArr = [];
+        const tgasAll = oParent.getElementsByTagName("*");
+        [].map.call(tgasAll,(current) => {
+            if(current.className == child){
+                childArr.push(current)
+            }
+        })
+        return childArr;
+    }
+
+    //得到最小高度图片的下标
+    const getMinIndex = (minHeight,heightArr) => {
+        var i = 0
+        heightArr.some( (item,index) => {
+            if(item == minHeight){
+                i = index
+                return true
+            }
+        })
+        return i
+    }
+    
+</script>
+</html>
