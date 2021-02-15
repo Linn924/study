@@ -122,7 +122,7 @@
                 this.list = Array.from({length:9}).fill('')
             },
             async getData(){
-                const {data:res} = await axios.get('http://139.196.210.43:0924/getHomePageWallpaper')
+                const {data:res} = await axios.get('http://139.196.210.43:0927/wallpapers')
                 this.list = res.data
                 this.list.forEach(item => {
                     item.title = 'LinnCooper'

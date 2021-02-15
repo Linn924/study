@@ -11,21 +11,21 @@
         //     reject(new Error('fail'))
         // }).catch(err => console.log(err))
 
-        let p4 = new Promise((resolve,reject) => {
-            reject(new Error('fail'))
-        })
+        // let p4 = new Promise((resolve,reject) => {
+        //     reject(new Error('fail'))
+        // })
 
-        let p3 = new Promise((resolve,reject) => {
-            resolve('simon')
-        })
+        // let p3 = new Promise((resolve,reject) => {
+        //     resolve('simon')
+        // })
 
-        let p2 = new Promise((resolve,reject) => {
-           resolve('p2')
-        })
+        // let p2 = new Promise((resolve,reject) => {
+        //    resolve('p2')
+        // })
 
-        let p1 = new Promise((resolve,reject) => {
-            resolve('p1')
-        })
+        // let p1 = new Promise((resolve,reject) => {
+        //     resolve('p1')
+        // })
 
         // p1
         // .then(rs1 => {
@@ -61,7 +61,16 @@
         // Promise.any([p1,p2,p3,p4])
         // .then(data => console.log(data))
         // .catch(err => console.log(err))
-        
+
+
+        let p1 = new Promise((res,rej) => {
+            setTimeout(res,1000,'先执行')
+        })
+        let p2 = new Promise((res,rej) => {
+            setTimeout(res,2000,'后执行')
+        })
+        //谁先结束，结果就是谁
+        Promise.race([p1,p2]).then(res => console.log(res)) //先执行
     </script>
 </body>
 </html>

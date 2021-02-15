@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function debonce(fn,wait){
+            let timer = null
+            return function() {
+                clearTimeout(timer)
+                timer = setTimeout(() => {
+                    fn.apply(this,arguments)
+                },wait)
+            }
+        }
+
+        function throttle(fn,wait){
+            let time = 0
+            return function (){
+                let now = Date.now()
+                if(now - time > wait){
+                    fn.apply(this,arguments)
+                    time = now
+                }
+            }
+        }
+    </script>
+</body>
+</html>
