@@ -638,24 +638,22 @@ console.log(JSON.stringify(obj1) === JSON.stringify(obj2)) //true
 ```
 
 ```
-function isObjectValueEqual(obj1, obj2){
-    if(!obj1 instanceof Object || !obj2 instanceof Object) return false
-    let key1 = Object.keys(obj1)
-    let key2 = Object.keys(obj2)
-    if(key1.length !== key2.length) return false
-    for(let i=0;i<key1.length;i++){
-        let key = key1[i]
-        let value1 = obj1[key]
-        let value2 = obj2[key]
-        if(value1 instanceof Object){
-            return isObjectValueEqual(value1,value2)
-        }else if(value1 !== value2){
+function test(a,b){
+    if(typeof a != 'object' || typeof b != 'object')
+    return false
+    if(Object.keys(a).length != Object.keys(b).length)
+    return false
+    for(let item of Object.keys(a)){
+        if(typeof a[item] == 'object'){
+            if(!test(a[item],b[item]))
+            return false
+        }else if(a[item] !== b[item]){
             return false
         }
     }
     return true
 }
-console.log(isObjectValueEqual(obj1, obj2))
+console.log(test(obj1, obj2))
 ```
 
 ## 19、window的onload事件和domcontentloaded
@@ -716,7 +714,7 @@ console.log(isObjectValueEqual(obj1, obj2))
 >[设计模式](https://www.cnblogs.com/tugenhua0707/p/5198407.html)
 
 ```
-// 单体模式
+// 单例模式
 var Singleton = function(name){
     this.name = name
     this.instance = null
@@ -762,14 +760,11 @@ function filter(arr){
     if(!arr instanceof Array){
         return arr
     }
-    let obj = {},newArr = []
-    for(let i of arr){
-        if(!obj[i]){
-            newArr.push(i)
-            obj[i] = i
-        }
+    let obj = {}
+    for(let value of arr){
+        !obj[value] && (obj[value] = value)
     }
-    return newArr
+    return Object.values(obj)
 }
 console.log(filter(arr))
 
@@ -1265,5 +1260,6 @@ console.log(str.replace(" ","")) //sim on
 
 //清除两边以及中间的空格
 let str = " sim on "
+console.log(str.trim().replace(" ","")) //simon
 console.log(str.trim().split(" ").join("")) //simon
 ```
