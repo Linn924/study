@@ -1,3 +1,6 @@
+# 骨架屏效果
+
+```
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,3 +101,4 @@ h4 {
     </div>
 </body>
 </html>
+```
