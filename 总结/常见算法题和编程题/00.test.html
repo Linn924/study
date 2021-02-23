@@ -7,15 +7,25 @@
 </head>
 <body>
     <script>
-        function test(...args){
-            if(args.length === 0) return
-            if(args.length === 1) return args[0]
-
-            return [...new Set(args.reduce((result,arr) => {
-                return result.filter(item => arr.includes(item))
-            }))]
+        function test(a,b,c){
+            var i = 0,
+                len = b.length,
+                arrA = a.split(''),
+                arrC = c.split('')
+            while(i <= arrA.length){
+                let item = arrA.slice(i,i+len).join('')
+                if(item != b) i++
+                else {
+                    arrA.splice(i,len,...arrC)
+                    i = 0
+                }
+            }
+            return arrA.join('')
         }
-        console.log(test([1,2,3],[2,3],[3,3]))
+
+        console.log(test('1224512','12','1'))
+
+
     </script>
 </body>
 </html>
