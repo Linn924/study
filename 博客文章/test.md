@@ -1,4 +1,4 @@
-# 骨架屏效果
+# 关键词高亮效果
 
 ```
 <!DOCTYPE html>
@@ -8,97 +8,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<style>
-:root {
-    --loading-grey: #ededed;
-}
-body {
-  background-color: #f6f6f6;
-  font-family: Helvetica;
-  font-size: 15px;
-  display: flex;
-  justify-content: space-evenly;/* 平分空白区域 */
-  align-items: center;
-  min-height: 100vh;
-}
-.card {
-  width: 320px;
-  background-color: #fff;
-  border-radius: 6px;
-  overflow: hidden;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, .12);
-}
-.image {
-  height: 200px;
-}
-.image img {
-  display: block;
-  width: 100%;
-  height: inherit;
-  object-fit: cover;
-}
-.content {
-  padding: 2rem 1.8rem;
-}
-h4 {
-  margin: 0 0 1rem;
-  font-size: 1.5rem;
-  line-height: 1.5rem;
-}
-.description {
-  font-size: 1rem;
-  line-height: 1.4rem;
-}
-
-.loading .image,
-.loading h4,
-.loading .description {
-  background-color: var(--loading-grey);
-  background: linear-gradient(
-    100deg,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, .5) 50%,
-    rgba(255, 255, 255, 0) 60%
-  ) var(--loading-grey);
-  background-size: 200% 100%;
-  background-position-x: 180%;
-  animation: 1s loading ease-in-out infinite;
-}
-
-@keyframes loading {
-  to {
-    background-position-x: -20%;
-  }
-}
-
-.loading h4 {
-  min-height: 1.6rem;
-  border-radius: 4px;
-  animation-delay: .05s;
-}
-
-.loading .description {
-  min-height: 4rem;
-  border-radius: 4px;
-  animation-delay: .06s;
-}
-</style>
 <body>
-    <div class="card">
-        <div class="image"><img src="https://s1.ax1x.com/2020/10/22/Bi7FBt.jpg" alt=""></div>
-        <div class="content">
-          <h4>CodingStartup</h4>
-          <div class="description">Ex quasi enim facere commodi omnis...</div>
-        </div>
-    </div>
-      
-    <div class="card loading">
-        <div class="image"></div>
-        <div class="content">
-          <h4></h4>
-          <div class="description"></div>
-        </div>
-    </div>
+    <input type="text" id="input">
+    <ul id="ul"></ul>
+    <script>
+        //防抖函数
+        function debounce(fn,wait = 500){
+            let timer = null
+            return function(){
+                if(timer) clearTimeout(timer)
+                timer = setTimeout(() => {
+                    fn.apply(this,arguments)
+                },wait)
+            }
+        }
+        //关键词数据
+        function keyWords(){
+            let list = ["上海","上海市","上海市海昌公园","上海市徐汇区","上海市自来水来自海上"]
+            return list
+        }
+        //搜索词高亮
+        function setList(value){
+            const ul = document.getElementById("ul")
+            const list = keyWords()
+            if(!value) {
+                ul.innerHTML = ""
+                return 
+            }
+            list.forEach((item,index) => {
+                if(item.indexOf(value) !== -1){
+                    const li = document.createElement("li")
+                    li.innerHTML = item.replace(value,`<span style="color:#1e90ff">${value}</span>`)
+                    li.setAttribute("key",index)
+                    ul.appendChild(li)
+                }
+            })
+        }
+        //搜索事件
+        function search(e){
+            setList(e.target.value)
+        }
+        document.getElementById("input").addEventListener("keyup",debounce(search))
+    </script>
 </body>
 </html>
 ```
+
